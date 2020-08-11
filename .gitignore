@@ -1,0 +1,68 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Twisted trial
+_trial_temp/
+
+# Twisted plugins
+twisted/plugins/dropin.cache
+
+# Dependencies
+node_modules/*
+
+# npm
+package-lock.json
+
+# Build
+octopus/blocktopus/resources/blockly/pack/*
+octopus/blocktopus/resources/blockly/msg/js/*.js
+octopus/blocktopus/resources/cache
+
+# Stored data
+data/*
+
+# Twisted log / PID
+child.log
+twistd.pid
+
+# Eclipse IDE
+.metadata/
+
+container_data/*
+.vscode/*
+
+.DS_Store
