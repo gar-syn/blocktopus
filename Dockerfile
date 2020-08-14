@@ -36,4 +36,4 @@ COPY start.sh .
 RUN dos2unix start.sh
 RUN ["chmod", "+x", "start.sh"]
 
-CMD ./start.sh
+# CMD ./start.sh
