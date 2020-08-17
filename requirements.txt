@@ -1,4 +1,5 @@
-twisted 
+twisted
+pandas
 numpy 
 scipy 
 pyserial 

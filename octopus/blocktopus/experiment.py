@@ -411,15 +411,12 @@ class CompletedExperiment (object):
     @defer.inlineCallbacks
     def buildExcelFile (self, variables, time_divisor, time_dp):
         import pandas as pd
-        try:
-            from cStringIO import StringIO
-        except:
-            from StringIO import StringIO
+        from io import BytesIO
 
         date = yield self._fetchDateFromDb(self.id)
         experimentDir = self._getExperimentDir(self.id, date)
         storedVariablesData = yield self._getVariables(experimentDir)
-        io = StringIO()
+        io = BytesIO()
 
         # http://stackoverflow.com/questions/28058563/write-to-stringio-object-using-pandas-excelwriter
         writer = pd.ExcelWriter('temp.xlsx', engine='xlsxwriter')
