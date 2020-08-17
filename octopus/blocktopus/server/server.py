@@ -472,12 +472,14 @@ class DownloadExperimentData (resource.Resource):
     @defer.inlineCallbacks
     def _render_POST (self, request):
         try:
+
+            log.msg(request.args)
             expt = yield self._getExperiment(self._id)
 
             yield expt.load()
 
             # variables = request.args['vars']
-            variables = list(map(lambda v: v.decode(), request.args[b'var[]']))
+            variables = list(map(lambda v: v.decode(), request.args[b'vars']))
             time_divisor = _getArg(request, b'time_divisor', int, None)
             time_dp = _getArg(request, b'time_dp', int, None)
             filename = '.'.join([

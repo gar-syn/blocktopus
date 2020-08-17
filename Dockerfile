@@ -11,13 +11,14 @@ RUN node --version && \
     python --version && \
     pip --version
 
-RUN pip install twisted numpy scipy pyserial xlsxwriter cryptography pyasn1 autobahn wget bcrypt
-
 RUN echo "/src/octopus" >> /usr/local/lib/python3.8/site-packages/octopus.pth
 
 WORKDIR /src/octopus
 COPY package.json .
 RUN npm install
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 COPY twisted/ ./twisted/
 
