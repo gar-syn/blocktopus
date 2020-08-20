@@ -15,7 +15,7 @@ from twisted.cred.portal import IRealm, Portal
 from zope.interface import implements
 
 # Autobahn Imports
-from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerFactory
+from autobahn.twisted.websocket import WebSocketServerProtocol, WebSocketServerFactory, listenWS
 from autobahn.websocket.compress import PerMessageDeflateOffer, PerMessageDeflateOfferAccept
 
 # Sibling Imports
@@ -546,17 +546,17 @@ def makeWebsocketServerFactory (host, port):
     websocketUrl = "ws://" + str(host) + ":" + str(port)
     template.websocketUrl = websocketUrl
 
-    factory = WebSocketServerFactory(websocketUrl) #, debug = False)
+    factory = WebSocketServerFactory(websocketUrl)
     factory.protocol = websocket.OctopusEditorProtocol
     factory.runtime = websocket_runtime
 
-    def accept (offers):
-        # Required for Chromium ~33 and newer
+    # Function to accept offers from the client ..
+    def accept(offers):
         for offer in offers:
             if isinstance(offer, PerMessageDeflateOffer):
                 return PerMessageDeflateOfferAccept(offer)
 
-    factory.setProtocolOptions(perMessageCompressionAccept = accept)
+    factory.setProtocolOptions(perMessageCompressionAccept=accept)
 
     return factory
 
@@ -619,15 +619,18 @@ def makeService (options):
         service.Application("octopus_editor_server", uid = 1, gid = 1)
     )
 
+    # Start the websocket server
     ws_factory = makeWebsocketServerFactory(str(options["wshost"]), int(options["wsport"]))
-    internet.TCPServer(int(options["wsport"]), ws_factory).setServiceParent(application)
+    listenWS(ws_factory)
 
+    # Start the HTTP server
     http_factory = makeHTTPResourcesServerFactory()
-    internet.TCPServer(int(options["port"]), http_factory).setServiceParent(application)
+    reactor.listenTCP(int(options["port"]), http_factory)
 
+    # Start the console server
     try:
         console_factory = makeConsoleServerFactory()
-        internet.TCPServer(int(options["consoleport"]), console_factory).setServiceParent(application)
+        reactor.listenTCP(int(options["consoleport"]), console_factory)
     except IOError:
         log.err("ERROR: Console could not be started. Create SSH keys using initialise.py before running.")
 
@@ -638,7 +641,9 @@ def run_server ():
     import sys
     log.startLogging(sys.stdout)
 
-    ws_port = 9000
+    log.msg("Does this run?")
+
+    ws_port = 9001
     ws_factory = makeWebsocketServerFactory("localhost", ws_port)
     reactor.listenTCP(ws_port, ws_factory)
     log.msg("WS listening on port %s" % ws_port)

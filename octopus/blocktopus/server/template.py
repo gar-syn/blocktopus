@@ -12,7 +12,7 @@ resources_dir = os.path.join(blocktopus_dir, "resources", "cache")
 resources_json = os.path.join(blocktopus_dir, "templates", "template-resources.json")
 
 resources_uri = '/resources/cache/'
-websocket_url = "ws://localhost:9000"
+websocket_url = "ws://localhost:9001"
 
 with open(resources_json) as templates_file:
     resources = json.load(templates_file)

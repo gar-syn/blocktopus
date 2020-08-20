@@ -21,7 +21,7 @@
     ],
 
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "appPort": ["8001:8001", "9000:9000"],
+    "appPort": ["8001:8001", "9001:9001"],
 
     // Use 'postCreateCommand' to run commands after the container is created.
     // "postCreateCommand": "pip3 install --user -r requirements.txt",
