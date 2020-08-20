@@ -6,7 +6,7 @@ services:
     tty: true
     ports:
     - "8001:8001"
-    - "9000:9000"
+    - "9001:9001"
     - "4040:4040"
     volumes:
     - ./data:/app/data

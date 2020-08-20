@@ -41,7 +41,7 @@ class WebSocketRuntime (BaseTransport):
 class OctopusEditorProtocol (WebSocketServerProtocol):
     def onConnect (self, request):
         return 'octopus'
-
+        
     def onOpen (self):
         self.subscribedExperiments = {}
         self.sendPing()

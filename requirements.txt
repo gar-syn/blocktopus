@@ -9,3 +9,4 @@ pyasn1
 autobahn 
 wget 
 bcrypt
+pylint
