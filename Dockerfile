@@ -1,7 +1,7 @@
 FROM python:3.8-buster
 
 RUN apt-get update
-RUN apt-get -y install nodejs npm libatlas-base-dev dos2unix libffi-dev
+RUN apt-get -y install nodejs npm libatlas-base-dev dos2unix libffi-dev libgl1
 RUN apt-get clean
 
 RUN npm install npm@latest -g

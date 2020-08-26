@@ -91,3 +91,21 @@ Blocks['connection_gsioc'] = {
     withVariableDropdown.call(this, this.fieldVar_, 'VAR');
   }
 };
+
+Blocks['connection_camera_proxy'] = {
+  init: function() {
+    //this.setHelpUrl('http://www.example.com/');
+
+    var iv = FieldTextInput.nonnegativeIntegerValidator;
+    this.setColour(CONNECTIONS_CATEGORY_HUE);
+    this.appendDummyInput()
+        .appendField("Camera - no:")
+        .appendField(new FieldTextInput("0", iv), "ID")
+        .appendField("host:")
+        .appendField(new FieldTextInput("host.docker.internal"), "HOST")
+        .appendField("port:")
+        .appendField(new FieldTextInput("8081", iv), "PORT");
+    this.setOutput(true, "CameraConnection");
+    this.setTooltip('Represents an octopus webcam proxy running on the host machine.');
+  }
+};

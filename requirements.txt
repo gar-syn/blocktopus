@@ -10,3 +10,5 @@ autobahn
 wget 
 bcrypt
 pylint
+SimpleCV
+opencv-python
