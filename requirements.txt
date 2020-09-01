@@ -12,3 +12,4 @@ bcrypt
 pylint
 SimpleCV
 opencv-python
+requests

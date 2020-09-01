@@ -1,8 +1,7 @@
 import json
-import wget
+import requests
 import os.path
 from distutils.dir_util import mkpath
-from urllib.error import HTTPError
 
 blocktopus_dir = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..', 'octopus', 'blocktopus')
@@ -27,24 +26,20 @@ def fetch_resource (url, filename, allow_fail = False):
     cache_file_dir = os.path.dirname(cache_file)
     mkpath(cache_file_dir)
 
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'
+    }
+
     if os.path.isfile(cache_file):
         print(f"{filename} already downloaded")
         return
 
     print(f"Downloading {url}")
 
-    try:
-        downloaded_file = wget.download(
-            url = url, 
-            out = cache_file
-        )
-        print("\n")
-    except HTTPError:
-        if allow_fail:
-            print("  [Not found]")
-        else:
-            raise
+    r = requests.get(url=url, headers=headers)
 
+    with open(cache_file, 'wb') as f:
+        f.write(r.content)
 
 if __name__ == "__main__":
     try:
