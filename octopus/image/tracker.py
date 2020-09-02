@@ -6,7 +6,7 @@ from twisted.internet.protocol import Factory
 from time import time as now
 
 # Sibling Imports
-from .data import Image, DerivedImage
+from .data import ImageProperty, DerivedImageProperty
 
 # Package Imports
 from ..machine import Machine, Property, Stream, ui
@@ -36,8 +36,8 @@ class SingleBlobTracker (Machine):
         # setup variables
         self.height = Stream(title = "Height", type = int)
         self.status = Property(title = "Status", type = str)
-        self.image = Image(title = "Tracked", fn = self._get_image)
-        self.visualisation = DerivedImage(title = "Visualisation")
+        self.image = ImageProperty(title = "Tracked", fn = self._get_image)
+        self.visualisation = DerivedImageProperty(title = "Visualisation")
 
         if fn is None:
             self.process_fn = lambda r, g, b: (g - r).threshold(30).erode()
@@ -54,8 +54,8 @@ class SingleBlobTracker (Machine):
     def start (self):
         self._tick(self.image.refresh, self.update_frequency)
 
-    def show (self):
-        self.image.value.show()
+    # def show (self):
+    # 	self.image.value.show()
 
     def _get_image (self):
         img = self.protocol.image()
@@ -141,8 +141,8 @@ class MultiBlobTracker (Machine):
 
         self._tick(self.image.refresh, self.update_frequency)
 
-    def show (self):
-        self.image.value.show()
+    # def show (self):
+    # 	self.image.value.show()
 
     def _get_image (self):
         img = self.protocol.image()
@@ -188,4 +188,3 @@ class MultiBlobTracker (Machine):
             self.protocol.disconnect()
         except AttributeError:
             pass
-

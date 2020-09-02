@@ -1,8 +1,8 @@
 # Sibling Imports
-from .data import Image
+from .data import ImageProperty
 
 # Package Imports
-from ..machine import Machine, ui
+from ..machine import Machine
 
 
 class ImageProvider (Machine):
@@ -12,11 +12,7 @@ class ImageProvider (Machine):
 
     def setup (self):
         # setup variables
-        self.image = Image(title = "Tracked", fn = self._getImage)
-
-        self.ui = ui(
-            properties = [self.image]
-        )
+        self.image = ImageProperty(title = "Tracked", fn = self._getImage)
 
     def _getImage (self):
         return self.protocol.image()
@@ -37,4 +33,3 @@ class ImageProvider (Machine):
             self.protocol.disconnect()
         except AttributeError:
             pass
-
