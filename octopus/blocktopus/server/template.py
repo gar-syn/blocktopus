@@ -12,7 +12,6 @@ resources_dir = os.path.join(blocktopus_dir, "resources", "cache")
 resources_json = os.path.join(blocktopus_dir, "templates", "template-resources.json")
 
 resources_uri = '/resources/cache/'
-websocket_url = "ws://localhost:9001"
 
 with open(resources_json) as templates_file:
     resources = json.load(templates_file)
@@ -132,15 +131,25 @@ class SketchEdit (ElementWithCachedResources):
     @renderer
     def editor_body (self, request, tag):
         return tag.fillSlots(
-            websocket_url = websocket_url,
             sketch_id = self.sketch_id
         )
 
     @renderer
     def plugin_machines (self, request, tag):
+        from octopus.blocktopus.blocks.machines import machine_declaration
         from octopus.blocktopus.workspace import get_block_plugin_block_names
         
-        for block_name in sorted(get_block_plugin_block_names()):
+        for block_name in sorted(get_block_plugin_block_names(machine_declaration)):
+            yield tag.clone().fillSlots(
+                type = block_name
+            )
+
+    @renderer
+    def plugin_connections (self, request, tag):
+        from octopus.blocktopus.blocks.machines import connection_declaration
+        from octopus.blocktopus.workspace import get_block_plugin_block_names
+        
+        for block_name in sorted(get_block_plugin_block_names(connection_declaration)):
             yield tag.clone().fillSlots(
                 type = block_name
             )
@@ -207,7 +216,6 @@ class ExperimentRunning (ElementWithCachedResources):
     @renderer
     def editor_body (self, request, tag):
         return tag.fillSlots(
-            websocket_url = websocketUrl,
             sketch_id = self.experiment.sketch.id,
             experiment_id = self.experiment.id,
             title = self.experiment.sketch.title,

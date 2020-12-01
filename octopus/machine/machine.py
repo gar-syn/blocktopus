@@ -172,9 +172,9 @@ class Machine (Component):
             return False
 
     def disconnect (self):
-        self.stop()
+        # self.stop()
         try:
-            self.protocol.transport.loseConnection()
+            self.protocol.transport.abortConnection()
         except AttributeError:
             pass
 

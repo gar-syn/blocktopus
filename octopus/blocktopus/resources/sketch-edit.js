@@ -35,7 +35,8 @@ jQuery(function ($) {
   setExperimentState('ready');
 
   // Socket communications
-  var socket = new WebSocket($('#blockly').data('websocket'), 'octopus');
+  var socketUrl = "ws://" + window.location.hostname + ":" + "9001";
+  var socket = new WebSocket(socketUrl, 'octopus');
   var socketOpen = false;
 
   socket.onopen = function () {

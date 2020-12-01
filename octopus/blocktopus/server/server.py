@@ -38,7 +38,7 @@ now = time.time
 ## Database
 ##
 
-data_path = os.path.abspath('/workspaces/data')
+data_path = os.path.abspath('/app/data')
 
 print(data_path)
 dbfilename = os.path.join(data_path, "octopus.db")
@@ -479,7 +479,8 @@ class DownloadExperimentData (resource.Resource):
             yield expt.load()
 
             # variables = request.args['vars']
-            variables = list(map(lambda v: v.decode(), request.args[b'vars']))
+            # variables = list(map(lambda v: v.decode(), request.args[b'vars']))
+            variables = request.args[b'vars']
             time_divisor = _getArg(request, b'time_divisor', int, None)
             time_dp = _getArg(request, b'time_dp', int, None)
             filename = '.'.join([
@@ -541,12 +542,12 @@ class UndeleteExperiment (resource.Resource):
         return server.NOT_DONE_YET
 
 
-def makeWebsocketServerFactory (host, port):
+def makeWebsocketServerFactory ():
     # WebSocket Server
-    websocketUrl = "ws://" + str(host) + ":" + str(port)
-    template.websocketUrl = websocketUrl
+    # websocketUrl = "ws://" + str(host) + ":" + str(port)
+    # template.websocketUrl = websocketUrl
 
-    factory = WebSocketServerFactory(websocketUrl)
+    factory = WebSocketServerFactory()
     factory.protocol = websocket.OctopusEditorProtocol
     factory.runtime = websocket_runtime
 
@@ -575,40 +576,6 @@ def makeHTTPResourcesServerFactory ():
 
     return server.Site(root)
 
-def makeConsoleServerFactory ():
-    from twisted.conch.insults import insults
-    from twisted.conch.manhole import ColoredManhole
-    from twisted.conch.manhole_ssh import ConchFactory, TerminalRealm
-    from twisted.conch.ssh import keys
-    from twisted.cred import checkers, portal
-
-    shell_password = str(uuid.uuid1()).split("-")[0]
-
-    # Note - using unsafe credentials checker.
-    checker = checkers.InMemoryUsernamePasswordDatabaseDontUse(octopus=shell_password)
-
-    def chainProtocolFactory():
-        return insults.ServerProtocol(
-            ColoredManhole,
-            dict(
-                sketches = loaded_sketches,
-                experiments = running_experiments
-            )
-        )
-
-    rlm = TerminalRealm()
-    rlm.chainedProtocolFactory = chainProtocolFactory
-    ptl = portal.Portal(rlm, [checker])
-
-    factory = ConchFactory(ptl)
-    factory.publicKeys[b"ssh-rsa"] = keys.Key.fromFile(os.path.join(data_path, "ssh-keys", "ssh_host_rsa_key.pub"))
-    factory.privateKeys[b"ssh-rsa"] = keys.Key.fromFile(os.path.join(data_path, "ssh-keys", "ssh_host_rsa_key"))
-
-    print ("Octopus SSH access credentials are octopus:%s\n\n" % shell_password)
-
-    return factory
-
-
 def makeService (options):
     """
     This will be called from twistd plugin system and we are supposed to
@@ -620,19 +587,15 @@ def makeService (options):
     )
 
     # Start the websocket server
-    ws_factory = makeWebsocketServerFactory(str(options["wshost"]), int(options["wsport"]))
-    listenWS(ws_factory)
+    # ws_factory = makeWebsocketServerFactory()
+    # listenWS(ws_factory)
+
+    ws_factory = makeWebsocketServerFactory()
+    reactor.listenTCP(9001, ws_factory)
 
     # Start the HTTP server
     http_factory = makeHTTPResourcesServerFactory()
     reactor.listenTCP(int(options["port"]), http_factory)
-
-    # Start the console server
-    try:
-        console_factory = makeConsoleServerFactory()
-        reactor.listenTCP(int(options["consoleport"]), console_factory)
-    except IOError:
-        log.err("ERROR: Console could not be started. Create SSH keys using initialise.py before running.")
 
     return application
 
@@ -643,9 +606,9 @@ def run_server ():
 
     log.msg("Does this run?")
 
-    ws_port = 9001
-    ws_factory = makeWebsocketServerFactory("localhost", ws_port)
-    reactor.listenTCP(ws_port, ws_factory)
+    # ws_port = 9001
+    ws_factory = makeWebsocketServerFactory()
+    reactor.listenTCP(9001, ws_factory)
     log.msg("WS listening on port %s" % ws_port)
 
     http_factory = makeHTTPResourcesServerFactory()

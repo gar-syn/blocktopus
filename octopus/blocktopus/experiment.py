@@ -416,11 +416,10 @@ class CompletedExperiment (object):
         date = yield self._fetchDateFromDb(self.id)
         experimentDir = self._getExperimentDir(self.id, date)
         storedVariablesData = yield self._getVariables(experimentDir)
-        io = BytesIO()
+        bio = BytesIO()
 
-        # http://stackoverflow.com/questions/28058563/write-to-stringio-object-using-pandas-excelwriter
-        writer = pd.ExcelWriter('temp.xlsx', engine='xlsxwriter')
-        writer.book.filename = io
+        # https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#writing-excel-files-to-memory
+        writer = pd.ExcelWriter(bio, engine='xlsxwriter')
 
         def varName (variable):
             """ Generates a column title from a variable name """
@@ -447,7 +446,7 @@ class CompletedExperiment (object):
                 usecols = [0, 1],
                 names = ["Time", varName(variable)]
             ),
-            map(lambda name: storedVariablesData[name], variables)
+            map(lambda name: storedVariablesData[name.decode('ascii')], variables)
         ))
 
         # Convert the columns into a single DataFrame
@@ -467,13 +466,15 @@ class CompletedExperiment (object):
         dataframe = dataframe.groupby(format_time).first()
 
         # Remove invalid chars from expt title for Excel sheet title
-        sheet_title = re.sub('[\[\]\*\/\\\?]+', '', self.title)[0:30]
+        sheet_title = re.sub(r'[\[\]\*\/\\\?]+', '', self.title)[0:30]
 
         # Generate excel file
         dataframe.to_excel(writer, sheet_name = sheet_title)
         writer.save()
 
-        defer.returnValue(io.getvalue())
+        # Seek to the beginning and read to copy the workbook to a variable in memory
+        bio.seek(0)
+        defer.returnValue(bio.read())
 
     def _fetchFromDb (self, id):
         def _done (rows):

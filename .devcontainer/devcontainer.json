@@ -4,7 +4,11 @@
     "name": "Python 3",
     "build": {
         "dockerfile": "..\\Dockerfile",
-        "context": ".."
+        "context": "..",
+        "args": {
+            "arch": "amd64",
+            "python_version": "3.8"
+        }
     },
 
     // Set *default* container specific settings.json values on container create.
