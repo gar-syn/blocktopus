@@ -10,6 +10,8 @@ from octopus import data
 from octopus.constants import State
 import octopus.transport.basic
 
+class connection_declaration (Block):
+    pass
 
 class machine_declaration (Block):
     def _varName (self, name = None):
@@ -206,7 +208,7 @@ class machine_gilson_FractionCollector203B (machine_declaration):
         return gilson.FractionCollector203B
 
 
-class connection_tcp (Block):
+class connection_tcp (connection_declaration):
     def eval (self):
         return defer.succeed(octopus.transport.basic.tcp(
             str(self.fields['HOST']),
@@ -214,7 +216,7 @@ class connection_tcp (Block):
         ))
 
 
-class connection_serial (Block):
+class connection_serial (connection_declaration):
     def eval (self):
         return defer.succeed(octopus.transport.basic.serial(
             str(self.fields['PORT']),
@@ -222,7 +224,7 @@ class connection_serial (Block):
         ))
 
 
-class connection_phidget (Block):
+class connection_phidget (connection_declaration):
     def eval (self):
         from octopus.transport.phidgets import Phidget
         return defer.succeed(Phidget(

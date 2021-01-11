@@ -55,7 +55,7 @@ class SingleBlobTracker (Machine):
         self._tick(self.image.refresh, self.update_frequency)
 
     # def show (self):
-    # 	self.image.value.show()
+    #   self.image.value.show()
 
     def _get_image (self):
         img = self.protocol.image()
@@ -142,7 +142,7 @@ class MultiBlobTracker (Machine):
         self._tick(self.image.refresh, self.update_frequency)
 
     # def show (self):
-    # 	self.image.value.show()
+    #   self.image.value.show()
 
     def _get_image (self):
         img = self.protocol.image()

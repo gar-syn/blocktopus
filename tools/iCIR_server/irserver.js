@@ -58,7 +58,7 @@ var server = net.createServer(function (socket) {
             });
         }
     
-    });	
+    });
 });
 
 var lastData = {

@@ -12,7 +12,7 @@ jQuery(function ($) {
   var streams = { length: 0 };
 
   var socketOpen = false;
-  var socketUrl = $('#viewer').data('url');
+  var socketUrl = "ws://" + window.location.hostname + ":" + "9001";
   var socket = new WebSocket(socketUrl, "octopus");
 
   properties.updateFrequency = 1000;

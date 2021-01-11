@@ -20,6 +20,14 @@ def build_machine_block_definition_js (filename):
         for name, definition in workspace.get_machine_js_definitions():
             fp.write(f"Blockly.Blocks.addMachineBlock('{name}', {json.dumps(definition)});\n")
 
+def build_connection_block_definition_js (filename):
+    from octopus.blocktopus import workspace
+
+    with open(filename, 'w') as fp:
+        fp.write("// Auto-generated file\n\n")
+
+        for name, definition in workspace.get_connection_js_definitions():
+            fp.write(f"Blockly.Blocks.addConnectionBlock('{name}', {json.dumps(definition)});\n")
 
 def fetch_resource (url, filename, allow_fail = False):
     cache_file = os.path.join(resources_dir, filename)
@@ -47,8 +55,11 @@ if __name__ == "__main__":
     except FileExistsError:
         pass
 
-    print ("Building machines block definition JS")
-    build_machine_block_definition_js (os.path.join(blocktopus_dir, 'resources', 'blockly', 'pack', 'octopus-machines.js'))
+    print ("Building machine blocks definition JS")
+    build_machine_block_definition_js(os.path.join(blocktopus_dir, 'resources', 'blockly', 'pack', 'octopus-machines.js'))
+
+    print ("Building connection blocks definition JS")
+    build_connection_block_definition_js(os.path.join(blocktopus_dir, 'resources', 'blockly', 'pack', 'octopus-connections.js'))
 
     print ("Downloading third-party resources")
 

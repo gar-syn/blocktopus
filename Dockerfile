@@ -4,6 +4,8 @@ RUN apt-get update
 RUN apt-get -y install nodejs npm libatlas-base-dev dos2unix libffi-dev libgl1 usbutils
 RUN apt-get clean
 
+RUN npm config set unsafe-perm true
+
 RUN npm install npm@latest -g
 
 RUN node --version && \
@@ -14,11 +16,12 @@ RUN node --version && \
 RUN echo "/src/octopus" >> /usr/local/lib/python3.8/site-packages/octopus.pth
 
 WORKDIR /src/octopus
-COPY package.json .
-RUN npm install
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+
+COPY package.json .
+RUN npm install
 
 COPY twisted/ ./twisted/
 
@@ -37,4 +40,6 @@ COPY start.sh .
 RUN dos2unix start.sh
 RUN ["chmod", "+x", "start.sh"]
 
-# CMD ./start.sh
+CMD ./start.sh
+# CMD twistd --pidfile=twistd.pid octopus-editor &
+# CMD ["echo", "Hello World"]

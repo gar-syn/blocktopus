@@ -6,10 +6,9 @@ pyserial
 xlsxwriter 
 cryptography 
 pyasn1 
-autobahn 
-wget 
-bcrypt
+autobahn  
 pylint
 SimpleCV
 opencv-python
 requests
+bcrypt

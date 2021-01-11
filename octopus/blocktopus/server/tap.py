@@ -6,10 +6,8 @@ from . import server
 
 class Options (usage.Options):
     optParameters = [
-        ['wshost', None, "localhost", "Listening host for WAMP websockets"],
         ['wsport', None, 9001, "Listening port for WAMP websockets"],
-        ['port', None, 8001, "Listening port for web connections"],
-        ['consoleport', None, 4040, "Listening port for console SSH connections"]
+        ['port', None, 8001, "Listening port for web connections"]
     ]
 
     optFlags = [['ssl', 's']]
