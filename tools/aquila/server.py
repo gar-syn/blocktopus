@@ -14,7 +14,7 @@ Make sure the server is stopped before closing CGQuant.
 In octopus, use the Aquila CGQ machine block with the CGQ (tcp) connection block.
 """
 
-HOST = '127.0.0.1'
+HOST = '0.0.0.0'
 PORT = 8082
 PIPE_FILE = r'\\.\pipe\CGQuantDataPipe'
 

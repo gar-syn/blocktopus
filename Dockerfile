@@ -1,10 +1,10 @@
-ARG arch
-
-FROM ${arch}/python:3.8-buster
+FROM python:3.8-buster
 
 RUN apt-get update
 RUN apt-get -y install nodejs npm libatlas-base-dev dos2unix libffi-dev libgl1 usbutils
 RUN apt-get clean
+
+RUN npm config set unsafe-perm true
 
 RUN npm install npm@latest -g
 
