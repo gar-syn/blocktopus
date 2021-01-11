@@ -1,29 +1,40 @@
-// For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
-// https://github.com/microsoft/vscode-dev-containers/tree/master/containers/python-3
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.128.0/containers/python-3
 {
-	"name": "Python 3",
-	"context": "..",
-	"dockerFile": "Dockerfile",
+    "name": "Python 3",
+    "build": {
+        "dockerfile": "..\\Dockerfile",
+        "context": "..",
+        "args": {
+            "arch": "amd64",
+            "python_version": "3.8"
+        }
+    },
 
-	// Uncomment the next line if you want to publish any ports.
-	"appPort": [8001, 9000],
+    // Set *default* container specific settings.json values on container create.
+    "settings": { 
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true
+    },
 
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "python --version",
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "ms-python.python"
+    ],
 
-	// Uncomment the next line to use a non-root user. See https://aka.ms/vscode-remote/containers/non-root-user.
-	// "runArgs": [ "-u", "1000" ],
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "appPort": ["8001:8001", "9001:9001"],
 
-	"extensions": [
-		"ms-python.python"
-	],
-	"settings": {
-		"python.pythonPath": "/usr/local/bin/python",
-		"python.linting.pylintEnabled": true,
-		"python.linting.pylintPath": "/usr/local/bin/pylint",
-		"python.linting.enabled": true
-	},
-	"mounts": [
-		"source=${localWorkspaceFolder}/plugins,target=/workspaces/octopus-plugins,type=bind,consistency=cached"
-	]
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // "postCreateCommand": "pip3 install --user -r requirements.txt",
+
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+    // "remoteUser": "vscode"
+
+    "mounts": [
+        "source=${localWorkspaceFolder}/plugins,target=/workspaces/octopus-plugins,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/container_data,target=/workspaces/data,type=bind,consistency=cached"
+    ]
 }

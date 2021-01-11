@@ -5,6 +5,7 @@ from octopus.sequence import runtime as r
 from octopus.sequence.util import Tick
 
 def fn1 ():
+<<<<<<< HEAD
 	print ("d3 tick.")
 
 def fn2 ():
@@ -13,6 +14,16 @@ def fn2 ():
 e = r._experiment
 d1 = Tick(sequence(
 	log("d1 tick...")
+=======
+    print ("d3 tick.")
+
+def fn2 ():
+    return log("d4 tick...")
+
+e = r._experiment
+d1 = Tick(sequence(
+    log("d1 tick...")
+>>>>>>> bad-master
 ), interval = 2)
 
 d2 = Tick(log("d2 tick"), interval = 3)
@@ -23,12 +34,21 @@ w1 = wait("10s")
 w2 = wait("3s")
 w3 = wait("3s")
 s = sequence(
+<<<<<<< HEAD
 	log("Starting experiment"),
 	w1,
 	w2,
 	cancel(d1),
 	w3,
 	log("Stopping experiment")
+=======
+    log("Starting experiment"),
+    w1,
+    w2,
+    cancel(d1),
+    w3,
+    log("Stopping experiment")
+>>>>>>> bad-master
 )
 s.dependents.add(d1)
 w1.dependents.add(d2)

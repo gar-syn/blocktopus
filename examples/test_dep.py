@@ -7,6 +7,7 @@ from octopus.sequence.util import Runnable, Pausable, Cancellable, Dependent
 
 class MyD (Dependent):
 
+<<<<<<< HEAD
 	def __init__ (self, i):
 		Dependent.__init__(self)
 		self.i = i
@@ -25,15 +26,41 @@ class MyD (Dependent):
 
 	def _reset (self):
 		print ("Dep %d Reset" % self.i)
+=======
+    def __init__ (self, i):
+        Dependent.__init__(self)
+        self.i = i
+
+    def _run (self):
+        print ("Dep %d Run" % self.i)
+
+    def _pause (self):
+        print ("Dep %d Pause" % self.i)
+
+    def _resume (self):
+        print ("Dep %d Resume" % self.i)
+
+    def _cancel (self, abort = False):
+        print ("Dep %d Cancel" % self.i)
+
+    def _reset (self):
+        print ("Dep %d Reset" % self.i)
+>>>>>>> bad-master
 
 e = r._experiment
 d1 = MyD(1)
 d2 = MyD(2)
 
 s = sequence(
+<<<<<<< HEAD
 	log("Starting experiment"),
 	wait("5m"),
 	log("Stopping experiment")
+=======
+    log("Starting experiment"),
+    wait("5m"),
+    log("Stopping experiment")
+>>>>>>> bad-master
 )
 s.dependents.add(d1)
 s.dependents.add(d2)

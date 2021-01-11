@@ -7,14 +7,21 @@ from twisted.python import log
 
 # System Imports
 try:
+<<<<<<< HEAD
 	from urllib.parse import urlencode
 except ImportError:
 	from urllib import urlencode
+=======
+    from urllib.parse import urlencode
+except ImportError:
+    from urllib import urlencode
+>>>>>>> bad-master
 
 # Sibling Imports
 import util as notifier_util
 
 class WebClientContextFactory(ClientContextFactory):
+<<<<<<< HEAD
 	def getContext(self, hostname, port):
 		return ClientContextFactory.getContext(self)
 
@@ -69,3 +76,59 @@ class ClockworkSMS (object):
 		d.addCallback(handle_response)
 
 		return d
+=======
+    def getContext(self, hostname, port):
+        return ClientContextFactory.getContext(self)
+
+class _Receiver (protocol.Protocol):
+    def __init__ (self, d):
+        self.buf = ''
+        self.d = d
+
+    def dataReceived (self, data):
+        self.buf += data
+
+    def connectionLost (self, reason):
+        # TODO: test if reason is twisted.web.client.ResponseDone, if not, do an errback
+        self.d.callback(self.buf)
+
+class ClockworkSMS (object):
+    def __init__ (self, api_key):
+        contextFactory = WebClientContextFactory()
+        self.agent = Agent(reactor, contextFactory)
+        self._api_key = api_key
+
+    def notify (self, destination, message):
+
+        destinations = destination.split(",")
+
+        if len(destinations) > 50:
+            log.msg("Max 50 SMS recipients allowed") 
+
+        params = {
+            "key": self._api_key,
+            "to": destination,
+            "content": message.encode("utf_8", "replace")
+        }
+
+        uri = "https://api.clockworksms.com/http/send.aspx?{:s}"
+
+        d = self.agent.request(
+            "GET",
+            uri.format(urlencode(params)),
+            Headers({
+                'User-Agent': ['octopus'],
+            }),
+            None
+        )
+
+        def handle_response (response):
+            d = defer.Deferred()
+            response.deliverBody(_Receiver(d))
+
+            return d
+
+        d.addCallback(handle_response)
+
+        return d
+>>>>>>> bad-master

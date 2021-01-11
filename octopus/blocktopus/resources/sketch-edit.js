@@ -35,7 +35,8 @@ jQuery(function ($) {
   setExperimentState('ready');
 
   // Socket communications
-  var socket = new WebSocket($('#blockly').data('websocket'), 'octopus');
+  var socketUrl = "ws://" + window.location.hostname + ":" + "9001";
+  var socket = new WebSocket(socketUrl, 'octopus');
   var socketOpen = false;
 
   socket.onopen = function () {
@@ -511,10 +512,11 @@ jQuery(function ($) {
         blockH = block.svg_.svgGroup_.getBBox().height;
         maxY = Math.max(maxY, blockY + blockH + 10);
       }
+
       try {
         var dom = Blockly.xmlTextToDom(text);
         $(dom).children('block').each(function () {
-          block = Blockly.Xml.domToBlock(workspace, this);
+          block = Blockly.xmlDomToBlock(workspace, this);
           block.moveTo(0, maxY);
 
           blockY = block.getRelativeToSurfaceXY().y;
@@ -522,7 +524,7 @@ jQuery(function ($) {
           maxY = Math.max(maxY, blockY + blockH + 10);
         });
       } catch (e) {
-        workspace.discardEmitTransaction();
+        // workspace.discardEmitTransaction();
 
         alert('The uploaded file did not contain a valid block tree.');
         console.log(e);
@@ -548,6 +550,7 @@ jQuery(function ($) {
   $('#btn-download').on('click', function () {
     var workspace = Blockly.getMainWorkspace();
     var xmlText = Blockly.exportWorkspaceToXml(workspace);
+
 
     // Create an <a> element to contain the download.
     var a = window.document.createElement('a');

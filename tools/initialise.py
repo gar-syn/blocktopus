@@ -1,4 +1,8 @@
 import os
+<<<<<<< HEAD
+=======
+from pathlib import Path
+>>>>>>> bad-master
 from os.path import join as pjoin
 from distutils.dir_util import mkpath
 
@@ -9,6 +13,7 @@ from cryptography.hazmat.backends import default_backend as crypto_default_backe
 from octopus.blocktopus.database.createdb import createdb
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     DATA_DIR = pjoin(os.getcwd(), 'data')
 
     print ("Creating Data Directories")
@@ -41,3 +46,20 @@ if __name__ == "__main__":
     print ("")
     print ("Public SSH key is located at: " + pjoin(DATA_DIR, 'ssh-keys', 'ssh_host_rsa_key.pub'))
     print ("Use this key for SSH connections to the console.")
+=======
+    DATA_DIR = '/app/data'
+
+    print ("Creating Data Directories")
+
+    if not Path(pjoin(DATA_DIR, 'sketches')).exists():
+        mkpath(pjoin(DATA_DIR, 'sketches'))
+        print ("Sketches data directory created")
+
+    if not Path(pjoin(DATA_DIR, 'experiments')).exists():
+        mkpath(pjoin(DATA_DIR, 'experiments'))
+        print ("Experiments data directory created")
+
+    if not Path(pjoin(DATA_DIR, 'octopus.db')).exists():
+        createdb(DATA_DIR)
+        print ("Database created")
+>>>>>>> bad-master

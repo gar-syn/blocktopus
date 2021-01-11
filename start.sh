@@ -1,6 +1,10 @@
+#!/bin/sh
+
+echo "Starting Blocktopus"
+
 if [ ! -d "/app/data/experiments" ]
 then
-  python /src/octopus/tools/initialise.py
+    python /src/octopus/tools/initialise.py
 fi
 
-twistd --nodaemon --pidfile=twistd.pid octopus-editor --wshost 127.0.0.1
+twistd --nodaemon --pidfile=octopus.pid --logfile octopus.log octopus-editor

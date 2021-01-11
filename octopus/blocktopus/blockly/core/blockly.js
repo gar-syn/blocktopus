@@ -831,7 +831,11 @@ export function xmlTextToDom (text) {
   return Xml.textToDom(text);
 }
 
+<<<<<<< HEAD
 export function xmDomToBlock(workspace, xmlBlock) {
+=======
+export function xmlDomToBlock(workspace, xmlBlock) {
+>>>>>>> bad-master
   return Xml.domToBlock(workspace, xmlBlock);
 }
 
