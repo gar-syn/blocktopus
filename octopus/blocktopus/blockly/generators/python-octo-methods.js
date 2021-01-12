@@ -250,11 +250,7 @@ export function statementToCode (block, name) {
   var targetBlock = block.getInputTargetBlock(name);
   var code = blockToCode(targetBlock);
   if (code === "") {
-<<<<<<< HEAD
-	return code;
-=======
   return code;
->>>>>>> bad-master
   }
   if (!Array.isArray(code) || (code.length === 2 && typeof code[1] === "number")) {
     // Value blocks must return code and order of operations info.

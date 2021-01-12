@@ -60,21 +60,13 @@ Properties
 
  *	`input1` ... `input4` (r, str)
 
-<<<<<<< HEAD
-	State of digital contacts.
-=======
 	State of digital contacts. 
->>>>>>> bad-master
 
 	Values: "open", "closed".
 
  *	`output1` ... `output6` (rw, str)
 
-<<<<<<< HEAD
-	State of digital contacts.
-=======
 	State of digital contacts. 
->>>>>>> bad-master
 
 	Values: "open", "closed".
 
@@ -93,11 +85,7 @@ gilson.SampleInjector233(master.gsioc(id))
 ```
 
 Default locations (based on manual calibration of our machine and needle - CAUTION!)
-<<<<<<< HEAD
- * "zero": Home position
-=======
  * "zero": Home position 
->>>>>>> bad-master
  * "inject:1": Injection port 1
  * "inject:2": Injection port 2
  * "wash:a:deep": Wash station A, needle in deep recess.
@@ -105,11 +93,7 @@ Default locations (based on manual calibration of our machine and needle - CAUTI
  * "wash:a:drain": Wash station A, needle over drain
 
 Modify the `_default_locations` attribute to change these.
-<<<<<<< HEAD
-
-=======
  
->>>>>>> bad-master
 Properties
 ----------
 
@@ -123,22 +107,14 @@ Properties
 	Default: "zero"
 
  *	`injection` (rw, str)
-<<<<<<< HEAD
-
-=======
  
->>>>>>> bad-master
 	Position of the injection valve.
 
 	Values: "load", "inject".  
 	Default: "load".
 
  *	`switching` (rw, str)
-<<<<<<< HEAD
-
-=======
  
->>>>>>> bad-master
 	Position of the switching valve.
 
 	Values: "load", "inject".  
@@ -281,11 +257,6 @@ Methods
  *	`zero()`
 
 	Zero the readings.
-<<<<<<< HEAD
-
-
-Fraction Collector 203B
-=======================
 
 ```python
 gilson.FractionCollector203B(master.gsioc(id))
@@ -317,4 +288,3 @@ Properties
 
     Values: "collect", "waste"
 =======
->>>>>>> bad-master

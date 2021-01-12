@@ -15,30 +15,6 @@ from octopus.transport import basic
 # from octopus.sequence import shortcuts
 
 def run ():
-<<<<<<< HEAD
-	log.startLogging(open('child.log', 'w'))
-	fd = sys.__stdin__.fileno()
-	oldSettings = termios.tcgetattr(fd)
-	tty.setraw(fd)
-
-	try:
-		locals = {
-			"tcp": basic.tcp,
-			"serial": basic.serial,
-			# "s": shortcuts
-		}
-
-		p = ServerProtocol(ConsoleManhole, namespace = locals)
-		stdio.StandardIO(p)
-		reactor.run()
-
-	finally:
-		termios.tcsetattr(fd, termios.TCSANOW, oldSettings)
-		os.write(fd, "\r\x1bc\r")
-
-if __name__ == '__main__':
-	run()
-=======
     log.startLogging(open('child.log', 'w'))
     fd = sys.__stdin__.fileno()
     oldSettings = termios.tcgetattr(fd)
@@ -61,4 +37,3 @@ if __name__ == '__main__':
 
 if __name__ == '__main__':
     run()
->>>>>>> bad-master

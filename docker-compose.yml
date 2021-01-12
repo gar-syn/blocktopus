@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-version: '3'
-services:
-  web:
-    build: 
-      context: .
-    tty: true
-    ports:
-    - "8001:8001"
-    - "9000:9000"
-    - "4040:4040"
-    volumes:
-    - ./data:/app/data
-=======
 version: '3'
 services:
   web:
@@ -24,4 +10,3 @@ services:
     - "4040:4040"
     volumes:
     - ./data:/app/data
->>>>>>> bad-master

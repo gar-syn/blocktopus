@@ -3,13 +3,12 @@
 {
     "name": "Python 3",
     "build": {
-        "dockerfile": "..\\Dockerfile",
+        "dockerfile": "..//Dockerfile",
         "context": "..",
-        "args": {
-            "arch": "amd64",
-            "python_version": "3.8"
-        }
+        
     },
+
+    "runArgs": ["--privileged"],
 
     // Set *default* container specific settings.json values on container create.
     "settings": { 
@@ -35,6 +34,6 @@
 
     "mounts": [
         "source=${localWorkspaceFolder}/plugins,target=/workspaces/octopus-plugins,type=bind,consistency=cached",
-        "source=${localWorkspaceFolder}/container_data,target=/workspaces/data,type=bind,consistency=cached"
+        "source=${localWorkspaceFolder}/container_data,target=/app/data,type=bind,consistency=cached"
     ]
 }

@@ -41,12 +41,6 @@ _trial_temp/
 # Twisted plugins
 twisted/plugins/dropin.cache
 
-<<<<<<< HEAD
-# Octopus plugins
-plugins/*
-
-=======
->>>>>>> bad-master
 # Dependencies
 node_modules/*
 
@@ -63,19 +57,13 @@ data/*
 
 # Twisted log / PID
 child.log
-<<<<<<< HEAD
-twistd.log
-=======
->>>>>>> bad-master
 twistd.pid
 
 # Eclipse IDE
 .metadata/
 
-<<<<<<< HEAD
-=======
 container_data/*
+!container_data/.gitkeep 
 .vscode/*
 
->>>>>>> bad-master
 .DS_Store
