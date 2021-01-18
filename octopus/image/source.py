@@ -15,15 +15,22 @@ from twisted.internet.interfaces import IAddress
 from .data import Image, ColorSpace
 
 class cv_webcam (object):
-    def __init__ (self, device):
+    def __init__ (self, device, img_width, img_height):
         self.device_index = device
+        self.img_width = img_width
+        self.img_height = img_height
         self.name = "cv_webcam(%s)" % device
         self.camera = None
 
     @defer.inlineCallbacks
     def connect (self, _protocolFactory):
         if self.camera is None:
+
             self.camera = yield threads.deferToThread(cv2.VideoCapture, self.device_index)
+
+            # Set picture capture dimensions
+            self.camera.set(3, self.img_width)
+            self.camera.set(4, self.img_height)
 
         defer.returnValue(self)
 

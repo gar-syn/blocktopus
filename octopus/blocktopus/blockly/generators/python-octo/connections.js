@@ -26,7 +26,9 @@ PythonOcto['connection_phidget'] = function(block) {
 PythonOcto['connection_cvcamera'] = function(block) {
     addDefinition('import_image_source', 'from octopus.image.source import cv_webcam');
     var id = parseInt(block.getFieldValue('ID'));
-    var code = 'cv_webcam(' + id + ')';
+    var img_width = parseInt(block.getFieldValue('img_width'));
+    var img_height = parseInt(block.getFieldValue('img_height'));
+    var code = 'cv_webcam(' + id + ', img_width = ' + img_width + ', img_height = ' + img_height + ')';
     return [code, ORDER.FUNCTION_CALL];
 };
 
