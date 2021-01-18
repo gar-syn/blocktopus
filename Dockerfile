@@ -1,7 +1,7 @@
 FROM python:3.8-buster
 
 RUN apt-get update
-RUN apt-get -y install nodejs npm libatlas-base-dev dos2unix libffi-dev libgl1 usbutils
+RUN apt-get -y install nodejs npm libatlas-base-dev libffi-dev libgl1 usbutils
 RUN apt-get clean
 
 RUN npm config set unsafe-perm true
@@ -37,9 +37,7 @@ RUN python tools/build.py
 
 WORKDIR /app
 COPY start.sh .
-RUN dos2unix start.sh
 RUN ["chmod", "+x", "start.sh"]
 
+# Start the platform
 CMD ./start.sh
-# CMD twistd --pidfile=twistd.pid octopus-editor &
-# CMD ["echo", "Hello World"]
