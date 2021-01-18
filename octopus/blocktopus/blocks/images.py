@@ -188,7 +188,11 @@ class connection_cvcamera (Block):
         else:
             from octopus.image.source import cv_webcam
 
-        return defer.succeed(cv_webcam(int(self.fields['ID'])))
+        return defer.succeed(cv_webcam(
+            int(self.fields['ID']),
+            int(self.fields['img_width']),
+            int(self.fields['img_height'])
+        ))
 
 
 class connection_camera_proxy (Block):

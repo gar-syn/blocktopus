@@ -87,12 +87,8 @@ class BaseImageProperty (BaseVariable):
         if img is None:
             return ''
 
-        scaled_x = int(img.width / 4)
-        scaled_y = int(img.height / 4)
-        scaled = cv2.resize(img.data, (scaled_x, scaled_y))
-
         # Encode
-        is_success, buffer = cv2.imencode(".png", scaled)
+        is_success, buffer = cv2.imencode(".png", img.data)
         io_buf = BytesIO(buffer)
 
         encoded = "data:image/png;base64," + quote(base64.b64encode(io_buf.getvalue()).decode())

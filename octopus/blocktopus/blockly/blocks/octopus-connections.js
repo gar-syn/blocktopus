@@ -77,6 +77,10 @@ Blocks['connection_cvcamera'] = extend({
   "connInputFields": [
     "Camera - No",
     { "name": "ID", "type": "integer", "default": "0" },
+    "Width",
+    { "name": "img_width", "type": "integer", "default": "320" },
+    "Height - No",
+    { "name": "img_height", "type": "integer", "default": "240" }
   ],
   "connOutputType": "CameraConnection",
   "connTooltip": "Represents a USB webcamera. The first camera has id 0, the second 1, and so on."
