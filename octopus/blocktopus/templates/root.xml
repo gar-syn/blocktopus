@@ -11,12 +11,12 @@
     <script src="/resources/root.js"></script>
     <link rel="stylesheet" href="/resources/root.css" />
 
-    <title>Octopus</title>
+    <title>Blocktopus</title>
 </head>
 <body>
     <section id="header">
     <div class="container">
-        <h1>Octopus</h1>
+        <h1>Blocktopus</h1>
     </div>
     </section>
 
