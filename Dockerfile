@@ -13,27 +13,22 @@ RUN node --version && \
     python --version && \
     pip --version
 
-RUN echo "/src/octopus" >> /usr/local/lib/python3.8/site-packages/octopus.pth
-
-WORKDIR /src/octopus
+WORKDIR /src
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY package.json .
+ADD . .
+
+RUN echo "/src" >> /usr/local/lib/python3.8/site-packages/blocktopus.pth
+
 RUN npm install
-
-COPY twisted/ ./twisted/
-
-COPY rollup.config.js .
-COPY octopus/ ./octopus/
 RUN ./node_modules/.bin/rollup -c
 
-COPY plugins/ /src/octopus-plugins/
-COPY tools/ ./tools/
+RUN pip install .
 
-RUN python tools/install_plugins.py /src/octopus-plugins /usr/local/lib/python3.8/site-packages
-RUN python tools/build.py
+WORKDIR /src
+RUN python build.py
 
 WORKDIR /app
 COPY start.sh .

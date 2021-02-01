@@ -1,4 +1,5 @@
 import setuptools
+from setuptools import find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -14,8 +15,8 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/richardingham/octopus",
-    packages=['octopus', 'octopus.manufacturer', 'octopus.blocks'],
-    install_requires=requirements,
+    packages=find_packages(where='src', exclude=['*.test']),
+    package_dir={'': 'src'},
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3.8",

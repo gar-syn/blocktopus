@@ -6,7 +6,7 @@ from distutils.dir_util import mkpath
 from blocktopus import workspace
 
 blocktopus_dir = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), '..', 'blocktopus')
+    os.path.join(os.path.dirname(__file__), '.', 'blocktopus')
 )
 
 resources_dir = os.path.join(blocktopus_dir, 'resources', 'cache')
