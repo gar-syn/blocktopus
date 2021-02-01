@@ -33,7 +33,6 @@
     // "remoteUser": "vscode"
 
     "mounts": [
-        "source=${localWorkspaceFolder}/plugins,target=/workspaces/octopus-plugins,type=bind,consistency=cached",
         "source=${localWorkspaceFolder}/container_data,target=/app/data,type=bind,consistency=cached"
     ]
 }

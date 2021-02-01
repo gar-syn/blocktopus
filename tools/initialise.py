@@ -3,7 +3,7 @@ from pathlib import Path
 from os.path import join as pjoin
 from distutils.dir_util import mkpath
 
-from octopus.blocktopus.database.createdb import createdb
+from blocktopus.database.createdb import createdb
 
 if __name__ == "__main__":
     DATA_DIR = '/app/data'

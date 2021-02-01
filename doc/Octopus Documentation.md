@@ -41,7 +41,6 @@ to behave their own drivers or libraries to interface with Python.
 Devices that connect by I2C, Modbus, GPIB, etc: it is theoretically 
 possible to interact with these but they are not currently supported.
 
-
 Instantiating objects to access machines
 ========================================
 
@@ -79,7 +78,6 @@ $ python -m octopus
 (Note. This is a derivative of `twisted.conch.stdio` with some useful 
 modules pre-imported)
 
-
 Octopus Command Line
 ====================
 
@@ -102,10 +100,11 @@ You are presented with a console prompt as you might expect:
 ```
 
 The pre-imported modules are:
- * serial, tcp from octopus.transport.basic
- * vapourtec, knauer, gilson from octopus.manufacturer
- * octopus.sequence.shortcuts as s
- 
+
+* serial, tcp from octopus.transport.basic
+* vapourtec, knauer, gilson from octopus.manufacturer
+* octopus.sequence.shortcuts as s
+
 Example - Knauer K120
 ---------------------
 
@@ -114,7 +113,7 @@ connect to this pump as described earlier:
 
 ```python
 >>> pump = knauer.K120(serial("/dev/ttyUSB0", baudrate = 9600))
-``` 
+```
 
 The Knauer K120 has the following properties:
 
@@ -140,7 +139,7 @@ using the properties listed above:
 <Property at df12a1b7 current value: 100>
 ```
 
-Aside - Setting Properties 
+Aside - Setting Properties
 --------------------------
 
 Note that `Machine` objects such as instances of `knauer.K120` override 
@@ -191,9 +190,9 @@ from twisted.internet import reactor
 from octopus.sequence import Sequence, LogStep, WaitStep
 
 seq = Sequence([
-	LogStep("This is the first step"),
-	WaitStep(5),
-	LogStep("This is the third step"),
+    LogStep("This is the first step"),
+    WaitStep(5),
+    LogStep("This is the third step"),
 ])
 
 import sys
@@ -218,9 +217,10 @@ octopus command line environment, but in a script you have to do this yourself.
 [wp-event-loop]: http://en.wikipedia.org/wiki/Event_loop
 
 Further reading:
- - [Twisted Event Loop](http://twistedmatrix.com/documents/current/core/howto/reactor-basics.html)
- - [Deferred callbacks](http://twistedmatrix.com/documents/current/core/howto/defer-intro.html)
- 
+
+- [Twisted Event Loop](http://twistedmatrix.com/documents/current/core/howto/reactor-basics.html)
+- [Deferred callbacks](http://twistedmatrix.com/documents/current/core/howto/defer-intro.html)
+
 If the above example were to be run using python (i.e. `$ python example.py`), 
 then `"This is the first step"` would be displayed, and then after a five second 
 pause, `"This is the third step"` would be displayed. (Along with some other
@@ -242,9 +242,9 @@ from twisted.internet import reactor
 from octopus.sequence import Parallel, LogStep, WaitStep
 
 seq = Parallel([
-	LogStep("This is the first step"),
-	WaitStep(5),
-	LogStep("This is the third step"),
+    LogStep("This is the first step"),
+    WaitStep(5),
+    LogStep("This is the third step"),
 ])
 
 import sys
@@ -259,7 +259,6 @@ reactor.run()
 
 In this case, `"This is the first step"` and `"This is the third step"` would be 
 displayed immediately, and then `seq` would complete after a five-second delay.
-
 
 Expressions
 ===========
@@ -297,12 +296,12 @@ Experiments
 The `octopus.experiment` module provides the `Experiment` class. This can be 
 used to wrap a sequence to provide some additional functionality:
 
- * Any `Machine`s involved in the experiment are reset to a default state
-   before the sequence is run.
- * A log of each variable (machine properties or other variables) involved in 
-   the experiment is automatically stored.
- * By setting the experiment's `id` (and optionally it's `title`) remote
-   monitoring of the experiment is enabled.    
+* Any `Machine`s involved in the experiment are reset to a default state
+  before the sequence is run.
+* A log of each variable (machine properties or other variables) involved in 
+  the experiment is automatically stored.
+* By setting the experiment's `id` (and optionally it's `title`) remote
+  monitoring of the experiment is enabled.    
 
 Here is a simple `Experiment` using the `knauer.K120` machine referred to
 earlier:
@@ -320,12 +319,12 @@ exp = Experiment()
 exp.register_machine(pump)
 
 seq = Sequence([
-	LogStep("Starting pump"),
-	SetStep(pump.target, 200),
-	SetStep(pump.power, "on"),
-	WaitStep("30s"),
-	LogStep("Stopping pump"),
-	SetStep(pump.power, "off"),
+    LogStep("Starting pump"),
+    SetStep(pump.target, 200),
+    SetStep(pump.power, "on"),
+    WaitStep("30s"),
+    LogStep("Stopping pump"),
+    SetStep(pump.power, "off"),
 ])
 
 reactor.callWhenRunning(exp.run)
@@ -338,7 +337,7 @@ when it is run, and then completes as soon as this assignment is successful.
 Some `set` operations may be immediate, some may take some time - for example if 
 the machine's driver carries out a check to make sure that the update has been 
 carried out successfully. 
- 
+
 If we run `$ python simple_experiment.py` then the pump will be switched on and
 run for 30 seconds before being switched off. 
 
@@ -352,20 +351,19 @@ allowed format is (relatively) permissive. Examples:
 - "15 minutes"
 - "1 minute 20 seconds"
 
-
 Shortcuts
 ---------
 
 To save some typing, Octopus provides some shortcuts to make your programs 
 shorter. 
 
- * `octopus.sequence.shortcuts` contains functions that create the various
-   `Step` objects.
- * `octopus.runtime` deals with creating a single experiment, registering
-   any machines that you instantiate, and starting and stopping the reactor.
-   It also imports all of the sequence shortcuts.
- * `octopus.run` deals with starting and stopping the reactor if you are
-   not using `octopus.runtime`.
+* `octopus.sequence.shortcuts` contains functions that create the various
+  `Step` objects.
+* `octopus.runtime` deals with creating a single experiment, registering
+  any machines that you instantiate, and starting and stopping the reactor.
+  It also imports all of the sequence shortcuts.
+* `octopus.run` deals with starting and stopping the reactor if you are
+  not using `octopus.runtime`.
 
 The previous examples could equally have been written as:
 
@@ -374,9 +372,9 @@ import octopus
 from octopus.sequence.shortcuts import *
 
 seq = sequence(
-	log("This is the first step"),
-	wait(5),
-	log("This is the third step"),
+    log("This is the first step"),
+    wait(5),
+    log("This is the third step"),
 )
 
 octopus.run(seq)
@@ -390,12 +388,12 @@ from octopus.manufacturer import knauer
 pump = knauer.K120(serial("/dev/ttyUSB0", baudrate = 9600))
 
 seq = sequence(
-	log("Starting pump"),
-	set(pump.target, 200),
-	set(pump.power, "on"),
-	wait("30s"),
-	log("Stopping pump"),
-	set(pump.power, "off"),
+    log("Starting pump"),
+    set(pump.target, 200),
+    set(pump.power, "on"),
+    wait("30s"),
+    log("Stopping pump"),
+    set(pump.power, "off"),
 )
 
 run(seq)
@@ -406,103 +404,102 @@ Steps that can be used in a Sequence
 
 These are the available Step `objects` and their shortcuts.
 
- *	`sequence.Sequence(steps)` or  
-	`shortcuts.sequence(*steps)`:
+* `sequence.Sequence(steps)` or  
+  `shortcuts.sequence(*steps)`:
+  
+  A sequence of steps that will be run one after another, in order.
 
-	A sequence of steps that will be run one after another, in order.
+* `sequence.Parallel(steps)` or  
+  `shortcuts.parallel(*steps)`:
+  
+  A sequence of steps that will all be run simultaneously.
 
- *	`sequence.Parallel(steps)` or  
-	`shortcuts.parallel(*steps)`:
+* `sequence.SetStep(variable, value)` or  
+  `shortcuts.set(variable, value)`:  
+  
+  A Step that will set `variable` to `value` when run.
 
-	A sequence of steps that will all be run simultaneously.
+* `shortcuts.increment(variable)`:  
+  
+  Equivalent to `sequence.SetStep(variable, variable + 1)`
 
- *	`sequence.SetStep(variable, value)` or  
-	`shortcuts.set(variable, value)`:  
+* `shortcuts.decrement(variable)`:
+  
+  Equivalent to `sequence.SetStep(variable, variable - 1)`
 
-	A Step that will set `variable` to `value` when run.
+* `sequence.WaitStep(duration)` or  
+  `shortcuts.wait(duration)`:
+  
+  A Step that pause execution of the sequence for the specified time.
+  `duration` may be a time in seconds, or a formatted string (see above).
+  
+  A `WaitStep` has a `delay(time)` method which can be called while the 
+  step is    running to make the step wait for longer before completing. 
+  `time` is in seconds. Negative values of `time` have no effect.
+  
+  There is also a `restart()` method which starts the wait timer again
+  from the beginning.
 
- *	`shortcuts.increment(variable)`:  
+* `sequence.WaitUntilStep(expression, [interval])` or  
+  `shortcuts.wait_until(expression, [interval])`:
+  
+  A Step that pause execution of the sequence until `expression` 
+  evaluates to `True`. By default, `expression` is evaluated every 100 ms, 
+  but this can be changed by passing a named parameter `interval`, 
+  for example: 
+  
+  ```python
+  wait_until(pump.power == "off", interval = 5)
+  ```
+  
+  which will evaluate `expression` every 5 seconds.
 
-	Equivalent to `sequence.SetStep(variable, variable + 1)`
+* `sequence.WhileStep(expression, sequence, [min_calls])` or  
+  `shortcuts.loop_while(expression, sequence, [min_calls])`:
+  
+  When this step is run, `sequence` is run over and over again as long as
+  `expression` evaluates to `True`. Each time `sequence` completes, 
+  `expression` is tested and if it is still `True`, `sequence` is run again.
+  
+  `WhileStep` completes as soon as `sequence` finishes and `expression` 
+  is `False`.
+  
+  If `expression` is initially `False`, then `sequence` will never run. 
+  If you would like `sequence` to run at least once (or any other number 
+  of times) then pass in an optional named parameter, `min_calls`.
 
- *	`shortcuts.decrement(variable)`:
+* `shortcuts.loop_until(expression, sequence, [min_calls])`: 
+  
+  Equivalent to `sequence.WhileStep(expression == False, sequence, [min_calls])` 
 
-	Equivalent to `sequence.SetStep(variable, variable - 1)`
+* `sequence.IfStep(expression, sequence_if_true, sequence_if_false)` or  
+  `shortcuts.do_if(expression, sequence_if_true, [sequence_if_false])`:
+  
+  When this step is run, `expression` is evaluated. If it is `True` then 
+  `sequence_if_true` is run, otherwise `sequence_if_false` is run. In the 
+  shortcut, `sequence_if_false` is an optional parameter.
 
- *	`sequence.WaitStep(duration)` or  
-	`shortcuts.wait(duration)`:
+* `sequence.CancelStep(runnable)` or  
+  `shortcuts.cancel(runnable)`:  
+  
+  When this step is run, `runnable.cancel()` is called. If `runnable` is a 
+  `Step` then it will attempt to complete immediately. Use with care.
 
-	A Step that pause execution of the sequence for the specified time.
-	`duration` may be a time in seconds, or a formatted string (see above).
+* `sequence.LogStep(message)` or  
+  `shortcuts.log(message)`:  
+  
+  Writes a message to the log. Depending on how the sequence is being run, 
+  this may be on-screen, to an experiment log, both, or something else.
 
-	A `WaitStep` has a `delay(time)` method which can be called while the 
-	step is	running to make the step wait for longer before completing. 
-	`time` is in seconds. Negative values of `time` have no effect.
-
-	There is also a `restart()` method which starts the wait timer again
-	from the beginning.
-
- *	`sequence.WaitUntilStep(expression, [interval])` or  
-	`shortcuts.wait_until(expression, [interval])`:
-
-	A Step that pause execution of the sequence until `expression` 
-	evaluates to `True`. By default, `expression` is evaluated every 100 ms, 
-	but this can be changed by passing a named parameter `interval`, 
-	for example: 
-
-	```python
-	wait_until(pump.power == "off", interval = 5)
-	``` 
-
-	which will evaluate `expression` every 5 seconds.
-
- *	`sequence.WhileStep(expression, sequence, [min_calls])` or  
-	`shortcuts.loop_while(expression, sequence, [min_calls])`:
-
-	When this step is run, `sequence` is run over and over again as long as
-	`expression` evaluates to `True`. Each time `sequence` completes, 
-	`expression` is tested and if it is still `True`, `sequence` is run again.
-
-	`WhileStep` completes as soon as `sequence` finishes and `expression` 
-	is `False`.
-
-	If `expression` is initially `False`, then `sequence` will never run. 
-	If you would like `sequence` to run at least once (or any other number 
-	of times) then pass in an optional named parameter, `min_calls`.
-
- *	`shortcuts.loop_until(expression, sequence, [min_calls])`: 
-
-	Equivalent to `sequence.WhileStep(expression == False, sequence, [min_calls])` 
-
- *	`sequence.IfStep(expression, sequence_if_true, sequence_if_false)` or  
-	`shortcuts.do_if(expression, sequence_if_true, [sequence_if_false])`:
-
-	When this step is run, `expression` is evaluated. If it is `True` then 
-	`sequence_if_true` is run, otherwise `sequence_if_false` is run. In the 
-	shortcut, `sequence_if_false` is an optional parameter.
-
- *	`sequence.CancelStep(runnable)` or  
-	`shortcuts.cancel(runnable)`:  
-
-	When this step is run, `runnable.cancel()` is called. If `runnable` is a 
-	`Step` then it will attempt to complete immediately. Use with care.
-
- *	`sequence.LogStep(message)` or  
-	`shortcuts.log(message)`:  
- 
-	Writes a message to the log. Depending on how the sequence is being run, 
-	this may be on-screen, to an experiment log, both, or something else.
-
- *	`sequence.CallStep(callable, *args, **kwargs)` or  
-	`shortcuts.call(callable, *args, **kwargs)`:  
-
-	`callable` is a function which is called with `*args, **kwargs` when 
-	`CallStep` is run. If `callable` returns a `Sequence` or `Step` then that
-	is run and then	`CallStep` completes. If `callable` returns a `Deferred`,
-	then `CallStep` waits for the deferred to return a value before 
-	completing. Otherwise, `CallStep` completes with the return value of 
-	`callable`. 
-
+* `sequence.CallStep(callable, *args, **kwargs)` or  
+  `shortcuts.call(callable, *args, **kwargs)`:  
+  
+  `callable` is a function which is called with `*args, **kwargs` when 
+  `CallStep` is run. If `callable` returns a `Sequence` or `Step` then that
+  is run and then    `CallStep` completes. If `callable` returns a `Deferred`,
+  then `CallStep` waits for the deferred to return a value before 
+  completing. Otherwise, `CallStep` completes with the return value of 
+  `callable`. 
 
 Running, Pausing, Resuming, Cancelling
 ======================================
@@ -533,13 +530,11 @@ on the result.
 Attmepting to call a method when the step is not in an amenable state
 will raise an exception: `AlreadyRunning`, `NotRunning` or `NotPaused`.
 
-
 Run and Reset
 -------------
 
 Each Runnable can only be run once. It must be reset() before it can be run 
 again.
-
 
 Pause and Resume
 ----------------
@@ -560,7 +555,6 @@ Experiments will pause their sequence, and also call pause on all of the
 registered machines. This should cause all of the machines to stop their
 pumps, heaters etc. until resume is called.
 
-
 Cancel and Abort
 ----------------
 
@@ -571,7 +565,6 @@ move onto the next step, or stop a WhileStep after the current iteration.
 Abort is a forceful, "emergency" stop which will immediately halt the step
 and any children, and then raise an error which will halt the whole sequence
 and experiment if it is attached to one.
- 
 
 Dependents
 ==========
@@ -591,7 +584,6 @@ The most common examples of dependents are "Triggers" and "Ticks".
 For other dependents, such as `PID` for PID control, and `StateMonitor` see
 `octopus.sequence.control`.
 
-
 Triggers
 --------
 
@@ -599,13 +591,13 @@ Triggers
 from octopus.sequence.util import Trigger
 
 main_seq = sequence(
-	wait("10m"),
+    wait("10m"),
 )
 
 expression = my_var > 2
 
 trigger_seq = sequence(
-	log("Trigger Fired")
+    log("Trigger Fired")
 )
 
 trigger = Trigger(expression, trigger_seq)
@@ -629,7 +621,6 @@ parameter `interval` (in seconds). The default is 0.1, which can be overridden
 for all triggers by setting `Trigger.interval`. NB. This has a different
 effect to adding a `WaitStep` to the sequence.
 
-
 Ticks
 -----
 
@@ -648,5 +639,3 @@ it can continue.
 `interval` is a mandatory parameter.
 
 `max_calls` is an optional parameter, with the same effect as for Trigger.
-
-

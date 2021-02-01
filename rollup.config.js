@@ -5,16 +5,16 @@ export default [{
   // core input options
   input: {
     include: [
-      'octopus/blocktopus/blockly/core/blockly.js',
-      'octopus/blocktopus/blockly/blocks/*.js',
+      'blocktopus/blockly/core/blockly.js',
+      'blocktopus/blockly/blocks/*.js',
     ],
     exclude: [
-      'octopus/blocktopus/blockly/blocks/mixins.js',
-      'octopus/blocktopus/blockly/blocks/lists.js'
+      'blocktopus/blockly/blocks/mixins.js',
+      'blocktopus/blockly/blocks/lists.js'
     ]
   },
   output: {
-    file: 'octopus/blocktopus/resources/blockly/pack/blockly.js',
+    file: 'blocktopus/resources/blockly/pack/blockly.js',
     format: 'iife',
     name: 'Blockly',
     globals: {
@@ -28,18 +28,18 @@ export default [{
 }, {
   input: {
     include: [
-      'octopus/blocktopus/blockly/generators/python-octo.js',
-      'octopus/blocktopus/blockly/generators/python-octo/*.js',
+      'blocktopus/blockly/generators/python-octo.js',
+      'blocktopus/blockly/generators/python-octo/*.js',
     ],
     exclude: [
-      'octopus/blocktopus/blockly/generators/python-octo/lists.js',
+      'blocktopus/blockly/generators/python-octo/lists.js',
     ]
   },
   plugins: [
     multiEntry()
   ],
   output: {
-    file: 'octopus/blocktopus/resources/blockly/pack/octopus-generator.js',
+    file: 'blocktopus/resources/blockly/pack/octopus-generator.js',
     format: 'iife',
     name: 'PythonOctoGenerator',
     globals: {
@@ -47,9 +47,9 @@ export default [{
     }
   }
 }, {
-  input: 'octopus/blocktopus/blockly/msg/messages.js',
+  input: 'blocktopus/blockly/msg/messages.js',
   output: {
-    file: 'octopus/blocktopus/resources/blockly/pack/blockly-messages.js',
+    file: 'blocktopus/resources/blockly/pack/blockly-messages.js',
     format: 'iife',
     name: 'Blockly.Msg',
     globals: {
