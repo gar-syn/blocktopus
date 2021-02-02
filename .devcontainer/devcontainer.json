@@ -33,6 +33,6 @@
     // "remoteUser": "vscode"
 
     "mounts": [
-        "source=${localWorkspaceFolder}/container_data,target=/app/data,type=bind,consistency=cached"
+        "source=${localWorkspaceFolder}/data,target=/app/data,type=bind,consistency=cached"
     ]
 }

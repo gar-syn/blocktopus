@@ -2,13 +2,8 @@ twisted
 pandas
 numpy 
 scipy 
-pyserial 
-xlsxwriter 
-cryptography 
-pyasn1 
+xlsxwriter  
 autobahn  
 pylint
-SimpleCV
-opencv-python
 requests
-bcrypt
+congo-lab
