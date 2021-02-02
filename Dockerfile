@@ -13,25 +13,22 @@ RUN node --version && \
     python --version && \
     pip --version
 
-WORKDIR /src
+WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-ADD . .
-
-RUN echo "/src" >> /usr/local/lib/python3.8/site-packages/blocktopus.pth
-
+COPY package.json .
 RUN npm install
+
+ADD . /app
+
+RUN echo "/app" >> /usr/local/lib/python3.8/site-packages/blocktopus.pth
+
 RUN ./node_modules/.bin/rollup -c
 
-RUN pip install .
-
-WORKDIR /src
 RUN python build.py
 
-WORKDIR /app
-COPY start.sh .
 RUN ["chmod", "+x", "start.sh"]
 
 # Start the platform

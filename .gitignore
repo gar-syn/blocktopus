@@ -53,7 +53,9 @@ octopus/blocktopus/resources/blockly/msg/js/*.js
 octopus/blocktopus/resources/cache
 
 # Stored data
-data/*
+data/octopus.db
+data/experiments/*
+data/sketches/*
 
 # Twisted log / PID
 child.log
