@@ -45,7 +45,7 @@ jobs:
         with:
           push: true
           platforms: ${{ steps.buildx.outputs.platforms }} #this builds one tag per architecture platforms you specified in the set up QEMU.
-          tags: gar-syn/blocktopus:latest #set to the dockerhub repo this will be pushed to
+          tags: ghcr.io/gar-syn/blocktopus:latest #set to the github repo this will be pushed to
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }} #this is for logging.
