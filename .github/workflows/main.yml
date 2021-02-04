@@ -53,7 +53,7 @@ jobs:
         with:
           push: true
           platforms: ${{ steps.buildx.outputs.platforms }}
-          tags: gar-syn/blocktopus:latest
+          tags: ghcr.io/gar-syn/blocktopus:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
