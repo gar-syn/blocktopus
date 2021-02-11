@@ -69,3 +69,7 @@ container_data/*
 .vscode/*
 
 .DS_Store
+
+# Flask stuff:
+instance/
+.webassets-cache

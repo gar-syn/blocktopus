@@ -1,9 +1,3 @@
-twisted
-pandas
-numpy 
-scipy 
-xlsxwriter  
-autobahn  
-pylint
-requests
-congo-lab
+flask==1.1.2
+gunicorn==20.0.4
+Whitenoise

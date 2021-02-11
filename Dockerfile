@@ -1,35 +1,26 @@
-FROM python:3.8-buster
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM python:3.8-slim-buster
 
-RUN apt-get update
-RUN apt-get -y install nodejs npm libatlas-base-dev libffi-dev libgl1 usbutils
-RUN apt-get clean
+EXPOSE 5000
 
-RUN npm config set unsafe-perm true
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
 
-RUN npm install npm@latest -g
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
 
-RUN node --version && \
-    npm --version && \
-    python --version && \
-    pip --version
+# Install pip requirements
+COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
 
 WORKDIR /app
+COPY . /app
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+# Switching to a non-root user, please refer to https://aka.ms/vscode-docker-python-user-rights
+RUN useradd appuser && chown -R appuser /app
+USER appuser
 
-COPY package.json .
-RUN npm install
+ENV FLASK_APP=app.py
 
-ADD . /app
-
-RUN echo "/app" >> /usr/local/lib/python3.8/site-packages/blocktopus.pth
-
-RUN ./node_modules/.bin/rollup -c
-
-RUN python build.py
-
-RUN ["chmod", "+x", "start.sh"]
-
-# Start the platform
-CMD ./start.sh
+# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
