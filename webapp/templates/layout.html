@@ -3,11 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <title>{% block title %}{% endblock title %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"  />
     </head>
 
     <body>
-
         <div class="body-content">
             {% block content %}
             {% endblock content %}
