@@ -1,7 +1,7 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.8-slim-buster
 
-EXPOSE 5000
+EXPOSE 8080
 
 RUN apt-get update
 
@@ -25,4 +25,4 @@ USER appuser
 ENV FLASK_APP=app.py
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
+CMD gunicorn --timeout 1000 --workers 1 --threads 4 --log-level debug --bind 0.0.0.0:8080 app:app
