@@ -2,8 +2,8 @@
 FROM python:3.8-slim-buster
 
 EXPOSE 8080
-
 RUN apt-get update
+RUN apt-get install sqlite3 libsqlite3-dev
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -22,7 +22,5 @@ COPY . /app
 RUN useradd appuser && chown -R appuser /app
 USER appuser
 
-ENV FLASK_APP=app.py
-
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD gunicorn --timeout 1000 --workers 1 --threads 4 --log-level debug --bind 0.0.0.0:8080 app:app
+CMD gunicorn --timeout 1000 --workers 1 --threads 4 --log-level debug --bind 0.0.0.0:8080 __init__:app
