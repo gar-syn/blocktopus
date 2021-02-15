@@ -11,13 +11,13 @@ def login():
     print("Login")
     return render_template('auth/login.html')
 
-@auth.route('/signup')
-def signup():
-    print("Signup")
-    return render_template('auth/signup.html')
+@auth.route('/register')
+def register():
+    print("register")
+    return render_template('auth/register.html')
     
-@auth.route('/signup', methods=['POST'])
-def signup_post():
+@auth.route('/register', methods=['POST'])
+def register_post():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
@@ -26,8 +26,8 @@ def signup_post():
     user = User.query.filter_by(email=email).first()
 
     if user:  # if a user is found, we want to redirect back to signup page so user can try again
-        flash('Email address is already registered.')
-        return redirect(url_for('auth.signup'))
+        flash('Email address is already registered')
+        return redirect(url_for('auth.register'))
 
     # create new user with the form data. Hash the password so plaintext version isn't saved.
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
