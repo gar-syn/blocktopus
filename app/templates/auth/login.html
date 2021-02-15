@@ -1,34 +1,46 @@
-{% extends "layout.html" %}
-
-{% block title %}Login{% endblock %}
-
-{% block headerscripts %}
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/register_login.css') }}">
-{% endblock %}
-
-
-{% block content %}
-<div class="text-center">
-<main class="form-signin">
+{% extends "layout.html" %} {% block title %}Login{% endblock %} {% block
+headerscripts %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/register_login.css') }}"
+/>
+{% endblock %} {% block content %}
+<div
+  class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center"
+>
+  <main class="form-signin">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div class="alert alert-danger">
-            {{ messages[0] }}
-        </div>
-    {% endif %}
-    {% endwith %}
-        <form method="POST" action="/login">
-    <label for="inputEmail" class="visually-hidden">Email address</label>
-    <input type="email" name="email" id="inputEmail" class="input form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="visually-hidden">Password</label>
-    <input type="password" name="password" id="inputPassword" class="input form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary button">Login</button>
-  </form>
-</main>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="alert alert-danger">{{ messages[0] }}</div>
+    {% endif %} {% endwith %}
+    <form method="POST" action="/login">
+      <label for="inputEmail" class="visually-hidden">Email address</label>
+      <input
+        type="email"
+        name="email"
+        id="inputEmail"
+        class="input form-control"
+        placeholder="Email address"
+        required
+        autofocus
+      />
+      <label for="inputPassword" class="visually-hidden">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="inputPassword"
+        class="input form-control"
+        placeholder="Password"
+        required
+      />
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me" /> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary button">Login</button>
+    </form>
+  </main>
+</div>
 {% endblock %}

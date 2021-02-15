@@ -3,6 +3,4 @@ flask==1.1.2
 gunicorn==20.0.4
 whitenoise
 flask_sqlalchemy
-
 flask-login
-sqlalchemy_utils
