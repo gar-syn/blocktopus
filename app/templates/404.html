@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ <!-- Begin Page Content -->
+                <div class="container-fluid">
+<div
+  class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center"
+>
+                    <!-- 404 Error Text -->
+                    <div class="text-center">
+                        <div class="error mx-auto" data-text="404">404</div>
+                        <p class="lead text-gray-800 mb-5">Page Not Found</p>
+                        <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
+                         <a href="{{ url_for('main.index') }}" class="nav-link">
+                    <span>&larr; Back to Home</span></a>
+
+                    </div>
+</div>
+                </div>
+                <!-- /.container-fluid -->
+{% endblock %}

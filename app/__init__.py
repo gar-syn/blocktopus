@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from whitenoise import WhiteNoise
 from . import config
@@ -8,8 +8,13 @@ from flask_login import LoginManager
 #db initilaization
 db = SQLAlchemy()
 
+def page_not_found(e):
+      return render_template('404.html'), 404
+
 def create_app():
     app = Flask(__name__)
+    app.register_error_handler(404, page_not_found)
+
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
     app.config['SECRET_KEY'] = config.SECRET_KEY
@@ -37,3 +42,5 @@ def create_app():
     app.register_blueprint(main_blueprint)
 
     return app
+
+db.create_all(app=create_app())

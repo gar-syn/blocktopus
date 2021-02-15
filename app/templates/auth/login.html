@@ -1,14 +1,8 @@
-{% extends "layout.html" %} {% block title %}Login{% endblock %} {% block
-headerscripts %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static',filename='css/register_login.css') }}"
-/>
-{% endblock %} {% block content %}
-<div
-  class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center"
->
+{% extends "layout.html" %} 
+{% block title %}Login{% endblock %} 
+
+{% block content %}
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
   <main class="form-signin">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
     {% with messages = get_flashed_messages() %} {% if messages %}

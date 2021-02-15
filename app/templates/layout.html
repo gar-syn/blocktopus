@@ -113,7 +113,7 @@
             <li class="nav-item">
                 {% endif %} {% if current_user.is_authenticated %}
                 <a href="{{ url_for('auth.logout') }}" class="nav-link" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-portal-exit"></i>
+                    <i class="fas fa-times-circle"></i>
                     <span>Logout</span></a>
                     {% endif %}
             </li>
