@@ -6,6 +6,10 @@
   background-color: #f0fff0;
 }
 
+.card-body {
+  min-height: 100px;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
