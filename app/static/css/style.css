@@ -6,10 +6,6 @@
   background-color: #f0fff0;
 }
 
-.card-body {
-  min-height: 100px;
-}
-
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -38,4 +34,8 @@
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.error-text {
+  width: 50%;
 }
