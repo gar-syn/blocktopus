@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template
+from flask_assets import Environment, Bundle
 from flask_sqlalchemy import SQLAlchemy
 from whitenoise import WhiteNoise
 from . import config
@@ -12,6 +13,12 @@ def page_not_found(e):
 
 def create_app():
     app = Flask(__name__)
+    
+    #Flask Assets Bundle
+    from .util.assets import bundles
+    assets = Environment(app)
+    assets.register(bundles)
+
     app.register_error_handler(404, page_not_found)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True

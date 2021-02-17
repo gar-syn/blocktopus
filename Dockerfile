@@ -1,29 +1,24 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.8-slim-buster
+FROM python:3.7-stretch
 
-EXPOSE 5000
+EXPOSE 80 80
+EXPOSE 3000 3000
+EXPOSE 5000 5000
+
+
 RUN apt-get update
 RUN apt-get -y install sqlite3 libsqlite3-dev
 
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
 
-# Turns off buffering for easier container logging
-ENV PYTHONUNBUFFERED=1
-
-# Install pip requirements
+WORKDIR /usr/src/app
+# In order for the Docker build cache to cache packages installed via pip,
+# it’s necessary to add the requirements.txt file to the image, and run pip install
+# before adding the rest of the app code (via COPY . .)
 COPY requirements.txt .
-RUN python -m pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app
-COPY . /app
+# needed for vscode
+RUN pip install pylint
 
-# Switching to a non-root user, please refer to https://aka.ms/vscode-docker-python-user-rights
-RUN useradd appuser && chown -R appuser /app
-USER appuser
-
-
-CMD flask run --host=0.0.0.0
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-#CMD gunicorn --timeout 1000 --workers 1 --threads 4 --log-level debug --bind 0.0.0.0:8080 app:app
-
+COPY . .
+# TODO: implement gunicorn or some other productiongrade server
+CMD [ "flask", "run", "--host=0.0.0.0", "--port=5000" ]
