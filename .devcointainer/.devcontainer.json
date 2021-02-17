@@ -1,4 +1,7 @@
 // See https://aka.ms/vscode-remote/devcontainer.json for format details.
+
+// Run devcontainer in Visual Studio Code with "Remote Development" extension
+// Ctrl + Shift + P and use "Remote Containers: Open Folder in Container" -> .devcontainer
 {
 	"dockerComposeFile": "..//docker-compose.yml",
 	"service": "app",
