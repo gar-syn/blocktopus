@@ -6,7 +6,7 @@ bundles = {
         'css/style.css',
         'css/lib/all.css',
         filters='cssmin',
-        output='dist/css/style.min.css',
+        output='gen/css/style.min.css',
         extra={'rel': 'stylesheet/css'}),
 
     'main_js': Bundle(
@@ -17,5 +17,5 @@ bundles = {
         'js/lib/all.js',
         'js/dashboard.js',
         filters='jsmin',
-        output='dist/js/main.min.js')
+        output='gen/js/main.min.js')
 }
