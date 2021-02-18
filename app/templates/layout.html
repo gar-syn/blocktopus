@@ -16,12 +16,14 @@
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
          <!-- Sidebar - Heading -->
+         <a href="{{ url_for('main.index') }}" class="nav-link">
          <div class="sidebar-brand d-flex align-items-center justify-content-center">
             <div class="sidebar-brand-icon rotate-n-15">
                <i class="fab fa-octopus-deploy fa-2x"></i>
             </div>
             <div class="sidebar-brand-text mx-3">Blocktopus</div>
          </div>
+         </a>
          <!-- Divider -->
          <hr class="sidebar-divider my-0">
          <!-- Nav Item - Home -->
@@ -47,23 +49,23 @@
                data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Create a new:</h6>
-                  <a href="{{ url_for('forms.create_project') }}" class="collapse-item">Project</a>
-                  <a href="{{ url_for('forms.create_experiment') }}" class="collapse-item">Experiment</a>
-                  <a class="collapse-item" href="/">Sketch</a>
+                  <a href="{{ url_for('forms.create_project') }}" class="collapse-item"><i class="far fa-folder-open"></i> Project</a>
+                  <a href="{{ url_for('forms.create_experiment') }}" class="collapse-item"><i class="fas fa-flask"></i> Experiment</a>
+                  <a class="collapse-item" href="/"><i class="fas fa-pencil-alt"></i> Sketch</a>
                </div>
             </div>
          </li>
          <!-- Nav Item - Charts -->
          <li class="nav-item">
             <a class="nav-link" href="/">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <i class="fas fa-fw fa-folder-open"></i>
+            <span>Projects</span></a>
          </li>
          <!-- Nav Item - Tables -->
          <li class="nav-item">
             <a class="nav-link" href="/">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <i class="fas fa-fw fa-flask"></i>
+            <span>Experiments</span></a>
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider">

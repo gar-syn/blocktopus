@@ -40,7 +40,7 @@ class Sketches(db.Model):
 class Experiments(db.Model):
     __tablename__ = 'experiments'
     guid = Column(String(200),unique=True, primary_key=True)
-    eln = Column(String(100),unique=True)
+    eln = Column(String(100))
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)
     site = Column(String(50), unique=False)
