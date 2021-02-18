@@ -16,7 +16,6 @@ def create_app():
     app = Flask(__name__)
     Bootstrap(app)
     
-    #Flask Assets Bundle
     from .util.assets import bundles
     assets = Environment(app)
     assets.register(bundles)

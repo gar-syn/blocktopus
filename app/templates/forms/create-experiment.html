@@ -1,19 +1,17 @@
 {% extends "layout.html" %} 
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Create a new Project{% endblock %} 
+{% block title %}Create a new Experiment{% endblock %} 
 {% block content %}
 
 <div class="container">
 	<div class="row pb-5">
 		<div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-		<h1 class="pt-5 pb-2">Create a new Project</h1>
+		<h1 class="pt-5 pb-2">Create a new Experiment</h1>
 		{% if message %}
 			<!-- Successful Submit -->
 			<p class="alert alert-success"><strong>{{ message }}</strong></p>
-			 <a href="{{ url_for('forms.create_experiment') }}" class="nav-link">
-			<button class="w-100 btn btn-lg btn-primary button">Create an Experiment</button>
-			</a>
+			<button class="w-100 btn btn-lg btn-primary button">Create a Sketch</button>
 		{% else %}
 			<!-- form is displayed when template opens via GET not POST -->
 			{% with errors = get_flashed_messages() %}
@@ -27,7 +25,7 @@
 				{% endif %}
 			{% endwith %}
 			<!-- end of flash -->
-		    {{ wtf.quick_form(create_project_form) }}
+		    {{ wtf.quick_form(create_experiment_form) }}
 		{% endif %}
 		</div>
 	</div>
