@@ -62,9 +62,11 @@ class Projects(db.Model):
     experiments_guid = Column(String(200), ForeignKey('experiments.guid'), nullable=False)
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(1000), unique=False, nullable=False)
+    created_date = Column(Integer, unique=False, nullable=False)
 
-    def __init__(self, guid, experiments_guid, title, description):
+    def __init__(self, guid, experiments_guid, title, description, created_date):
         self.guid = guid
         self.experiments_guid = experiments_guid
         self.title = title
         self.description = description
+        self.created_date = created_date
