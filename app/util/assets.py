@@ -16,6 +16,6 @@ bundles = {
         'js/vendor/bootstrap/js/bootstrap.bundle.js',
         'fontawesome-free/js/all.js',
         'js/dashboard.js',
-    filters='jsmin',
-    output='dist/js/main.min.js')
+        filters='jsmin',
+        output='dist/js/main.min.js')
 }

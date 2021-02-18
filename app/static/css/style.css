@@ -1,3 +1,6 @@
+.visually-hidden {
+  display: none;
+}
 .div-hover-blue:hover {
   background-color: #f0f8ff;
 }
