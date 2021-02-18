@@ -20,7 +20,7 @@ def create_project():
         db.session.add(create_new_project)
         db.session.commit()
         
-        message = f"The data for the new project '{title}' with the GUID: {guid} has been submitted."
+        message = f"New project '{title}' has been created."
         return render_template('forms/create-project.html', message=message)
     else:
         # show validaton errors
