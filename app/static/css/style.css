@@ -42,3 +42,13 @@
 .error-text {
   width: 50%;
 }
+
+.btn-default {
+  color: #fff;
+  background-color: #4e73df;
+  border-color: #4e73df;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+}
