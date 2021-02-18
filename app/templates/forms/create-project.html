@@ -8,22 +8,13 @@
 <div class="container">
 	<div class="row pb-5">
 		<div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-
 		<h1 class="pt-5 pb-2">Create a new Project</h1>
-
 		{% if message %}
-
 			<!-- Successful Submit -->
 			<p class="alert alert-success"><strong>{{ message }}</strong></p>
-
 			<button class="w-100 btn btn-lg btn-primary button">Create an Experiment</button>
-
 		{% else %}
-
-			<!-- the form is displayed when template opens via GET not POST -->
-
-			<p class="lead alert alert-info">Create a new Project.</p>
-
+			<!-- form is displayed when template opens via GET not POST -->
 			{% with errors = get_flashed_messages() %}
 				{% if errors %}
 					{% for err in errors %}
@@ -35,14 +26,9 @@
 				{% endif %}
 			{% endwith %}
 			<!-- end of flash -->
-
-			<!-- the form, thanks to WTForms -->
 		    {{ wtf.quick_form(create_project_form) }}
-
 		{% endif %}
-
 		</div>
 	</div>
 </div>
-
 {% endblock %}

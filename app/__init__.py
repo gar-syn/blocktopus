@@ -39,15 +39,15 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
     
-    # blueprint for non-auth parts of app
+    # blueprint for main routes
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    # blueprint for auth routes in our app
+    # blueprint for auth routes 
     from .routes.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
     
-    # blueprint for forms routes in our app
+    # blueprint for forms routes
     from .routes.forms import forms as forms_blueprint
     app.register_blueprint(forms_blueprint)
     
