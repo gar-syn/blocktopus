@@ -8,6 +8,7 @@
        {% assets "main_css" %}
             <link rel="stylesheet" href="{{ ASSET_URL }}" />
         {% endassets %}
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
       {% block headerscripts %}{% endblock %}
    </head>
    <body id="page-top">

@@ -4,6 +4,10 @@ gunicorn==20.0.4
 whitenoise
 flask_sqlalchemy
 flask-login
+flask_bootstrap
 Flask-Assets
 jsmin
-cssmin 
+cssmin
+Flask-WTF
+wtforms
+datetime
