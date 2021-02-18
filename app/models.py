@@ -40,7 +40,7 @@ class Sketches(db.Model):
 class Experiments(db.Model):
     __tablename__ = 'experiments'
     guid = Column(String(200),unique=True, primary_key=True)
-    sketch_guid = Column(String(200), db.ForeignKey('sketches.guid'), nullable=False)
+    sketch_guid = Column(String(200), ForeignKey('sketches.guid'), nullable=False)
     title = Column(String(100), unique=False, nullable=False)
     user_id = Column(Integer, unique=True, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
@@ -59,7 +59,7 @@ class Experiments(db.Model):
 class Projects(db.Model):
     __tablename__ = 'projects'
     guid = Column(String(200),unique=True, primary_key=True)
-    experiments_guid = Column(db.String(200), db.ForeignKey('experiments.guid'), nullable=False)
+    experiments_guid = Column(String(200), ForeignKey('experiments.guid'), nullable=False)
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(1000), unique=False, nullable=False)
 
