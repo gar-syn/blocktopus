@@ -34,7 +34,7 @@ def create_project():
         for field, errors in create_project_form.errors.items():
             for error in errors:
                 flash(
-                    "Error in {}: {}".format(
+                    "Error in '{}': {}".format(
                         getattr(create_project_form, field).label.text, error
                     ),
                     "error",
@@ -88,7 +88,7 @@ def create_experiment():
         for field, errors in create_experiment_form.errors.items():
             for error in errors:
                 flash(
-                    "Error in {}: {}".format(
+                    "Error in '{}': {}".format(
                         getattr(create_experiment_form, field).label.text, error
                     ),
                     "error",

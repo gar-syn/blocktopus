@@ -20,7 +20,7 @@ class CreateProject(FlaskForm):
     submit = SubmitField('Create new Project')
     
 class CreateExperiment(FlaskForm):
-    select_project_guid = SelectField("Select a Project GUID to link this Experiment to an existing Project")
+    select_project_guid = SelectField(label="Select a Project GUID to link this Experiment to an existing Project")
     guid = StringField('Experiment GUID', [ InputRequired(),
         Regexp(r'[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}', message="Invalid GUID"),
         Length(min=36, max=36, message="Invalid GUID length")
