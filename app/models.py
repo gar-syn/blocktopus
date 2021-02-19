@@ -1,8 +1,8 @@
 from flask_login import UserMixin
-from . import db
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
+from . import db
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -19,7 +19,6 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.name
     
-
 class Sketches(db.Model):
     __tablename__ = 'sketches'
     guid = Column(String(200),unique=True, primary_key=True)
@@ -35,7 +34,6 @@ class Sketches(db.Model):
         self.user_id = user_id
         self.created_date = created_date
         self.modified_date = modified_date
-        
         
 class Experiments(db.Model):
     __tablename__ = 'experiments'
@@ -66,6 +64,22 @@ class Experiments(db.Model):
         self.last_modified_date = last_modified_date
         self.project_guid = project_guid
         
+    @property
+    def experiments_table_to_json(self):
+        return {
+            'guid': self.guid,
+            'eln': self.eln,
+            'title': self.title,
+            'description': self.description,
+            'site': self.site,
+            'building': self.building,
+            'room': self.room,
+            'description': self.description,
+            'user_id': self.user_id,
+            'created_date': self.created_date,
+            'last_modified_date': self.last_modified_date,
+            'project_guid': self.project_guid,
+        }
         
 class Projects(db.Model):
     __tablename__ = 'projects'
@@ -83,3 +97,12 @@ class Projects(db.Model):
         
     def __repr__(self):
         return unicode(self.guid)
+    
+    @property
+    def projects_table_to_json(self):
+        return {
+            'guid': self.guid,
+            'title': self.title,
+            'description': self.description,
+            'created_date': self.created_date,
+        }
