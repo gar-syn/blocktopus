@@ -80,3 +80,12 @@ class Projects(db.Model):
         
     def __repr__(self):
         return unicode(self.guid)
+    
+    @property
+    def projects_table_to_json(self):
+        return {
+            'guid': self.guid,
+            'title': self.title,
+            'description': self.description,
+            'created_date': self.created_date,
+        }

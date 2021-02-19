@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>{% block title %}{% endblock %} | Blocktopus</title>
-       {% assets "main_css" %}
+      {% assets "main_css" %}
             <link rel="stylesheet" href="{{ ASSET_URL }}" />
         {% endassets %}
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -57,13 +57,13 @@
          </li>
          <!-- Nav Item - Charts -->
          <li class="nav-item">
-            <a href="{{ url_for('main.projects') }}" class="nav-link">
+            <a href="{{ url_for('queries.projects') }}" class="nav-link">
             <i class="fas fa-fw fa-folder-open"></i>
             <span>Projects</span></a>
          </li>
          <!-- Nav Item - Tables -->
          <li class="nav-item">
-            <a href="{{ url_for('main.experiments') }}" class="nav-link">
+            <a href="{{ url_for('queries.experiments') }}" class="nav-link">
             <i class="fas fa-fw fa-flask"></i>
             <span>Experiments</span></a>
          </li>
@@ -140,6 +140,5 @@
       {% assets "main_js" %}
             <script type="text/javascript" src="{{ ASSET_URL }}"></script>
       {% endassets %}
-
    </body>
 </html>

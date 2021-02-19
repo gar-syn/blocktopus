@@ -16,11 +16,3 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
-
-@main.route('/projects')
-def projects():
-    return render_template('projects.html')
-
-@main.route('/experiments')
-def experiments():
-    return render_template('experiments.html')

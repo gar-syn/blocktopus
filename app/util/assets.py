@@ -5,6 +5,7 @@ bundles = {
         'css/dashboard.css',
         'css/style.css',
         'css/libraries/all.css',
+        'css/libraries/dataTables.bootstrap4.css',
         filters='cssmin',
         output='gen/css/style.min.css',
         extra={'rel': 'stylesheet/css'}),
@@ -12,9 +13,12 @@ bundles = {
     'main_js': Bundle(
         'js/libraries/jquery.js',
         'js/libraries/jquery.easing.js',
+        'js/libraries/jquery.dataTables.js',
         'js/libraries/bootstrap.js',
         'js/libraries/bootstrap.bundle.js',
+        'js/libraries/dataTables.bootstrap4.js',
         'js/libraries/all.js',
+        'js/datatables.js',
         'js/dashboard.js',
         filters='jsmin',
         output='gen/js/main.min.js')

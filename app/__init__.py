@@ -50,6 +50,10 @@ def create_app():
     from .routes.forms import forms as forms_blueprint
     app.register_blueprint(forms_blueprint)
     
+    # blueprint for queries routes
+    from .routes.queries import queries as queries_blueprint
+    app.register_blueprint(queries_blueprint)
+    
     return app
 
 db.create_all(app=create_app())
