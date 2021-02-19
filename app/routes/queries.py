@@ -1,6 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 
-from ..util.table_queries import DataTable
+from .. import db
+from ..models import Projects, Experiments
+from ..util.table_queries import ProjectsDataTable, ExperimentsDataTable
+
 
 queries = Blueprint("queries", __name__)
 
@@ -8,12 +11,18 @@ queries = Blueprint("queries", __name__)
 def projects():
     return render_template('projects.html')
 
-@queries.route('/load')
+@queries.route('/load-projects')
 def loadProjects():
     if request.method == 'GET':
-        ret = DataTable(request, Projects).output_result()
+        ret = ProjectsDataTable(request, Projects).output_result()
         return jsonify(ret)
 
 @queries.route('/experiments')
 def experiments():
     return render_template('experiments.html')
+
+@queries.route('/load-experiments')
+def loadExperiments():
+    if request.method == 'GET':
+        ret = ExperimentsDataTable(request, Experiments).output_result()
+        return jsonify(ret)

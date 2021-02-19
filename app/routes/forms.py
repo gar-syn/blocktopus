@@ -2,18 +2,11 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user
 
-from ..util.table_queries import DataTable
 from ..models import Projects, Experiments
 from .. import db
 from ..form_validation import CreateProject, CreateExperiment, stringdate
 
 forms = Blueprint("forms", __name__)
-
-@forms.route('/load')
-def load():
-    if request.method == 'GET':
-        ret = DataTable(request, Projects).output_result()
-        return jsonify(ret)
 
 @forms.route("/create-project", methods=["GET", "POST"])
 def create_project():

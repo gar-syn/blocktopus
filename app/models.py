@@ -64,6 +64,23 @@ class Experiments(db.Model):
         self.last_modified_date = last_modified_date
         self.project_guid = project_guid
         
+    @property
+    def experiments_table_to_json(self):
+        return {
+            'guid': self.guid,
+            'eln': self.eln,
+            'title': self.title,
+            'description': self.description,
+            'site': self.site,
+            'building': self.building,
+            'room': self.room,
+            'description': self.description,
+            'user_id': self.user_id,
+            'created_date': self.created_date,
+            'last_modified_date': self.last_modified_date,
+            'project_guid': self.project_guid,
+        }
+        
 class Projects(db.Model):
     __tablename__ = 'projects'
     guid = Column(String(200),unique=True, primary_key=True)

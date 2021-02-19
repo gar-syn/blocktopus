@@ -1,12 +1,12 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
   $('#table').DataTable({
-    "lengthMenu": 15,
+    "lengthMenu": 10,
     "lengthChange": false,
     "bServerSide": true,
     "sPaginationType": "full_numbers",
-    "iDisplayLength": 15,
-    "sAjaxSource": "/load",
+    "iDisplayLength": 10,
+    "sAjaxSource": "/load-projects",
     columns:[
         {data: 'guid'},
         {data: 'title'},
@@ -14,4 +14,24 @@ $(document).ready(function() {
         {data: 'created_date'}
     ]
 })
+
+$('#table_experiments').DataTable({
+  "lengthMenu": 10,
+  "lengthChange": false,
+  "bServerSide": true,
+  "sPaginationType": "full_numbers",
+  "iDisplayLength": 10,
+  "sAjaxSource": "/load-experiments",
+  columns:[
+      {data: 'guid'},
+      {data: 'eln'},
+      {data: 'title'},
+      {data: 'description'},
+      {data: 'site'},
+      {data: 'building'},
+      {data: 'room'},
+      {data: 'created_date'},
+  ]
+})
+
 });
