@@ -9,17 +9,18 @@ class CreateProject(FlaskForm):
         Length(min=36, max=36, message="Invalid GUID length")
         ])
     title = StringField('Project Title', [ InputRequired(),
-        Regexp(r'^[A-Za-z0-9 ]*$', message="Invalid Project Title"),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message="Invalid Project Title"),
         Length(min=3, max=75, message="Invalid Project Title length")
         ])
     description = StringField('Project Description', [ InputRequired(),
-        Regexp(r'^[A-Za-z0-9 .]*$', message="Invalid Project Description"),
+        Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Project Description"),
         Length(min=1, max=500, message="Invalid Project Description length")
         ])
     created_date = HiddenField()
     submit = SubmitField('Create new Project')
     
 class CreateExperiment(FlaskForm):
+    select_project_guid = SelectField("Select a Project GUID to link this Experiment to an existing Project")
     guid = StringField('Experiment GUID', [ InputRequired(),
         Regexp(r'[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}', message="Invalid GUID"),
         Length(min=36, max=36, message="Invalid GUID length")
@@ -29,23 +30,23 @@ class CreateExperiment(FlaskForm):
         Length(min=1, max=40, message="Invalid ELN length")
         ])    
     title = StringField('Experiment Title', [ InputRequired(),
-        Regexp(r'^[A-Za-z0-9 ]*$', message="Invalid Experiment Title"),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message="Invalid Experiment Title"),
         Length(min=3, max=75, message="Invalid Experiment Title length")
         ])
     description = StringField('Experiment Description', [ InputRequired(),
-        Regexp(r'^[A-Za-z0-9 .]*$', message="Invalid Experiment Description"),
+        Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Experiment Description"),
         Length(min=1, max=500, message="Invalid Experiment Description length")
         ])
     site = StringField('Site', [ InputRequired(),
-        Regexp(r'^[A-Za-z0-9 ]*$', message="Invalid Experiment Site"),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
         Length(min=1, max=75, message="Invalid Experiment Site length")
         ])
     building = StringField('Building', [ InputRequired(),
-        Regexp(r'^[A-Za-z0-9 ]*$', message="Invalid Experiment Building"),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Building"),
         Length(min=1, max=75, message="Invalid Experiment Building length")
         ])
     room = StringField('Room', [ InputRequired(),
-        Regexp(r'^[A-Za-z0-9 ]*$', message="Invalid Experiment Room"),
+        Regexp(r'^[A-Za-z0-9 /]*$', message="Invalid Experiment Room"),
         Length(min=1, max=75, message="Invalid Experiment Room length")
         ])
     user_id = HiddenField()

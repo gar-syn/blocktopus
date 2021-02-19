@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, send_from_directory
 from flask_login import login_required, current_user
 from . import db
+import os
 
 main = Blueprint('main', __name__)
 
@@ -15,3 +16,11 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
+
+@main.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+@main.route('/experiments')
+def experiments():
+    return render_template('experiments.html')

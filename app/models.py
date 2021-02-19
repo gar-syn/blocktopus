@@ -49,10 +49,11 @@ class Experiments(db.Model):
     user_id = Column(Integer, unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     last_modified_date = Column(Integer, unique=False)
+    project_guid = Column(String, ForeignKey('projects.guid'))
     #sketch_guid = Column(String(200), ForeignKey('sketches.guid'), nullable=False)
     #sketches = relationship("Sketches", uselist=False, back_populates="experiments")
 
-    def __init__(self, guid, eln, title, description, site, building, room, user_id, created_date, last_modified_date):
+    def __init__(self, guid, eln, title, description, site, building, room, user_id, created_date, last_modified_date, project_guid):
         self.guid = guid
         self.eln = eln
         self.title = title
@@ -63,7 +64,7 @@ class Experiments(db.Model):
         self.user_id = user_id
         self.created_date = created_date
         self.last_modified_date = last_modified_date
-        #self.sketch_guid = sketch_guid
+        self.project_guid = project_guid
         
         
 class Projects(db.Model):
@@ -72,9 +73,13 @@ class Projects(db.Model):
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
+    experiments = relationship("Experiments", backref='project', lazy=True)
 
     def __init__(self, guid, title, description, created_date):
         self.guid = guid
         self.title = title
         self.description = description
         self.created_date = created_date
+        
+    def __repr__(self):
+        return unicode(self.guid)
