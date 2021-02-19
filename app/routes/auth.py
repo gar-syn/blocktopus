@@ -22,6 +22,9 @@ def register_post():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
+    site = request.form.get('site')
+    building = request.form.get('building')
+    lab = request.form.get('lab')
 
     # check for existing user
     user = User.query.filter_by(email=email).first()
@@ -31,7 +34,7 @@ def register_post():
         return redirect(url_for('auth.register'))
 
     # create new user
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), site=site, building=building, lab=lab)
 
     # add to database
     try:
