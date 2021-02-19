@@ -27,7 +27,7 @@ class Sketches(db.Model):
     user_id = Column(Integer, unique=True, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
     modified_date = Column(Integer, unique=False, nullable=False)
-    experiments = relationship("Experiments", back_populates="sketches")
+    #experiments = relationship("Experiments", back_populates="sketches")
 
     def __init__(self, guid, title, user_id, created_date, modified_date):
         self.guid = guid
@@ -40,20 +40,31 @@ class Sketches(db.Model):
 class Experiments(db.Model):
     __tablename__ = 'experiments'
     guid = Column(String(200),unique=True, primary_key=True)
-    sketch_guid = Column(String(200), ForeignKey('sketches.guid'), nullable=False)
+    eln = Column(String(100))
     title = Column(String(100), unique=False, nullable=False)
-    user_id = Column(Integer, unique=True, nullable=False)
+    description = Column(String(500), unique=False, nullable=False)
+    site = Column(String(50), unique=False)
+    building = Column(String(30), unique=False)
+    room = Column(String(30), unique=False)
+    user_id = Column(Integer, unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
-    modified_date = Column(Integer, unique=False, nullable=False)
-    sketches = relationship("Sketches", uselist=False, back_populates="experiments")
+    last_modified_date = Column(Integer, unique=False)
+    project_guid = Column(String, ForeignKey('projects.guid'))
+    #sketch_guid = Column(String(200), ForeignKey('sketches.guid'), nullable=False)
+    #sketches = relationship("Sketches", uselist=False, back_populates="experiments")
 
-    def __init__(self, guid, sketch_guid, title, user_id, created_date, modified_date):
+    def __init__(self, guid, eln, title, description, site, building, room, user_id, created_date, last_modified_date, project_guid):
         self.guid = guid
-        self.sketch_guid = sketch_guid
+        self.eln = eln
         self.title = title
+        self.description = description
+        self.site = site
+        self.building = building
+        self.room = room
         self.user_id = user_id
         self.created_date = created_date
-        self.modified_date = modified_date
+        self.last_modified_date = last_modified_date
+        self.project_guid = project_guid
         
         
 class Projects(db.Model):
@@ -62,9 +73,13 @@ class Projects(db.Model):
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
+    experiments = relationship("Experiments", backref='project', lazy=True)
 
     def __init__(self, guid, title, description, created_date):
         self.guid = guid
         self.title = title
         self.description = description
         self.created_date = created_date
+        
+    def __repr__(self):
+        return unicode(self.guid)
