@@ -9,11 +9,6 @@ from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePass
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login', methods=['GET'])
-def login():
-    print("Login")
-    return render_template('auth/login.html')
-
 @auth.route('/register')
 def register():
     print("register")
@@ -28,17 +23,12 @@ def register_post():
     building = request.form.get('building')
     room = request.form.get('room')
 
-    # check for existing user
     user = User.query.filter_by(email=email).first()
-
     if user:
         flash('Email address is already registered' , 'danger')
         return redirect(url_for('auth.register'))
-
-    # create new user
+    
     new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), site=site, building=building, room=room)
-
-    # add to database
     try:
         db.session.add(new_user)
         db.session.commit()
@@ -46,6 +36,11 @@ def register_post():
         return 'Unable to add the user to database.'
     flash('Account has been registered. Please log in:', 'success')
     return redirect(url_for('auth.login'))
+
+@auth.route('/login', methods=['GET'])
+def login():
+    print("Login")
+    return render_template('auth/login.html')
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -58,8 +53,7 @@ def login_post():
     # check if user actually exists and compare passwords
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.', 'danger')
-        return redirect(url_for('auth.login'))  # if user doesn't exist or password is wrong, reload the page
-
+        return redirect(url_for('auth.login'))
     login_user(user, remember=remember)
     return redirect(url_for('main.profile'))
 
