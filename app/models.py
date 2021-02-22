@@ -12,16 +12,16 @@ class User(UserMixin, db.Model):
     name = Column(String(100), unique=False, nullable=False)
     site = Column(String(100), unique=False)
     building = Column(String(100), unique=False)
-    lab = Column(String(100), unique=False)
+    room = Column(String(100), unique=False)
 
 
-    def __init__(self, email, password, name, site, building, lab):
+    def __init__(self, email, password, name, site, building, room):
         self.email = email
         self.password = password
         self.name = name
         self.site = site
         self.building = building
-        self.lab = lab
+        self.room = room
 
     def __repr__(self):
         return '<User %r>' % self.name

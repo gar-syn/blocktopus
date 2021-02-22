@@ -1,14 +1,14 @@
-{% extends "layout.html" %} {% block title %}Change User Site{% endblock %} 
+{% extends "layout.html" %} {% block title %}Change User Building{% endblock %} 
 {% import "bootstrap/wtf.html" as wtf %}
 {% block headerscripts %}
 {% endblock %} 
 {% block content %}
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
 <main class="change-form">
-   <h1 class="h3 mb-3 text-gray-900">Change your Site</h1>
-   <h3 class="h6 mb-3 text-gray-500">Your current Site is: {{ site }}</h3>
+   <h1 class="h3 mb-3 text-gray-900">Change your Building</h1>
+   <h3 class="h6 mb-3 text-gray-500">Your current Building is: {{ building }}</h3>
    <div class="box">
-      {{ wtf.quick_form(change_site_form) }}
+      {{ wtf.quick_form(change_building_form) }}
       {% endblock %}
 </main>
 </div>

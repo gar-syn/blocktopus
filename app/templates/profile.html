@@ -40,14 +40,14 @@
          </div>
          <hr>
          <div class="panel panel-primary">
-            <div class="text-xs">Current Lab:</div>
-            <div class="text-lg font-weight-bold text-gray-700">{{current_user.lab}}</div>
+            <div class="text-xs">Current Room:</div>
+            <div class="text-lg font-weight-bold text-gray-700">{{current_user.room}}</div>
          </div>
       </div>
    </div>
    <div class="card shadow mb-4">
       <div class="card-header py-3">
-         <h6 class="m-0 font-weight-bold text-primary">Account Actions</h6>
+         <h6 class="m-0 font-weight-bold text-primary">Profile Actions</h6>
       </div>
       <div class="card-body">
          <div class="panel panel-info">
@@ -58,18 +58,18 @@
             <span class="text">Change Current Site</span>
             </a>
             <div class="mb-2"></div>
-            <a href="#" class="btn btn-light btn-icon-split">
+            <a href="{{ url_for('auth.change_building') }}" class="btn btn-light btn-icon-split">
             <span class="icon text-gray-600">
             <i class="fas fa-arrow-right"></i>
             </span>
             <span class="text">Change Current Building</span>
             </a>
             <div class="mb-2"></div>
-            <a href="#" class="btn btn-light btn-icon-split">
+            <a href="{{ url_for('auth.change_room') }}" class="btn btn-light btn-icon-split">
             <span class="icon text-gray-600">
             <i class="fas fa-arrow-right"></i>
             </span>
-            <span class="text">Change Current Lab</span>
+            <span class="text">Change Current Room</span>
             </a>
          </div>
       </div>

@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 
 from ..models import User
 from .. import db
-from ..form_validation import ChangeSite
+from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom
 
 auth = Blueprint('auth', __name__)
 
@@ -26,7 +26,7 @@ def register_post():
     password = request.form.get('password')
     site = request.form.get('site')
     building = request.form.get('building')
-    lab = request.form.get('lab')
+    room = request.form.get('room')
 
     # check for existing user
     user = User.query.filter_by(email=email).first()
@@ -36,7 +36,7 @@ def register_post():
         return redirect(url_for('auth.register'))
 
     # create new user
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), site=site, building=building, lab=lab)
+    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), site=site, building=building, room=room)
 
     # add to database
     try:
@@ -82,3 +82,31 @@ def change_site():
             flash('Your site has been changed.', 'success')
             return redirect(url_for('main.profile'))
     return render_template('auth/change-site.html', site=current_user.site, change_site_form=change_site_form)
+
+@auth.route('/change-building', methods=['GET', 'POST'])
+@login_required
+def change_building():
+    change_building_form = ChangeBuilding()
+    if request.method == 'POST':
+        if change_building_form.validate_on_submit():
+            user = current_user
+            user.building = change_building_form.building.data
+            db.session.add(user)
+            db.session.commit()
+            flash('Your buulding has been changed.', 'success')
+            return redirect(url_for('main.profile'))
+    return render_template('auth/change-building.html', building=current_user.building, change_building_form=change_building_form)
+
+@auth.route('/change-room', methods=['GET', 'POST'])
+@login_required
+def change_room():
+    change_room_form = ChangeRoom()
+    if request.method == 'POST':
+        if change_room_form.validate_on_submit():
+            user = current_user
+            user.room = change_room_form.room.data
+            db.session.add(user)
+            db.session.commit()
+            flash('Your room has been changed.', 'success')
+            return redirect(url_for('main.profile'))
+    return render_template('auth/change-room.html', room=current_user.room, change_room_form=change_room_form)
