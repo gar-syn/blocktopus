@@ -10,7 +10,10 @@ from .util import config
 db = SQLAlchemy()
 
 def page_not_found(e):
-      return render_template('404.html'), 404
+      return render_template('error-handling/404.html'), 404
+
+def internal_error(e):
+      return render_template('error-handling/500.html'), 500
 
 def create_app():
     app = Flask(__name__)
@@ -21,6 +24,7 @@ def create_app():
     assets.register(bundles)
 
     app.register_error_handler(404, page_not_found)
+    app.register_error_handler(500, internal_error)
 
     app.config['SECRET_KEY'] = config.SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
