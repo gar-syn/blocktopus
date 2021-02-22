@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField
+from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField, PasswordField
 from wtforms.validators import InputRequired, Length, Regexp, NumberRange
 from datetime import date
 
@@ -59,3 +59,28 @@ def stringdate():
     date_list = str(today).split('-')
     date_string = date_list[2] + "." + date_list[1] + "." + date_list[0]
     return date_string
+    
+class ChangeSite(FlaskForm):
+    site = StringField('Site', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
+        Length(min=1, max=75, message="Invalid Experiment Site length")
+        ])
+    submit = SubmitField('Change your site')
+
+class ChangeBuilding(FlaskForm):
+    building = StringField('Building', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Building"),
+        Length(min=1, max=75, message="Invalid Experiment Building length")
+        ])
+    submit = SubmitField('Change your building')
+
+class ChangeRoom(FlaskForm):
+    room = StringField('Room', [ InputRequired(),
+        Regexp(r'^[A-Za-z0-9 /]*$', message="Invalid Experiment Room"),
+        Length(min=1, max=75, message="Invalid Experiment Room length")
+        ])
+    submit = SubmitField('Change your room')
+
+class ChangePassword(FlaskForm):
+    password = PasswordField('Password', validators=[InputRequired()])
+    submit = SubmitField('Change your password')

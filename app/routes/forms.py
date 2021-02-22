@@ -83,7 +83,14 @@ def create_experiment():
             return render_template(
                 "forms/create-experiment.html", create_experiment_form=create_experiment_form
             )
-
+    #Autopopulate fields, if user is logged in
+    elif request.method == 'GET' and current_user.is_authenticated:
+        create_experiment_form.site.data = current_user.site
+        create_experiment_form.building.data = current_user.building
+        create_experiment_form.room.data = current_user.room
+        return render_template(
+                "forms/create-experiment.html", create_experiment_form=create_experiment_form
+            )
     else:
         # show validaton errors
         for field, errors in create_experiment_form.errors.items():
