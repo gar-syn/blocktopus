@@ -37,9 +37,8 @@ class CreateExperiment(FlaskForm):
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Experiment Description"),
         Length(min=1, max=500, message="Invalid Experiment Description length")
         ])
-    site = StringField('Site', [ InputRequired(),
-        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
-        Length(min=1, max=75, message="Invalid Experiment Site length")
+    site = StringField('Site', [
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site")
         ])
     building = StringField('Building', [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Building"),
