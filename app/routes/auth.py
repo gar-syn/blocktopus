@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 
 from ..models import User
 from .. import db
-from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom
+from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword
 
 auth = Blueprint('auth', __name__)
 
@@ -110,3 +110,17 @@ def change_room():
             flash('Your room has been changed.', 'success')
             return redirect(url_for('main.profile'))
     return render_template('auth/change-room.html', room=current_user.room, change_room_form=change_room_form)
+
+@auth.route('/change-password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    change_password_form = ChangePassword()
+    if request.method == 'POST':
+        if change_password_form.validate_on_submit():
+            user = current_user
+            user.password = generate_password_hash(change_password_form.password.data, method='sha256')
+            db.session.add(user)
+            db.session.commit()
+            flash('Your password has been changed.', 'success')
+            return redirect(url_for('main.profile'))
+    return render_template('auth/change-password.html', change_password_form=change_password_form)

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField
+from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField, PasswordField
 from wtforms.validators import InputRequired, Length, Regexp, NumberRange
 from datetime import date
 
@@ -37,8 +37,9 @@ class CreateExperiment(FlaskForm):
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Experiment Description"),
         Length(min=1, max=500, message="Invalid Experiment Description length")
         ])
-    site = StringField('Site', [
-        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site")
+    site = StringField('Site', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
+        Length(min=1, max=75, message="Invalid Experiment Site length")
         ])
     building = StringField('Building', [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Building"),
@@ -79,3 +80,7 @@ class ChangeRoom(FlaskForm):
         Length(min=1, max=75, message="Invalid Experiment Room length")
         ])
     submit = SubmitField('Change your room')
+
+class ChangePassword(FlaskForm):
+    password = PasswordField('Password', validators=[InputRequired()])
+    submit = SubmitField('Change your password')
