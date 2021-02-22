@@ -47,15 +47,15 @@ def create_app():
     app.register_blueprint(main_blueprint)
 
     # blueprint for auth routes 
-    from .routes.auth import auth as auth_blueprint
+    from .views.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
     
     # blueprint for forms routes
-    from .routes.forms import forms as forms_blueprint
+    from .views.forms import forms as forms_blueprint
     app.register_blueprint(forms_blueprint)
     
     # blueprint for queries routes
-    from .routes.queries import queries as queries_blueprint
+    from .views.queries import queries as queries_blueprint
     app.register_blueprint(queries_blueprint)
     
     return app

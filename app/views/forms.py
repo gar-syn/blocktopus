@@ -2,9 +2,10 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user
 
-from ..models import Projects, Experiments
+from ..models import Projects, Experiments, GUID
 from .. import db
 from ..form_validation import CreateProject, CreateExperiment, stringdate
+import uuid
 
 forms = Blueprint("forms", __name__)
 
@@ -12,7 +13,7 @@ forms = Blueprint("forms", __name__)
 def create_project():
     create_project_form = CreateProject()
     if create_project_form.validate_on_submit():
-        guid = request.form["guid"]
+        guid = str(uuid.uuid4())
         title = request.form["title"]
         description = request.form["description"]
         created_date = stringdate()

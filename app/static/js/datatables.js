@@ -1,8 +1,8 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
   $('#table').DataTable({
-    "lengthMenu": 10,
-    "lengthChange": false,
+    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+    "lengthChange": true,
     "bServerSide": true,
     "sPaginationType": "full_numbers",
     "iDisplayLength": 10,
@@ -16,8 +16,8 @@ $(document).ready(function() {
 })
 
 $('#table_experiments').DataTable({
-  "lengthMenu": 10,
-  "lengthChange": false,
+  "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+  "lengthChange": true,
   "bServerSide": true,
   "sPaginationType": "full_numbers",
   "iDisplayLength": 10,
