@@ -2,6 +2,76 @@
 {% block title %}Profile{% endblock %} 
 {% block content %}
 <div class="container-fluid my-4">
-   <h1 class="title">Welcome back, {{ name }}!</h1>
-</div>
+   {% with messages = get_flashed_messages(with_categories=true) %}
+   {% if messages %}
+   {% for category, message in messages %}
+   <div class="alert alert-{{ category }}" role="alert"> {{ message }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+   </div>
+   {% endfor %}
+   {% endif %}
+   {% endwith %}
+   <h1 class="h3 mb-2 text-gray-800">Your Profile</h1>
+   <div class="mb-4">
+   </div>
+   <div class="card shadow mb-4">
+      <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">Profile Information</h6>
+      </div>
+      <div class="card-body">
+         <div class="panel panel-primary">
+            <div class="text-xs">Name:</div>
+            <div class="text-lg font-weight-bold text-gray-700">{{current_user.name}}</div>
+         </div>
+         <hr>
+         <div class="panel panel-primary">
+            <div class="text-xs">Email:</div>
+            <div class="text-lg font-weight-bold text-gray-700">{{current_user.email}}</div>
+         </div>
+         <hr>
+         <div class="panel panel-primary">
+            <div class="text-xs">Current Site:</div>
+            <div class="text-lg font-weight-bold text-gray-700">{{current_user.site}}</div>
+         </div>
+         <hr>
+         <div class="panel panel-primary">
+            <div class="text-xs">Current Building:</div>
+            <div class="text-lg font-weight-bold text-gray-700">{{current_user.building}}</div>
+         </div>
+         <hr>
+         <div class="panel panel-primary">
+            <div class="text-xs">Current Lab:</div>
+            <div class="text-lg font-weight-bold text-gray-700">{{current_user.lab}}</div>
+         </div>
+      </div>
+   </div>
+   <div class="card shadow mb-4">
+      <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">Account Actions</h6>
+      </div>
+      <div class="card-body">
+         <div class="panel panel-info">
+            <a href="{{ url_for('auth.change_site') }}" class="btn btn-light btn-icon-split">
+            <span class="icon text-gray-600">
+            <i class="fas fa-arrow-right"></i>
+            </span>
+            <span class="text">Change Current Site</span>
+            </a>
+            <div class="mb-2"></div>
+            <a href="#" class="btn btn-light btn-icon-split">
+            <span class="icon text-gray-600">
+            <i class="fas fa-arrow-right"></i>
+            </span>
+            <span class="text">Change Current Building</span>
+            </a>
+            <div class="mb-2"></div>
+            <a href="#" class="btn btn-light btn-icon-split">
+            <span class="icon text-gray-600">
+            <i class="fas fa-arrow-right"></i>
+            </span>
+            <span class="text">Change Current Lab</span>
+            </a>
+         </div>
+      </div>
+   </div>
 {% endblock %}

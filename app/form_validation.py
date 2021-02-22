@@ -59,3 +59,31 @@ def stringdate():
     date_list = str(today).split('-')
     date_string = date_list[2] + "." + date_list[1] + "." + date_list[0]
     return date_string
+
+class EditProfileForm(FlaskForm):
+    email = StringField('Email')
+    name = StringField('Your Name', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message="Invalid Experiment Title"),
+        Length(min=3, max=75, message="Invalid Experiment Title length")
+        ])
+    site = StringField('Site', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
+        Length(min=1, max=75, message="Invalid Experiment Site length")
+        ])
+    building = StringField('Building', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Building"),
+        Length(min=1, max=75, message="Invalid Experiment Building length")
+        ])
+    room = StringField('Room', [ InputRequired(),
+        Regexp(r'^[A-Za-z0-9 /]*$', message="Invalid Experiment Room"),
+        Length(min=1, max=75, message="Invalid Experiment Room length")
+        ])
+    user_id = HiddenField()
+    submit = SubmitField('Edit Account')
+    
+class ChangeSite(FlaskForm):
+    site = StringField('Site', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
+        Length(min=1, max=75, message="Invalid Experiment Site length")
+        ])
+    submit = SubmitField('Submit')

@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
+
 
 from ..models import User
 from .. import db
+from ..form_validation import ChangeSite
 
 auth = Blueprint('auth', __name__)
 
@@ -30,7 +32,7 @@ def register_post():
     user = User.query.filter_by(email=email).first()
 
     if user:
-        flash('Email address is already registered')
+        flash('Email address is already registered' , 'danger')
         return redirect(url_for('auth.register'))
 
     # create new user
@@ -42,6 +44,7 @@ def register_post():
         db.session.commit()
     except:
         return 'Unable to add the user to database.'
+    flash('Account has been registered. Please log in:', 'success')
     return redirect(url_for('auth.login'))
 
 @auth.route('/login', methods=['POST'])
@@ -54,7 +57,7 @@ def login_post():
 
     # check if user actually exists and compare passwords
     if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.')
+        flash('Please check your login details and try again.', 'danger')
         return redirect(url_for('auth.login'))  # if user doesn't exist or password is wrong, reload the page
 
     login_user(user, remember=remember)
@@ -65,3 +68,17 @@ def login_post():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+@auth.route('/change-site', methods=['GET', 'POST'])
+@login_required
+def change_site():
+    change_site_form = ChangeSite()
+    if request.method == 'POST':
+        if change_site_form.validate_on_submit():
+            user = current_user
+            user.site = change_site_form.site.data
+            db.session.add(user)
+            db.session.commit()
+            flash('Your site has been changed.', 'success')
+            return redirect(url_for('main.profile'))
+    return render_template('auth/change-site.html', site=current_user.site, change_site_form=change_site_form)
