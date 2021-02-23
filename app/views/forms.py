@@ -1,15 +1,16 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from sqlalchemy.exc import IntegrityError
-from flask_login import current_user
+from flask_login import current_user, login_required
+import uuid
 
 from ..models import Projects, Experiments
 from .. import db
 from ..form_validation import CreateProject, CreateExperiment, stringdate
-import uuid
 
 forms = Blueprint("forms", __name__)
 
 @forms.route("/create-project", methods=["GET", "POST"])
+@login_required
 def create_project():
     create_project_form = CreateProject()
     if create_project_form.validate_on_submit():
@@ -54,6 +55,7 @@ def auto_populate_project_choices_dropdown(create_experiment_form):
     create_experiment_form.select_project_guid.choices = project_choices
 
 @forms.route("/create-experiment", methods=["GET", "POST"])
+@login_required
 def create_experiment():
     create_experiment_form = CreateExperiment()
     auto_populate_project_choices_dropdown(create_experiment_form)
@@ -93,7 +95,6 @@ def create_experiment():
                 "forms/create-experiment.html", create_experiment_form=create_experiment_form
             )
     else:
-        # show validaton errors
         for field, errors in create_experiment_form.errors.items():
             for error in errors:
                 flash(
