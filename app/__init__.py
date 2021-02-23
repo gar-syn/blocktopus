@@ -5,7 +5,7 @@ from whitenoise import WhiteNoise
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 
-from .util import config
+from .util.config import DevConfig
 
 db = SQLAlchemy()
 
@@ -15,7 +15,7 @@ def page_not_found(e):
 def internal_error(e):
       return render_template('error-handling/500.html'), 500
 
-def create_app():
+def create_app(config_object=DevConfig):
     app = Flask(__name__)
     Bootstrap(app)
     
@@ -26,9 +26,7 @@ def create_app():
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_error)
 
-    app.config['SECRET_KEY'] = config.SECRET_KEY
-    app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    app.config.from_object(config_object)
 
     db.init_app(app)
 

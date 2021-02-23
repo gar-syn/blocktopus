@@ -5,10 +5,11 @@
 {% block content %}
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
 <main class="change-form">
-   <h1 class="h3 mb-3 text-gray-900">Change your Site</h1>
+  <h1 class="h3 mb-3 text-gray-900">Change your Site</h1>
    <h3 class="h6 mb-3 text-gray-500">Your current Site is: {{ site }}</h3>
-   <div class="box">
+    <div class="box">
       {{ wtf.quick_form(change_site_form) }}
-      </main>
-      </div>
-      {% endblock %}
+    </div> 
+</main>
+{% endblock %}
+</div>

@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField, PasswordField
 from wtforms.validators import InputRequired, Length, Regexp, NumberRange
-from datetime import date
 
 class CreateProject(FlaskForm):
     guid = HiddenField()
@@ -18,10 +17,7 @@ class CreateProject(FlaskForm):
     
 class CreateExperiment(FlaskForm):
     select_project_guid = SelectField(label="Select a Project GUID to link this Experiment to an existing Project")
-    guid = StringField('Experiment GUID', [ InputRequired(),
-        Regexp(r'[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}', message="Invalid GUID"),
-        Length(min=36, max=36, message="Invalid GUID length")
-        ])
+    guid = HiddenField()
     eln = StringField('Experiment ELN Number', [ InputRequired(),
         Regexp(r'[A-Za-z0-9 ]*$', message="Invalid ELN"),
         Length(min=1, max=40, message="Invalid ELN length")
@@ -50,12 +46,6 @@ class CreateExperiment(FlaskForm):
     created_date = HiddenField()
     last_modified_date = HiddenField()
     submit = SubmitField('Create new Experiment')
-
-def stringdate():
-    today = date.today()
-    date_list = str(today).split('-')
-    date_string = date_list[2] + "." + date_list[1] + "." + date_list[0]
-    return date_string
     
 class ChangeSite(FlaskForm):
     site = StringField('Site', [ InputRequired(),
