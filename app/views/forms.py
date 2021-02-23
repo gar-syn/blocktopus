@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user
 
-from ..models import Projects, Experiments, GUID
+from ..models import Projects, Experiments
 from .. import db
 from ..form_validation import CreateProject, CreateExperiment, stringdate
 import uuid
