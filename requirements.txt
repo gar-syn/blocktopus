@@ -11,4 +11,3 @@ cssmin
 Flask-WTF
 wtforms
 datetime
-fastapi_utils

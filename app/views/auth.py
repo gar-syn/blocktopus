@@ -47,10 +47,8 @@ def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
-
     user = User.query.filter_by(email=email).first()
 
-    # check if user actually exists and compare passwords
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.', 'danger')
         return redirect(url_for('auth.login'))
