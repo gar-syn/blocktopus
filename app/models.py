@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.sqlite import BLOB
 
 from . import db
 
@@ -71,6 +72,9 @@ class Experiments(db.Model):
         self.last_modified_date = last_modified_date
         self.project_guid = project_guid
         
+    def __repr__(self):
+        return '<Project GUID {}>'.format(self.project_guid)
+
     @property
     def experiments_table_to_json(self):
         return {
@@ -103,7 +107,7 @@ class Projects(db.Model):
         self.created_date = created_date
         
     def __repr__(self):
-        return unicode(self.guid)
+        return '<Project {}>'.format(self.title)
     
     @property
     def projects_table_to_json(self):
