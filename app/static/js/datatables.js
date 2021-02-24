@@ -54,12 +54,19 @@ $('#table_selection').DataTable({
   ],   
   rowCallback: function (row, data) {
           $(row).addClass(data.guid);
-      }
+      },
+      createdRow: function( row, data, dataIndex ) {
+        // Set the data-status attribute, and add a class
+        $( row ).find('td:eq(0)')
+            .attr('data-status', data.status ? 'locked' : 'unlocked')
+            .addClass('project_guid');
+    }
+
 });
 
 // Project GUID via GET to the 'create experiment' form (foreign key)
 $('#table_selection').on('click', 'tbody tr', function(key) {
-  var project_guid = $(this).find(".sorting_1").html();
+  var project_guid = $(this).find(".project_guid").html();
   var create_experiment_url = Flask.url_for('forms.create_experiment', {"project-guid":project_guid});
   window.location.href = create_experiment_url;
 });
