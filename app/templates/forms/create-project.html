@@ -11,7 +11,7 @@
 		{% if message %}
 			<!-- Successful Submit -->
 			<p class="alert alert-success"><strong>{{ message }}</strong></p>
-			 <a href="{{ url_for('forms.create_experiment') }}" class="nav-link">
+			 <a href="{{ url_for('queries.choose_projects') }}" class="nav-link">
 			<button class="w-100 btn btn-lg btn-primary button">Create an Experiment</button>
 			</a>
 		{% else %}

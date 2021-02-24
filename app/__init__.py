@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from whitenoise import WhiteNoise
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+from flask_jsglue import JSGlue
 
 from .util.config import DevConfig
 
@@ -18,6 +19,7 @@ def internal_error(e):
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
     Bootstrap(app)
+    jsglue = JSGlue(app)
     
     from .util.assets import bundles
     assets = Environment(app)
