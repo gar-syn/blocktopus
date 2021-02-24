@@ -13,7 +13,10 @@ $(document).ready(function() {
         {data: 'description'},
         {data: 'created_date'},
         {
-          defaultContent: '<input type="button" class="btn btn-danger project-delete" value="Delete"/>'
+          "className": '',
+          "orderable": false,
+          "data": null,
+          defaultContent: '<input type="button" class="project-edit btn btn-success" value="Edit"/> <input type="button" class="project-delete btn btn-danger" value="Delete"/>'
         }
     ],   
     rowCallback: function (row, data) {
@@ -27,11 +30,15 @@ $(document).ready(function() {
             }
           });
 
-// Project GUID via GET to the 'create experiment' form (foreign key)
-$('#table_projects').on('click', 'tbody tr td input', function() {
+$('#table_projects').on('click', '.project-delete', function() {
   var project_guid =$(this).parents('tr').find("td.sorting_1").html();
   var delete_project = Flask.url_for('forms.delete_project', {"id":project_guid});
   window.location.href = delete_project;
+})
+$('#table_projects').on('click', '.project-edit', function() {
+  var project_guid =$(this).parents('tr').find("td.sorting_1").html();
+  var edit_project = Flask.url_for('forms.edit_project', {"id":project_guid});
+  window.location.href = edit_project;
 })
 
 // DataTable for Experiments Page
