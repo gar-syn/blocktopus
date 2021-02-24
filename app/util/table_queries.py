@@ -26,7 +26,6 @@ class ProjectsDataTableToChooseFrom:
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
         for i in range(column_count)[:-1]:
-            print(i)
             column_name = self.request.args.get('mDataProp_%d' % i)
             column_list.append(column_name)
 
@@ -80,7 +79,6 @@ class ProjectsDataTable:
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
         for i in range(column_count):
-            print(i)
             column_name = self.request.args.get('mDataProp_%d' % i)
             column_list.append(column_name)
 

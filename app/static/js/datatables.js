@@ -1,4 +1,4 @@
-// Call the dataTables jQuery plugin
+// DataTable for Projects Page
 $(document).ready(function() {
    $('#table_projects').DataTable({
     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -15,6 +15,7 @@ $(document).ready(function() {
     ]
 })
 
+// DataTable for Experiments Page
 $('#table_experiments').DataTable({
   "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
   "lengthChange": true,
@@ -34,6 +35,7 @@ $('#table_experiments').DataTable({
   ]
 })
 
+// DataTable to choose an Project for creating an Experiment
 $('#table_selection').DataTable({
   "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
   "lengthChange": true,
@@ -48,7 +50,6 @@ $('#table_selection').DataTable({
       {data: 'created_date'},
       {
         defaultContent: '<center><input type="button" class="btn btn-primary create-experiment" value="Create Experiment"/></center>'
-  
       }
   ],   
   rowCallback: function (row, data) {
@@ -56,10 +57,11 @@ $('#table_selection').DataTable({
       }
 });
 
+// Project GUID via GET to the 'create experiment' form (foreign key)
 $('#table_selection').on('click', 'tbody tr', function(key) {
-  var classname = $(this).find(".sorting_1").html();
-  var newURL = Flask.url_for('forms.create_experiment', {"project-guid":classname});
-  window.location.href = newURL;
+  var project_guid = $(this).find(".sorting_1").html();
+  var create_experiment_url = Flask.url_for('forms.create_experiment', {"project-guid":project_guid});
+  window.location.href = create_experiment_url;
 });
 });
 

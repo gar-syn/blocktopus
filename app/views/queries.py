@@ -9,7 +9,7 @@ queries = Blueprint("queries", __name__)
 
 @queries.route('/projects')
 def projects():
-    return render_template('projects.html')
+    return render_template('interface/projects.html')
 
 @queries.route('/load-projects')
 def load_projects():
@@ -19,7 +19,7 @@ def load_projects():
 
 @queries.route('/experiments')
 def experiments():
-    return render_template('experiments.html')
+    return render_template('interface/experiments.html')
 
 @queries.route('/load-experiments')
 def load_experiments():
@@ -29,7 +29,7 @@ def load_experiments():
     
 @queries.route('/choose-project')
 def choose_projects():
-    return render_template('choose-project.html')
+    return render_template('interface/choose-project.html')
 
 @queries.route('/select-project')
 def load_existing_projects():
