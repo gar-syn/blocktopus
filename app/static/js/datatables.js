@@ -1,6 +1,6 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  var table =  $('#table').DataTable({
+   $('#table_projects').DataTable({
     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
     "lengthChange": true,
     "bServerSide": true,
@@ -58,7 +58,7 @@ $('#table_selection').DataTable({
 
 $('#table_selection').on('click', 'tbody tr', function(key) {
   var classname = $(this).find(".sorting_1").html();
-  var newURL = Flask.url_for('forms.create_experiment', {"id":classname});
+  var newURL = Flask.url_for('forms.create_experiment', {"project-guid":classname});
   window.location.href = newURL;
 });
 });

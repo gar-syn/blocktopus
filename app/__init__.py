@@ -18,18 +18,17 @@ def internal_error(e):
 
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
-    Bootstrap(app)
-    jsglue = JSGlue(app)
     
     from .util.assets import bundles
     assets = Environment(app)
     assets.register(bundles)
-
+    
+    app.config.from_object(config_object)
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_error)
-
-    app.config.from_object(config_object)
-
+    
+    Bootstrap(app)
+    jsglue = JSGlue(app)
     db.init_app(app)
 
     login_manager = LoginManager()
@@ -37,25 +36,18 @@ def create_app(config_object=DevConfig):
     login_manager.init_app(app)
 
     from .models import User
-
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
     
-    # blueprint for main routes
+    # blueprint for routes
     from .main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
-
-    # blueprint for auth routes 
     from .views.auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint)
-    
-    # blueprint for forms routes
     from .views.forms import forms as forms_blueprint
-    app.register_blueprint(forms_blueprint)
-    
-    # blueprint for queries routes
     from .views.queries import queries as queries_blueprint
+    app.register_blueprint(main_blueprint)
+    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(forms_blueprint)
     app.register_blueprint(queries_blueprint)
     
     return app

@@ -63,7 +63,7 @@ def create_experiment():
         user_id = current_user.id
         created_date = stringdate()
         last_modified_date = stringdate()
-        select_project_guid = request.args.get('id', default = '*', type = str)
+        select_project_guid = request.args.get('project-guid', default = '*', type = str)
         create_new_experiment = Experiments(guid, eln, title, description, site, building, room, user_id, created_date, last_modified_date, select_project_guid)
         try:
             db.session.add(create_new_experiment)
