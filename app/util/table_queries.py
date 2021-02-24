@@ -33,7 +33,7 @@ class ProjectsDataTableToChooseFrom:
         search_value = self.request.args.get('sSearch')
         filter_list = []
         if search_value != "":
-            for col in column_list:
+            for col in column_list[:-1]:
                 column_type = getattr(getattr(self.model_object, col), 'type')
                 #col_name like '%search_value%', datatime-type column will raise exception in mysql
                 if not isinstance(column_type, db.DateTime):

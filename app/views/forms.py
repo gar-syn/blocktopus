@@ -90,3 +90,40 @@ def create_experiment():
                     "error",
                 )
         return render_template("forms/create-experiment.html", create_experiment_form=create_experiment_form)
+
+@forms.route('/projects/<string:id>/delete/', methods=('POST', 'GET'))
+def delete_project(id):
+    project = Projects.query.get_or_404(id)
+    try:
+        db.session.delete(project)
+        db.session.commit()
+        flash('You have successfully deleted the project!', 'success')
+        return redirect(url_for('queries.projects'))
+    except IntegrityError:
+        db.session.rollback()
+        flash("You can't delete this project, because there are experiments linked to it!" , 'danger')
+        return redirect(url_for('queries.projects'))
+    
+def save_changes(project, form, new=False):
+    project.guid = form.guid.data
+    project.title = form.title.data
+    project.description = form.description.data
+    project.created_date = form.created_date.data
+    if new:
+        db.session.add(project)
+    db.session.commit()
+    
+@forms.route('/projects/<string:id>/edit/', methods=['GET', 'POST'])
+def edit_project(id):
+    qry = db.session.query(Projects).filter(Projects.guid==id)
+    project = qry.first()
+    if project:
+        create_project_form = CreateProject(formdata=request.form, obj=project)
+        if request.method == 'POST' and create_project_form.validate():
+            # save edits
+            save_changes(project, create_project_form)
+            flash('Project updated successfully!', 'success')
+            return redirect(url_for('queries.projects'))
+        return render_template('forms/create-project.html', create_project_form=create_project_form)
+    else:
+        return 'Error loading Project with #{guid}'.format(guid=id)

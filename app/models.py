@@ -55,7 +55,7 @@ class Experiments(db.Model):
     user_id = Column(Integer, unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     last_modified_date = Column(Integer, unique=False)
-    project_guid = Column(String, ForeignKey('projects.guid'))
+    project_guid = Column(String, ForeignKey('projects.guid'), nullable=False)
     #sketch_guid = Column(String(200), ForeignKey('sketches.guid'), nullable=False)
     #sketches = relationship("Sketches", uselist=False, back_populates="experiments")
 

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask_login import current_user, login_required
 
 from .. import db
 from ..models import Projects, Experiments
@@ -28,10 +29,12 @@ def load_experiments():
         return jsonify(returnTable)
     
 @queries.route('/choose-project')
+@login_required
 def choose_projects():
     return render_template('interface/choose-project.html')
 
 @queries.route('/select-project')
+@login_required
 def load_existing_projects():
     if request.method == 'GET':
         returnTable = ProjectsDataTableToChooseFrom(request, Projects).output_result()
