@@ -34,7 +34,7 @@ def create_project():
             return render_template("forms/create-project.html", message=success_message)
         except IntegrityError:
             db.session.rollback()
-            flash("GUID is already linked to an existing Project!")
+            flash("GUID is already linked to an existing Project!" , 'danger')
             return render_template("forms/create-project.html", create_project_form=create_project_form)
     else:
         # show validaton errors
@@ -48,20 +48,10 @@ def create_project():
                 )
         return render_template("forms/create-project.html", create_project_form=create_project_form)
         
-def auto_populate_project_choices_dropdown(create_experiment_form):
-    projects = Projects.query.all()
-    project_guids = []
-    for project in projects:
-        project_guids.append(project.title)
-        print(project_guids)
-    project_choices = list(project_guids)
-    create_experiment_form.select_project_guid.choices = project_choices
-
 @forms.route("/create-experiment", methods=["GET", "POST"])
 @login_required
 def create_experiment():
     create_experiment_form = CreateExperiment()
-    auto_populate_project_choices_dropdown(create_experiment_form)
     if create_experiment_form.validate_on_submit():
         guid = str(uuid.uuid4())
         eln = request.form["eln"]
@@ -73,9 +63,8 @@ def create_experiment():
         user_id = current_user.id
         created_date = stringdate()
         last_modified_date = stringdate()
-        select_project_guid = create_experiment_form.data['select_project_guid']        
+        select_project_guid = request.args.get('project-guid', default = '*', type = str)
         create_new_experiment = Experiments(guid, eln, title, description, site, building, room, user_id, created_date, last_modified_date, select_project_guid)
-
         try:
             db.session.add(create_new_experiment)
             db.session.commit()
@@ -83,7 +72,7 @@ def create_experiment():
             return render_template("forms/create-experiment.html", message=success_message)
         except IntegrityError:
             db.session.rollback()
-            flash("GUID is already linked to an existing Project!")
+            flash("ELN Number is already linked to an existing Project!" , 'danger')
             return render_template("forms/create-experiment.html", create_experiment_form=create_experiment_form)
     #Autopopulate fields, if user is logged in
     elif request.method == 'GET' and current_user.is_authenticated:

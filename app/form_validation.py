@@ -16,7 +16,7 @@ class CreateProject(FlaskForm):
     submit = SubmitField('Create new Project')
     
 class CreateExperiment(FlaskForm):
-    select_project_guid = SelectField(label="Select a Project GUID to link this Experiment to an existing Project")
+    select_project_guid = HiddenField()
     guid = HiddenField()
     eln = StringField('Experiment ELN Number', [ InputRequired(),
         Regexp(r'[A-Za-z0-9 ]*$', message="Invalid ELN"),

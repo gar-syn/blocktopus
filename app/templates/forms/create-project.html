@@ -11,21 +11,20 @@
 		{% if message %}
 			<!-- Successful Submit -->
 			<p class="alert alert-success"><strong>{{ message }}</strong></p>
-			 <a href="{{ url_for('forms.create_experiment') }}" class="nav-link">
+			 <a href="{{ url_for('queries.choose_projects') }}" class="nav-link">
 			<button class="w-100 btn btn-lg btn-primary button">Create an Experiment</button>
 			</a>
 		{% else %}
 			<!-- form is displayed when template opens via GET not POST -->
-			{% with errors = get_flashed_messages() %}
-				{% if errors %}
-					{% for err in errors %}
-						<div class="alert alert-danger alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-						{{ err }}
-						</div>
-					{% endfor %}
+			   {% with messages = get_flashed_messages(with_categories=true) %}
+   				{% if messages %}
+				{% for category, message in messages %}
+   					<div class="alert alert-{{ category }}" role="alert"> {{ message }}
+      					<button type="button" class="close" data-dismiss="alert">&times;</button>
+   					</div>
+   				{% endfor %}
 				{% endif %}
-			{% endwith %}
+			   {% endwith %}
 			<!-- end of flash -->
 		    {{ wtf.quick_form(create_project_form) }}
 		{% endif %}

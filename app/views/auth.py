@@ -9,6 +9,11 @@ from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePass
 
 auth = Blueprint('auth', __name__)
 
+@auth.route('/profile')
+@login_required
+def profile():
+    return render_template('auth/profile.html', name=current_user.name)
+
 @auth.route('/register')
 def register():
     print("register")
@@ -53,7 +58,7 @@ def login_post():
         flash('Please check your login details and try again.', 'danger')
         return redirect(url_for('auth.login'))
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('auth.profile'))
 
 @auth.route('/logout')
 @login_required
@@ -72,7 +77,7 @@ def change_site():
             db.session.add(user)
             db.session.commit()
             flash('Your site has been changed.', 'success')
-            return redirect(url_for('main.profile'))
+            return redirect(url_for('auth.profile'))
     return render_template('auth/change-site.html', site=current_user.site, change_site_form=change_site_form)
 
 @auth.route('/change-building', methods=['GET', 'POST'])
@@ -86,7 +91,7 @@ def change_building():
             db.session.add(user)
             db.session.commit()
             flash('Your buulding has been changed.', 'success')
-            return redirect(url_for('main.profile'))
+            return redirect(url_for('auth.profile'))
     return render_template('auth/change-building.html', building=current_user.building, change_building_form=change_building_form)
 
 @auth.route('/change-room', methods=['GET', 'POST'])
@@ -100,7 +105,7 @@ def change_room():
             db.session.add(user)
             db.session.commit()
             flash('Your room has been changed.', 'success')
-            return redirect(url_for('main.profile'))
+            return redirect(url_for('auth.profile'))
     return render_template('auth/change-room.html', room=current_user.room, change_room_form=change_room_form)
 
 @auth.route('/change-password', methods=['GET', 'POST'])
@@ -114,5 +119,5 @@ def change_password():
             db.session.add(user)
             db.session.commit()
             flash('Your password has been changed.', 'success')
-            return redirect(url_for('main.profile'))
+            return redirect(url_for('auth.profile'))
     return render_template('auth/change-password.html', change_password_form=change_password_form)

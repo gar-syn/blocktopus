@@ -50,18 +50,18 @@
                <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Create a new:</h6>
                   <a href="{{ url_for('forms.create_project') }}" class="collapse-item"><i class="far fa-folder-open"></i> Project</a>
-                  <a href="{{ url_for('forms.create_experiment') }}" class="collapse-item"><i class="fas fa-flask"></i> Experiment</a>
+                  <a href="{{ url_for('queries.choose_projects') }}" class="collapse-item"><i class="fas fa-flask"></i> Experiment</a>
                   <a class="collapse-item" href="/"><i class="fas fa-pencil-alt"></i> Sketch</a>
                </div>
             </div>
          </li>
-         <!-- Nav Item - Charts -->
+         <!-- Nav Item - Projects -->
          <li class="nav-item">
             <a href="{{ url_for('queries.projects') }}" class="nav-link">
             <i class="fas fa-fw fa-folder-open"></i>
             <span>Projects</span></a>
          </li>
-         <!-- Nav Item - Tables -->
+         <!-- Nav Item - Experiments -->
          <li class="nav-item">
             <a href="{{ url_for('queries.experiments') }}" class="nav-link">
             <i class="fas fa-fw fa-flask"></i>
@@ -75,8 +75,7 @@
          </div>
          <li class="nav-item">
             {% if current_user.is_authenticated %}
-            <a class="nav-link" href="charts.html">
-            <a href="{{ url_for('main.profile') }}" class="nav-link">
+            <a href="{{ url_for('auth.profile') }}" class="nav-link">
             <i class="fas fa-user-circle"></i>
             <span>Profile</span>
             </a>

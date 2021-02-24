@@ -2,7 +2,7 @@ from flask_login import UserMixin
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.sqlite import BLOB
-
+from flask import Markup
 from . import db
 
 class User(UserMixin, db.Model):
@@ -46,7 +46,7 @@ class Sketches(db.Model):
 class Experiments(db.Model):
     __tablename__ = 'experiments'
     guid = Column(String(200),unique=True, primary_key=True)
-    eln = Column(String(100))
+    eln = Column(String(100), unique=True)
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)
     site = Column(String(50), unique=False)

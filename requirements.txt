@@ -6,8 +6,9 @@ flask_sqlalchemy
 flask-login
 flask_bootstrap
 Flask-Assets
+Flask-WTF
+Flask-JSGlue
+wtforms
 jsmin
 cssmin
-Flask-WTF
-wtforms
 datetime
