@@ -90,3 +90,11 @@ def create_experiment():
                     "error",
                 )
         return render_template("forms/create-experiment.html", create_experiment_form=create_experiment_form)
+
+@forms.route('/projects/<string:id>/delete/', methods=('POST', 'GET'))
+def delete_project(id):
+    project = Projects.query.get_or_404(id)
+    db.session.delete(project)
+    db.session.commit()
+    flash('You have successfully deleted the project!', 'success')
+    return redirect(url_for('queries.projects'))
