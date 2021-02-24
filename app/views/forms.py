@@ -94,7 +94,12 @@ def create_experiment():
 @forms.route('/projects/<string:id>/delete/', methods=('POST', 'GET'))
 def delete_project(id):
     project = Projects.query.get_or_404(id)
-    db.session.delete(project)
-    db.session.commit()
-    flash('You have successfully deleted the project!', 'success')
-    return redirect(url_for('queries.projects'))
+    try:
+        db.session.delete(project)
+        db.session.commit()
+        flash('You have successfully deleted the project!', 'success')
+        return redirect(url_for('queries.projects'))
+    except IntegrityError:
+        db.session.rollback()
+        flash("You can't delete this project, because there are experiments linked to it!" , 'danger')
+        return redirect(url_for('queries.projects'))
