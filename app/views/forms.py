@@ -34,7 +34,7 @@ def create_project():
             return render_template("forms/create-project.html", message=success_message)
         except IntegrityError:
             db.session.rollback()
-            flash("GUID is already linked to an existing Project!")
+            flash("GUID is already linked to an existing Project!" , 'danger')
             return render_template("forms/create-project.html", create_project_form=create_project_form)
     else:
         # show validaton errors
@@ -72,7 +72,7 @@ def create_experiment():
             return render_template("forms/create-experiment.html", message=success_message)
         except IntegrityError:
             db.session.rollback()
-            flash("ELN Number is already linked to an existing Project!")
+            flash("ELN Number is already linked to an existing Project!" , 'danger')
             return render_template("forms/create-experiment.html", create_experiment_form=create_experiment_form)
     #Autopopulate fields, if user is logged in
     elif request.method == 'GET' and current_user.is_authenticated:
