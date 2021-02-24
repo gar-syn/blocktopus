@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
-from datetime import date
+from datetime import date, datetime
 import uuid
 
 from ..models import Projects, Experiments
@@ -104,7 +104,7 @@ def delete_project(id):
         flash("You can't delete this project, because there are experiments linked to it!" , 'danger')
         return redirect(url_for('queries.projects'))
     
-def save_changes(project, form, new=False):
+def save_project_changes(project, form, new=False):
     project.guid = form.guid.data
     project.title = form.title.data
     project.description = form.description.data
@@ -120,10 +120,55 @@ def edit_project(id):
     if project:
         create_project_form = CreateProject(formdata=request.form, obj=project)
         if request.method == 'POST' and create_project_form.validate():
-            # save edits
-            save_changes(project, create_project_form)
+            save_project_changes(project, create_project_form)
             flash('Project updated successfully!', 'success')
             return redirect(url_for('queries.projects'))
         return render_template('forms/create-project.html', create_project_form=create_project_form)
     else:
         return 'Error loading Project with #{guid}'.format(guid=id)
+
+@forms.route('/experiments/<string:id>/delete/', methods=('POST', 'GET'))
+def delete_experiment(id):
+    experiment = Experiments.query.get_or_404(id)
+    try:
+        db.session.delete(experiment)
+        db.session.commit()
+        flash('You have successfully deleted the experiment!', 'success')
+        return redirect(url_for('queries.experiments'))
+    except IntegrityError:
+        db.session.rollback()
+        flash("You can't delete this project" , 'danger')
+        return redirect(url_for('queries.experiment'))
+
+def save_experiment_changes(experiment, form, new=False):
+    experiment.guid = form.guid.data
+    experiment.eln = form.eln.data
+    experiment.title = form.title.data
+    experiment.description = form.description.data
+    experiment.site = form.site.data
+    experiment.building = form.building.data
+    experiment.room = form.room.data
+    experiment.created_date = form.created_date.data
+    experiment.last_modified_date = datetime.now()
+    if new:
+        db.session.add(experiment)
+
+@forms.route('/experiments/<string:id>/edit/', methods=['GET', 'POST'])
+def edit_experiment(id):
+    qry = db.session.query(Experiments).filter(Experiments.guid==id)
+    experiment = qry.first()
+    if experiment:
+        create_experiment_form = CreateExperiment(formdata=request.form, obj=experiment)
+        if request.method == 'POST' and create_experiment_form.validate():
+            try:
+                save_experiment_changes(experiment, create_experiment_form)
+                db.session.commit()
+                flash('Experiment updated successfully!', 'success')
+                return redirect(url_for('queries.experiments'))
+            except IntegrityError:
+                db.session.rollback()
+                flash("You can't update this experiment - This ELN Number is already in use!" , 'danger')
+                return render_template('forms/create-experiment.html', create_experiment_form=create_experiment_form)
+        return render_template('forms/create-experiment.html', create_experiment_form=create_experiment_form)
+    else:
+        return 'Error with Experiment #{guid}'.format(guid=id)

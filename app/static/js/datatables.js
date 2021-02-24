@@ -16,7 +16,7 @@ $(document).ready(function() {
           "className": '',
           "orderable": false,
           "data": null,
-          defaultContent: '<input type="button" class="project-edit btn btn-success" value="Edit"/> <input type="button" class="project-delete btn btn-danger" value="Delete"/>'
+          defaultContent: '<button type="submit" class="btn btn-success project-edit"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger project-delete"> <i class="fas fa-trash fa-sm"></i></button>'
         }
     ],   
     rowCallback: function (row, data) {
@@ -58,7 +58,32 @@ $('#table_experiments').DataTable({
       {data: 'building'},
       {data: 'room'},
       {data: 'created_date'},
-  ]
+      {
+        "className": '',
+        "orderable": false,
+        "data": null,
+        defaultContent: '<button type="submit" class="btn btn-success experiment-edit"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger experiment-delete"> <i class="fas fa-trash fa-sm"></i></button>'
+      }
+  ],   
+  rowCallback: function (row, data) {
+          $(row).addClass(data.guid);
+      },
+      createdRow: function( row, data, dataIndex ) {
+        // Set the data-status attribute, and add a class
+        $( row ).find('td:eq(8) input')
+            .attr('data-status', data.status ? 'locked' : 'unlocked')
+            .addClass(data.guid);
+          }
+        });
+$('#table_experiments').on('click', '.experiment-delete', function() {
+  var experiment_guid =$(this).parents('tr').find("td.sorting_1").html();
+  var delete_experiment = Flask.url_for('forms.delete_experiment', {"id":experiment_guid});
+  window.location.href = delete_experiment;
+})
+$('#table_experiments').on('click', '.experiment-edit', function() {
+  var experiment_guid =$(this).parents('tr').find("td.sorting_1").html();
+  var edit_experiment = Flask.url_for('forms.edit_experiment', {"id":experiment_guid});
+  window.location.href = edit_experiment;
 })
 
 // DataTable to choose an Project for creating an Experiment
