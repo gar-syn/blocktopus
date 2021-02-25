@@ -143,5 +143,5 @@ def change_email():
                     return render_template('auth/change-email.html', change_email_form=change_email_form)
             except IntegrityError:
                 db.session.rollback()
-                flash('Error! That email already exists!', 'error')
+                flash('Error! That email already exists!', 'danger')
     return render_template('auth/change-email.html', email=current_user.email, change_email_form=change_email_form)
