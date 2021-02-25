@@ -16,7 +16,12 @@ $(document).ready(function() {
           "className": '',
           "orderable": false,
           "data": null,
-          defaultContent: '<button type="submit" class="btn btn-success project-edit" data-toggle="tooltip" data-placement="bottom" title="Edit Project"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger project-delete" data-toggle="tooltip" data-placement="bottom" title="Delete Project"> <i class="fas fa-trash fa-sm"></i></button>'
+          defaultContent: `<button type="submit" class="btn btn-success project-edit table-buttons" data-toggle="tooltip" data-placement="bottom" title="Edit Project">
+          <i class="far fa-edit fa-sm"></i>
+          </button> 
+          <button type="submit" class="btn btn-danger project-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Project"> 
+          <i class="fas fa-trash fa-sm"></i>
+          </button>`
         }
     ],
     drawCallback: function (settings) {
@@ -65,7 +70,12 @@ $('#table_experiments').DataTable({
         "className": '',
         "orderable": false,
         "data": null,
-        defaultContent: '<button type="submit" class="btn btn-success experiment-edit"  data-toggle="tooltip" data-placement="bottom" title="Edit Experiment"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger experiment-delete" data-toggle="tooltip" data-placement="bottom" title="Delete Experiment"> <i class="fas fa-trash fa-sm"></i></button>'
+        defaultContent: `<button type="submit" class="btn btn-success experiment-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Edit Experiment">
+        <i class="far fa-edit fa-sm"></i>
+        </button> 
+        <button type="submit" class="btn btn-danger experiment-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Experiment"> 
+        <i class="fas fa-trash fa-sm"></i>
+        </button>`
       }
   ],
   drawCallback: function (settings) {
