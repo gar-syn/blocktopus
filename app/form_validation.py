@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField, PasswordField
+from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField, PasswordField, TextAreaField
 from wtforms.validators import InputRequired, Length, Regexp, NumberRange
 
 class CreateProject(FlaskForm):
@@ -8,7 +8,7 @@ class CreateProject(FlaskForm):
         Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message="Invalid Project Title"),
         Length(min=3, max=75, message="Invalid Project Title length")
         ])
-    description = StringField('Project Description', [ InputRequired(),
+    description = TextAreaField('Project Description', [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Project Description"),
         Length(min=1, max=500, message="Invalid Project Description length")
         ])
@@ -26,7 +26,7 @@ class CreateExperiment(FlaskForm):
         Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message="Invalid Experiment Title"),
         Length(min=3, max=75, message="Invalid Experiment Title length")
         ])
-    description = StringField('Experiment Description', [ InputRequired(),
+    description = TextAreaField('Experiment Description', [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Experiment Description"),
         Length(min=1, max=500, message="Invalid Experiment Description length")
         ])

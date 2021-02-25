@@ -53,10 +53,13 @@
     e.preventDefault();
   });
 
-$(document).ready(function () {
-  if(window.location.href.indexOf("projects","edit") > -1) {
-     $('h1').html('Update this Project!');
-     $('input#submit').val('Update Project');
+  $(document).ready(function() {
+    if (window.location.href.indexOf("projects", "edit") > -1) {
+        $('h1').html('Update this Project!');
+        $('input#submit').val('Update Project');
+    } else if (window.location.href.indexOf("experiments", "edit") > -1) {
+        $('h1').html('Update this Experiment!');
+        $('input#submit').val('Update Experiment');
     }
 });
 

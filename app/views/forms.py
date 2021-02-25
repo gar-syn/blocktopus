@@ -92,6 +92,7 @@ def create_experiment():
         return render_template("forms/create-experiment.html", create_experiment_form=create_experiment_form)
 
 @forms.route('/projects/<string:id>/delete/', methods=('POST', 'GET'))
+@login_required
 def delete_project(id):
     project = Projects.query.get_or_404(id)
     try:
@@ -114,6 +115,7 @@ def save_project_changes(project, form, new=False):
     db.session.commit()
     
 @forms.route('/projects/<string:id>/edit/', methods=['GET', 'POST'])
+@login_required
 def edit_project(id):
     qry = db.session.query(Projects).filter(Projects.guid==id)
     project = qry.first()
@@ -128,6 +130,7 @@ def edit_project(id):
         return 'Error loading Project with #{guid}'.format(guid=id)
 
 @forms.route('/experiments/<string:id>/delete/', methods=('POST', 'GET'))
+@login_required
 def delete_experiment(id):
     experiment = Experiments.query.get_or_404(id)
     try:
@@ -154,6 +157,7 @@ def save_experiment_changes(experiment, form, new=False):
         db.session.add(experiment)
 
 @forms.route('/experiments/<string:id>/edit/', methods=['GET', 'POST'])
+@login_required
 def edit_experiment(id):
     qry = db.session.query(Experiments).filter(Experiments.guid==id)
     experiment = qry.first()
