@@ -131,7 +131,6 @@ $('#table_selection').DataTable({
             .attr('data-status', data.status ? 'locked' : 'unlocked')
             .addClass('project_guid');
     }
-
 });
 
 // Project GUID via GET to the 'create experiment' form (foreign key)
@@ -141,4 +140,3 @@ $('#table_selection').on('click', 'tbody tr', function(key) {
   window.location.href = create_experiment_url;
 });
 });
-

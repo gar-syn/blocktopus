@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField, PasswordField, TextAreaField
+from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, BooleanField, PasswordField, TextAreaField
 from wtforms.validators import InputRequired, Length, Regexp, NumberRange
 from wtforms.fields.html5 import EmailField
 
@@ -75,6 +75,7 @@ class ChangeEmail(FlaskForm):
     submit = SubmitField('Change your Email')
     
 class ChangePassword(FlaskForm):
-    password = PasswordField('Password', validators=[InputRequired()])
+    password = PasswordField('Your new Password', validators=[InputRequired()],id='password')
+    show_password = BooleanField('Show password', id='check')
     submit = SubmitField('Change your password')
 
