@@ -16,6 +16,12 @@ def stringdate():
     date_string = date_list[2] + "." + date_list[1] + "." + date_list[0]
     return date_string
 
+def stringdatetime():
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    return dt_string
+
+
 @forms.route("/create-project", methods=["GET", "POST"])
 @login_required
 def create_project():
@@ -152,7 +158,7 @@ def save_experiment_changes(experiment, form, new=False):
     experiment.building = form.building.data
     experiment.room = form.room.data
     experiment.created_date = form.created_date.data
-    experiment.last_modified_date = datetime.now()
+    experiment.last_modified_date = stringdatetime()
     if new:
         db.session.add(experiment)
 

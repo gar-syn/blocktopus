@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField, PasswordField, TextAreaField
 from wtforms.validators import InputRequired, Length, Regexp, NumberRange
+from wtforms.fields.html5 import EmailField
+
 
 class CreateProject(FlaskForm):
     guid = HiddenField()
@@ -67,7 +69,12 @@ class ChangeRoom(FlaskForm):
         Length(min=1, max=75, message="Invalid Experiment Room length")
         ])
     submit = SubmitField('Change your room')
-
+    
+class ChangeEmail(FlaskForm):
+    email = EmailField('Email', validators=[InputRequired()])
+    submit = SubmitField('Change your Email')
+    
 class ChangePassword(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
     submit = SubmitField('Change your password')
+

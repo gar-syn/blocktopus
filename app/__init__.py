@@ -1,7 +1,7 @@
+import os
 from flask import Flask, render_template
 from flask_assets import Environment
 from flask_sqlalchemy import SQLAlchemy
-from whitenoise import WhiteNoise
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_jsglue import JSGlue
