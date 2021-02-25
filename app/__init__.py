@@ -2,7 +2,6 @@ import os
 from flask import Flask, render_template
 from flask_assets import Environment
 from flask_sqlalchemy import SQLAlchemy
-from whitenoise import WhiteNoise
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_jsglue import JSGlue
@@ -27,22 +26,6 @@ def create_app(config_object=DevConfig):
     app.config.from_object(config_object)
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_error)
-    
-    #Serving static files with WhiteNoise
-    WHITENOISE_MAX_AGE = 31536000 if not app.config["DEBUG"] else 0
-    app.wsgi_app = WhiteNoise(
-        app.wsgi_app,
-        root=os.path.join(os.path.dirname(__file__), "static"),
-        prefix="static/",
-        max_age=WHITENOISE_MAX_AGE,
-    )    
-    static_folders = (
-        os.path.join(os.path.dirname(__file__), "static/gen/css"),
-        os.path.join(os.path.dirname(__file__), "static/gen/js"),
-        os.path.join(os.path.dirname(__file__), "static/fonts/")
-        )
-    for static in static_folders:
-        app.wsgi_app.add_files(static)
     
     Bootstrap(app)
     jsglue = JSGlue(app)
