@@ -16,7 +16,7 @@ $(document).ready(function() {
           "className": '',
           "orderable": false,
           "data": null,
-          defaultContent: `<button type="submit" class="btn btn-info project-edit table-buttons" data-toggle="tooltip" data-placement="bottom" title="Edit Project">
+          defaultContent: `<button type="submit" class="btn btn-success project-edit table-buttons" data-toggle="tooltip" data-placement="bottom" title="Edit Project">
           <i class="far fa-edit fa-sm"></i>
           </button> 
           <button type="submit" class="btn btn-danger project-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Project"> 
@@ -70,7 +70,7 @@ $('#table_experiments').DataTable({
         "className": '',
         "orderable": false,
         "data": null,
-        defaultContent: `<button type="submit" class="btn btn-info experiment-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Edit Experiment">
+        defaultContent: `<button type="submit" class="btn btn-success experiment-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Edit Experiment">
         <i class="far fa-edit fa-sm"></i>
         </button> 
         <button type="submit" class="btn btn-danger experiment-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Experiment"> 

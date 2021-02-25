@@ -16,8 +16,8 @@
       $('.sidebar .collapse').collapse('hide');
     };
     
-    // Toggle the side navigation when window is resized below 1200px
-    if ($(window).width() < 1200 && !$(".sidebar").hasClass("toggled")) {
+    // Toggle the side navigation when window is resized below 480px
+    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
       $("body").addClass("sidebar-toggled");
       $(".sidebar").addClass("toggled");
       $('.sidebar .collapse').collapse('hide');
@@ -54,12 +54,14 @@
   });
 
   $(document).ready(function() {
-    if ((window.location.href.indexOf("projects", "edit") > -1) && (window.location.href.indexOf('login') === -1)) {
+    if (window.location.href.indexOf("projects", "edit") > -1) {
         $('h1').html('Update this Project!');
         $('input#submit').val('Update Project');
-    } else if ((window.location.href.indexOf("experiments", "edit") > -1)  && (window.location.href.indexOf('login') === -1)) {
+    } else if (window.location.href.indexOf("experiments", "edit") > -1) {
         $('h1').html('Update this Experiment!');
         $('input#submit').val('Update Experiment');
     }
 });
+
+
 })(jQuery); // End of use strict
