@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block title %}Change User Email{% endblock %} 
+{% import "bootstrap/wtf.html" as wtf %}
+{% block headerscripts %}
+{% endblock %} 
+{% block content %}
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
+<main class="change-form">
+   <h1 class="h3 mb-3 text-gray-900">Change your Email</h1>
+   <h3 class="h6 mb-3 text-gray-500">Your current Email is: {{ email }}</h3>
+   {% with messages = get_flashed_messages(with_categories=true) %}
+   				{% if messages %}
+				{% for category, message in messages %}
+   					<div class="alert alert-{{ category }}" role="alert"> {{ message }}
+      					<button type="button" class="close" data-dismiss="alert">&times;</button>
+   					</div>
+   				{% endfor %}
+				{% endif %}
+			   {% endwith %}
+   <div class="box">
+      {{ wtf.quick_form(change_email_form) }}
+    </div> 
+</main>
+{% endblock %}
+</div>

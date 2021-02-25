@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 
 from ..models import User
 from .. import db
-from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword
+from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail
 
 auth = Blueprint('auth', __name__)
 
@@ -121,3 +121,27 @@ def change_password():
             flash('Your password has been changed.', 'success')
             return redirect(url_for('auth.profile'))
     return render_template('auth/change-password.html', change_password_form=change_password_form)
+
+@auth.route('/change-email', methods=['GET', 'POST'])
+@login_required
+def change_email():
+    change_email_form = ChangeEmail()
+    if request.method == 'POST':
+        if change_email_form.validate_on_submit():
+            try:
+                user_check = User.query.filter_by(email=change_email_form.email.data).first()
+                if user_check is None:
+                    user = current_user
+                    user.email = change_email_form.email.data
+                    db.session.add(user)
+                    db.session.commit()
+                    flash('Your email has been changed', 'success')
+                    return redirect(url_for('auth.profile'))
+                else:
+                    db.session.rollback()
+                    flash('Sorry, that email already exists!', 'danger')
+                    return render_template('auth/change-email.html', change_email_form=change_email_form)
+            except IntegrityError:
+                db.session.rollback()
+                flash('Error! That email already exists!', 'error')
+    return render_template('auth/change-email.html', email=current_user.email, change_email_form=change_email_form)
