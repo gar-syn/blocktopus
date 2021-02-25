@@ -60,5 +60,11 @@ $(document).ready(function () {
     }
 });
 
+$(document).ready(function () {
+  if(window.location.href.indexOf("experiments","edit") > -1) {
+     $('h1').html('Update this Experiment!');
+     $('input#submit').val('Update Experiment');
+    }
+});
 
 })(jQuery); // End of use strict

@@ -16,9 +16,12 @@ $(document).ready(function() {
           "className": '',
           "orderable": false,
           "data": null,
-          defaultContent: '<button type="submit" class="btn btn-success project-edit"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger project-delete"> <i class="fas fa-trash fa-sm"></i></button>'
+          defaultContent: '<button type="submit" class="btn btn-success project-edit" data-toggle="tooltip" data-placement="bottom" title="Edit Project"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger project-delete" data-toggle="tooltip" data-placement="bottom" title="Delete Project"> <i class="fas fa-trash fa-sm"></i></button>'
         }
-    ],   
+    ],
+    drawCallback: function (settings) {
+      $('[data-toggle="tooltip"]').tooltip();
+    },   
     rowCallback: function (row, data) {
             $(row).addClass(data.guid);
         },
@@ -62,9 +65,12 @@ $('#table_experiments').DataTable({
         "className": '',
         "orderable": false,
         "data": null,
-        defaultContent: '<button type="submit" class="btn btn-success experiment-edit"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger experiment-delete"> <i class="fas fa-trash fa-sm"></i></button>'
+        defaultContent: '<button type="submit" class="btn btn-success experiment-edit"  data-toggle="tooltip" data-placement="bottom" title="Edit Experiment"><i class="far fa-edit fa-sm"></i></button> <button type="submit" class="btn btn-danger experiment-delete" data-toggle="tooltip" data-placement="bottom" title="Delete Experiment"> <i class="fas fa-trash fa-sm"></i></button>'
       }
-  ],   
+  ],
+  drawCallback: function (settings) {
+    $('[data-toggle="tooltip"]').tooltip();
+  },    
   rowCallback: function (row, data) {
           $(row).addClass(data.guid);
       },
@@ -103,9 +109,9 @@ $('#table_selection').DataTable({
         "className": '',
         "orderable": false,
         "data": null,
-        defaultContent: '<center><input type="button" class="btn btn-primary create-experiment" value="Create Experiment"/></center>'
+        defaultContent: '<input type="button" class="btn btn-primary create-experiment" value="Create Experiment"/>'
       }
-  ],   
+  ],    
   rowCallback: function (row, data) {
           $(row).addClass(data.guid);
       },

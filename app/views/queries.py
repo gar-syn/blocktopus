@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from .. import db
 from ..models import Projects, Experiments
-from ..util.table_queries import ProjectsDataTable, ExperimentsDataTable, ProjectsDataTableToChooseFrom
+from ..util.table_queries import ProjectsDataTable, ExperimentsDataTable
 
 
 queries = Blueprint("queries", __name__)
@@ -37,5 +37,5 @@ def choose_projects():
 @login_required
 def load_existing_projects():
     if request.method == 'GET':
-        returnTable = ProjectsDataTableToChooseFrom(request, Projects).output_result()
+        returnTable = ProjectsDataTable(request, Projects).output_result()
         return jsonify(returnTable)
