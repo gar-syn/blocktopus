@@ -78,4 +78,3 @@ class ChangePassword(FlaskForm):
     password = PasswordField('Your new Password', validators=[InputRequired()],id='password')
     show_password = BooleanField('Show password', id='check')
     submit = SubmitField('Change your password')
-
