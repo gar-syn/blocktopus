@@ -6,6 +6,7 @@ $(document).ready(function() {
     "bServerSide": true,
     "sPaginationType": "full_numbers",
     "iDisplayLength": 10,
+    "stateSave": true,
     "sAjaxSource": "/load-projects",
     columns:[
         {data: 'guid'},
@@ -59,6 +60,7 @@ $('#table_experiments').DataTable({
   "bServerSide": true,
   "sPaginationType": "full_numbers",
   "iDisplayLength": 10,
+  "stateSave": true,
   "sAjaxSource": "/load-experiments",
   columns:[
       {data: 'guid'},
@@ -115,6 +117,7 @@ $('#table_selection').DataTable({
   "bServerSide": true,
   "sPaginationType": "full_numbers",
   "iDisplayLength": 10,
+  "stateSave": true,
   "sAjaxSource": "/select-project",
   columns:[
       {data: 'guid'},
