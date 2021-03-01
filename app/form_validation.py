@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, BooleanField, PasswordField, TextAreaField
-from wtforms.validators import InputRequired, Length, Regexp, NumberRange, EqualTo
+from wtforms.validators import InputRequired, Length, Regexp, NumberRange
 from wtforms.fields.html5 import EmailField
 
 
@@ -78,16 +78,3 @@ class ChangePassword(FlaskForm):
     password = PasswordField('Your new Password', validators=[InputRequired()],id='password')
     show_password = BooleanField('Show password', id='check')
     submit = SubmitField('Change your password')
-    
-class ResetPasswordRequestForm(FlaskForm):
-    email = EmailField('Email', validators=[InputRequired()])
-    submit = SubmitField('Request Password Reset')
-    
-class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[InputRequired()])
-    password2 = PasswordField(
-        'Repeat Password', validators=[InputRequired(), EqualTo('password')])
-    submit = SubmitField('Request Password Reset')
-
-class EmailForm(FlaskForm):
-    email = EmailField('Email', validators=[InputRequired(), Length(min=6, max=40)])

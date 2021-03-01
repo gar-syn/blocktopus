@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 
 from ..models import User
 from .. import db
-from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail, EmailForm
+from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail
 
 auth = Blueprint('auth', __name__)
 
@@ -145,36 +145,3 @@ def change_email():
                 db.session.rollback()
                 flash('Error! That email already exists!', 'danger')
     return render_template('auth/change-email.html', email=current_user.email, change_email_form=change_email_form)
-
-from ..form_validation import ResetPasswordRequestForm, ResetPasswordForm
-from ..email import send_password_reset_email
-
-@auth.route('/reset_password_request', methods=['GET', 'POST'])
-def reset_password_request():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
-    form = ResetPasswordRequestForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        print(user)
-        if user:
-            send_password_reset_email(user)
-        flash('Check your email for the instructions to reset your password', 'success')
-        return redirect(url_for('auth.login'))
-    return render_template('auth/reset_password_request.html',
-                           title='Reset Password', form=form)
-
-@auth.route('/reset_password/<token>', methods=['GET', 'POST'])
-def reset_password(token):
-    if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
-    user = User.verify_reset_password_token(token)
-    if not user:
-        return redirect(url_for('main.index'))
-    form = ResetPasswordForm()
-    if form.validate_on_submit():
-        user.set_password(form.password.data)
-        db.session.commit()
-        flash('Your password has been reset.')
-        return redirect(url_for('auth.login'))
-    return render_template('auth/reset_password.html', form=form)
