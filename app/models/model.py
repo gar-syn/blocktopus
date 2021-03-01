@@ -15,7 +15,6 @@ class User(UserMixin, db.Model):
     building = Column(String(100), unique=False)
     room = Column(String(100), unique=False)
 
-
     def __init__(self, email, password, name, site, building, room):
         self.email = email
         self.password = password
@@ -26,6 +25,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.name
+    
     
 class Sketches(db.Model):
     __tablename__ = 'sketches'

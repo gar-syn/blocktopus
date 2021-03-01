@@ -45,7 +45,7 @@ def register_loginmanager(app):
 
 def register_blueprints(app):
     """Register Flask blueprints."""
-    from .main import main as main_blueprint
+    from .views.main import main as main_blueprint
     from .views.auth import auth as auth_blueprint
     from .views.forms import forms as forms_blueprint
     from .views.queries import queries as queries_blueprint
