@@ -38,7 +38,7 @@ def register_loginmanager(app):
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    from .models.models import User
+    from .models.model import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
