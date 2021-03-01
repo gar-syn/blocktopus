@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 
 
-from ..models.models import User
+from ..models.model import User
 from .. import db
 from ..util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail
 
@@ -37,9 +37,11 @@ def register_post():
     try:
         db.session.add(new_user)
         db.session.commit()
+        flash('Account has been registered. Please log in:', 'success')
     except:
-        return 'Unable to add the user to database.'
-    flash('Account has been registered. Please log in:', 'success')
+        db.session.rollback()
+        flash('An error occurred. Unable to add the user to database.', 'danger')
+        return redirect(url_for('auth.register'))
     return redirect(url_for('auth.login'))
 
 @auth.route('/login', methods=['GET'])
@@ -54,8 +56,8 @@ def login_post():
     remember = True if request.form.get('remember') else False
     user = User.query.filter_by(email=email).first()
 
-    if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.', 'danger')
+    if not user or not user.check_password(password):
+        flash('Invalid username or password. Please check your login details.', 'danger')
         return redirect(url_for('auth.login'))
     login_user(user, remember=remember)
     return redirect(url_for('auth.profile'))

@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, send_from_directory
-from flask_login import login_required, current_user
 
-from . import db
+from .. import db
 
 main = Blueprint('main', __name__)
 

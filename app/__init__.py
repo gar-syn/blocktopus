@@ -38,14 +38,14 @@ def register_loginmanager(app):
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    from .models.models import User
+    from .models.model import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
 
 def register_blueprints(app):
     """Register Flask blueprints."""
-    from .main import main as main_blueprint
+    from .views.main import main as main_blueprint
     from .views.auth import auth as auth_blueprint
     from .views.forms import forms as forms_blueprint
     from .views.queries import queries as queries_blueprint

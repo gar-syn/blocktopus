@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from datetime import date, datetime
 import uuid
 
-from ..models.models import Projects, Experiments
+from ..models.model import Projects, Experiments
 from .. import db
 from ..util.form_validation import CreateProject, CreateExperiment
 

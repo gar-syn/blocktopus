@@ -2,7 +2,9 @@ from flask_login import UserMixin
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.sqlite import BLOB
+from werkzeug.security import check_password_hash
 from flask import Markup
+
 from .. import db
 
 class User(UserMixin, db.Model):
@@ -15,7 +17,6 @@ class User(UserMixin, db.Model):
     building = Column(String(100), unique=False)
     room = Column(String(100), unique=False)
 
-
     def __init__(self, email, password, name, site, building, room):
         self.email = email
         self.password = password
@@ -26,6 +27,11 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.name
+
+    def check_password(self, value):
+        """Check password."""
+        return check_password_hash(self.password, value)
+
     
 class Sketches(db.Model):
     __tablename__ = 'sketches'
