@@ -13,7 +13,7 @@ db = SQLAlchemy()
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
     app.config.from_object(config_object)
-
+    
     register_assets(app)
     register_extensions(app)
     register_loginmanager(app)
