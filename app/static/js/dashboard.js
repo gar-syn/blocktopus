@@ -54,10 +54,10 @@
   });
 
   $(document).ready(function() {
-    if ((window.location.href.indexOf("projects", "edit") > -1) && (window.location.href.indexOf('login') === -1)) {
+    if ((window.location.href.indexOf("projects") > -1) && (window.location.href.indexOf("edit") > -1) &&  (window.location.href.indexOf('login') === -1)) {
         $('h1').html('Update this Project!');
         $('input#submit').val('Update Project');
-    } else if ((window.location.href.indexOf("experiments", "edit") > -1)  && (window.location.href.indexOf('login') === -1)) {
+    } else if ((window.location.href.indexOf("experiments") > -1)   && (window.location.href.indexOf("edit") > -1) && (window.location.href.indexOf('login') === -1)) {
         $('h1').html('Update this Experiment!');
         $('input#submit').val('Update Experiment');
     }

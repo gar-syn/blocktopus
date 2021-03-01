@@ -6,6 +6,7 @@ $(document).ready(function() {
     "bServerSide": true,
     "sPaginationType": "full_numbers",
     "iDisplayLength": 10,
+    "stateSave": true,
     "sAjaxSource": "/load-projects",
     columns:[
         {data: 'guid'},
@@ -35,16 +36,19 @@ $(document).ready(function() {
           $( row ).find('td:eq(4) input')
               .attr('data-status', data.status ? 'locked' : 'unlocked')
               .addClass(data.guid);
+          $( row ).find('td:eq(0)')
+              .attr('data-status', data.status ? 'locked' : 'unlocked')
+              .addClass("guid");
             }
           });
 
 $('#table_projects').on('click', '.project-delete', function() {
-  var project_guid =$(this).parents('tr').find("td.sorting_1").html();
+  var project_guid =$(this).parents('tr').find("td.guid").html();
   var delete_project = Flask.url_for('forms.delete_project', {"id":project_guid});
   window.location.href = delete_project;
 })
 $('#table_projects').on('click', '.project-edit', function() {
-  var project_guid =$(this).parents('tr').find("td.sorting_1").html();
+  var project_guid =$(this).parents('tr').find("td.guid").html();
   var edit_project = Flask.url_for('forms.edit_project', {"id":project_guid});
   window.location.href = edit_project;
 })
@@ -56,6 +60,7 @@ $('#table_experiments').DataTable({
   "bServerSide": true,
   "sPaginationType": "full_numbers",
   "iDisplayLength": 10,
+  "stateSave": true,
   "sAjaxSource": "/load-experiments",
   columns:[
       {data: 'guid'},
@@ -89,15 +94,18 @@ $('#table_experiments').DataTable({
         $( row ).find('td:eq(8) input')
             .attr('data-status', data.status ? 'locked' : 'unlocked')
             .addClass(data.guid);
+        $( row ).find('td:eq(0)')
+            .attr('data-status', data.status ? 'locked' : 'unlocked')
+            .addClass("guid");
           }
         });
 $('#table_experiments').on('click', '.experiment-delete', function() {
-  var experiment_guid =$(this).parents('tr').find("td.sorting_1").html();
+  var experiment_guid =$(this).parents('tr').find("td.guid").html();
   var delete_experiment = Flask.url_for('forms.delete_experiment', {"id":experiment_guid});
   window.location.href = delete_experiment;
 })
 $('#table_experiments').on('click', '.experiment-edit', function() {
-  var experiment_guid =$(this).parents('tr').find("td.sorting_1").html();
+  var experiment_guid =$(this).parents('tr').find("td.guid").html();
   var edit_experiment = Flask.url_for('forms.edit_experiment', {"id":experiment_guid});
   window.location.href = edit_experiment;
 })
@@ -109,6 +117,7 @@ $('#table_selection').DataTable({
   "bServerSide": true,
   "sPaginationType": "full_numbers",
   "iDisplayLength": 10,
+  "stateSave": true,
   "sAjaxSource": "/select-project",
   columns:[
       {data: 'guid'},
@@ -131,7 +140,6 @@ $('#table_selection').DataTable({
             .attr('data-status', data.status ? 'locked' : 'unlocked')
             .addClass('project_guid');
     }
-
 });
 
 // Project GUID via GET to the 'create experiment' form (foreign key)
@@ -141,4 +149,3 @@ $('#table_selection').on('click', 'tbody tr', function(key) {
   window.location.href = create_experiment_url;
 });
 });
-

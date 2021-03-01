@@ -3,9 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 
 
-from ..models import User
+from ..models.models import User
 from .. import db
-from ..form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail
+from ..util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail
 
 auth = Blueprint('auth', __name__)
 
@@ -143,5 +143,5 @@ def change_email():
                     return render_template('auth/change-email.html', change_email_form=change_email_form)
             except IntegrityError:
                 db.session.rollback()
-                flash('Error! That email already exists!', 'error')
+                flash('Error! That email already exists!', 'danger')
     return render_template('auth/change-email.html', email=current_user.email, change_email_form=change_email_form)

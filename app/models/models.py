@@ -3,7 +3,7 @@ from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.sqlite import BLOB
 from flask import Markup
-from . import db
+from .. import db
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
