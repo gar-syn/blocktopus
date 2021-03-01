@@ -34,10 +34,18 @@ class DevConfig(Config):
     
     ENV = 'dev'
     DEBUG = True
-    TESTING = True
+    TESTING = False
     DB_NAME = "db.sqlite"
     DB_PATH = os.path.join(Config.PROJECT_ROOT, DB_NAME)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
     SECRET_KEY = "secret_key123"
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(10 ** 6)
+    MAIL_SERVER='smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USERNAME = 'birdsakatauben@gmail.com'
+    MAIL_DEFAULT_SENDER = 'birdsakatauben@gmail.com'
+    MAIL_PASSWORD = 'keksi123'
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+SECRET_KEY = "secret_key123"

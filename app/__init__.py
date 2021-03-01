@@ -5,10 +5,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_jsglue import JSGlue
+from flask_mail import Mail
 
 from .util.config import DevConfig
 
 db = SQLAlchemy()
+mail = Mail()
 
 def page_not_found(e):
       return render_template('error-handling/404.html'), 404
@@ -30,6 +32,7 @@ def create_app(config_object=DevConfig):
     Bootstrap(app)
     jsglue = JSGlue(app)
     db.init_app(app)
+    mail.init_app(app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -52,4 +55,5 @@ def create_app(config_object=DevConfig):
     
     return app
 
-db.create_all(app=create_app())
+if __name__ == '___main___':
+    app = create_app()
