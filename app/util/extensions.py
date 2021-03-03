@@ -1,7 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_jsglue import JSGlue
 from celery import Celery
+from flask_bootstrap import Bootstrap
+
 
 db = SQLAlchemy()
+jsglue = JSGlue()
+bootstrap = Bootstrap()
 
 def create_celery_app(app=None):
     app = app or create_app()

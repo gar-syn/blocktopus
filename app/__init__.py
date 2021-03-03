@@ -2,11 +2,9 @@ import os
 from flask import Flask, render_template
 from flask_assets import Environment
 from flask_login import LoginManager
-from flask_bootstrap import Bootstrap
-from flask_jsglue import JSGlue
 
 from .util.config import DevConfig
-from .util.extensions import db, create_celery_app
+from .util.extensions import db, jsglue, bootstrap, create_celery_app
 
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
@@ -27,10 +25,10 @@ def register_assets(app):
 
 def register_extensions(app):
     """Register Flask extensions."""
-    Bootstrap(app)
-    jsglue = JSGlue(app)
+    bootstrap.init_app(app)
     db.init_app(app)
-    celery = create_celery_app(app)
+    jsglue.init_app(app)
+    #celery = create_celery_app(app)
     
 def register_loginmanager(app):
     """Register Flask loginmanager."""
