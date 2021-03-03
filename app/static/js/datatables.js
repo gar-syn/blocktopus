@@ -56,22 +56,40 @@ $(document).ready(function () {
 	});
 
 	$('#table_projects').on('click', '.project-delete', function () {
-		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
 		var delete_project = Flask.url_for('forms.delete_project', {
 			"id": project_guid
 		});
 		window.location.href = delete_project;
 	})
 	$('#table_projects').on('click', '.project-edit', function () {
-		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
 		var edit_project = Flask.url_for('forms.edit_project', {
 			"id": project_guid
 		});
 		window.location.href = edit_project;
 	})
+//Create Link for each row with Project GUID for experiments search
+  $('#table_projects').on('click', 'tbody tr td:not(:last-child)', function () {
+		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
+		var filter_experiments_by_project_guid = Flask.url_for('queries.experiments', {
+			"project-guid-filter": project_guid
+		});
+		window.location.href = filter_experiments_by_project_guid;
+	});
+  
+  //Parse URL to get Project GUID for search query on experiments table
+  function getExperimentsLinkedToProject(k){
+    if($('table').is('#table_experiments') && (window.location.href.indexOf("project-guid-filter") > -1)){
+      var p={};
+      location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
+    return (k?p[k]:p).split('%')[0];
+   }
+  }
 
 	// DataTable for Experiments Page
 	$('#table_experiments').DataTable({
+    "oSearch": {"sSearch": getExperimentsLinkedToProject("project-guid-filter")},
 		"lengthMenu": [
 			[10, 25, 50, -1],
 			[10, 25, 50, "All"]
@@ -80,7 +98,7 @@ $(document).ready(function () {
 		"bServerSide": true,
 		"sPaginationType": "full_numbers",
 		"iDisplayLength": 10,
-		"stateSave": true,
+		"stateSave": false,
 		"sAjaxSource": "/load-experiments",
 		columns: [{
 				data: 'guid'
@@ -106,6 +124,9 @@ $(document).ready(function () {
 			{
 				data: 'created_date'
 			},
+      {
+				data: 'project_guid'
+			},
 			{
 				"className": '',
 				"orderable": false,
@@ -121,6 +142,7 @@ $(document).ready(function () {
 		initComplete: function () {
 			var api = this.api();
 			api.column(0).visible(false);
+      api.column(8).visible(false);
 		},
 		drawCallback: function (settings) {
 			$('[data-toggle="tooltip"]').tooltip();
@@ -136,16 +158,17 @@ $(document).ready(function () {
 				.attr('data-status', data.status ? 'locked' : 'unlocked')
 				.addClass(data.guid);
 		}
-	});
+  });
+
 	$('#table_experiments').on('click', '.experiment-delete', function () {
-		var experiment_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var experiment_guid = $(this).parents('tr').attr('class').split(' ')[1];
 		var delete_experiment = Flask.url_for('forms.delete_experiment', {
 			"id": experiment_guid
 		});
 		window.location.href = delete_experiment;
 	})
 	$('#table_experiments').on('click', '.experiment-edit', function () {
-		var experiment_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var experiment_guid = $(this).parents('tr').attr('class').split(' ')[1];
 		var edit_experiment = Flask.url_for('forms.edit_experiment', {
 			"id": experiment_guid
 		});
