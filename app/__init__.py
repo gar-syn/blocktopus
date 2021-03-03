@@ -29,7 +29,6 @@ def create_celery_app(app=None):
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
     app.config.from_object(config_object)
-    #celery = create_celery_app(app)
     
     register_assets(app)
     register_extensions(app)
@@ -49,6 +48,7 @@ def register_extensions(app):
     Bootstrap(app)
     jsglue = JSGlue(app)
     db.init_app(app)
+    #celery = create_celery_app(app)
     
 def register_loginmanager(app):
     """Register Flask loginmanager."""
