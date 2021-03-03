@@ -38,6 +38,7 @@ class DevConfig(Config):
     DB_NAME = "db.sqlite"
     DB_PATH = os.path.join(Config.PROJECT_ROOT, DB_NAME)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
+    CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
     SECRET_KEY = "secret_key123"
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(10 ** 6)
