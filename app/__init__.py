@@ -4,27 +4,9 @@ from flask_assets import Environment
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_jsglue import JSGlue
-from celery import Celery
 
 from .util.config import DevConfig
-from .util.extensions import db
-
-def create_celery_app(app=None):
-    app = app or create_app()
-    celery = Celery(__name__, broker=app.config['CELERY_BROKER_URL'])
-    celery.conf.update(app.config)
-    TaskBase = celery.Task
-
-    class ContextTask(TaskBase):
-        abstract = True
-
-        def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return TaskBase.__call__(self, *args, **kwargs)
-
-    celery.Task = ContextTask
-    celery.app = app
-    return celery
+from .util.extensions import db, create_celery_app
 
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
@@ -48,7 +30,7 @@ def register_extensions(app):
     Bootstrap(app)
     jsglue = JSGlue(app)
     db.init_app(app)
-    #celery = create_celery_app(app)
+    celery = create_celery_app(app)
     
 def register_loginmanager(app):
     """Register Flask loginmanager."""
