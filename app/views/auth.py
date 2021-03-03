@@ -2,9 +2,8 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 
-
 from ..models.model import User
-from .. import db
+from ..util.extensions import db
 from ..util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail
 
 auth = Blueprint('auth', __name__)
