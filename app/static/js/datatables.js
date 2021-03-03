@@ -56,28 +56,29 @@ $(document).ready(function () {
 	});
 
 	$('#table_projects').on('click', '.project-delete', function () {
-		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
 		var delete_project = Flask.url_for('forms.delete_project', {
 			"id": project_guid
 		});
 		window.location.href = delete_project;
 	})
 	$('#table_projects').on('click', '.project-edit', function () {
-		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
 		var edit_project = Flask.url_for('forms.edit_project', {
 			"id": project_guid
 		});
 		window.location.href = edit_project;
 	})
-//Show linked experiments for project
+//Create Link for each row with Project GUID for experiments search
   $('#table_projects').on('click', 'tbody tr td:not(:last-child)', function () {
-		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
 		var filter_experiments_by_project_guid = Flask.url_for('queries.experiments', {
 			"project-guid-filter": project_guid
 		});
 		window.location.href = filter_experiments_by_project_guid;
 	});
   
+  //Parse URL to get Project GUID for search query on experiments table
   function getExperimentsLinkedToProject(k){
     if($('table').is('#table_experiments') && (window.location.href.indexOf("project-guid-filter") > -1)){
       var p={};
@@ -160,14 +161,14 @@ $(document).ready(function () {
   });
 
 	$('#table_experiments').on('click', '.experiment-delete', function () {
-		var experiment_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var experiment_guid = $(this).parents('tr').attr('class').split(' ')[1];
 		var delete_experiment = Flask.url_for('forms.delete_experiment', {
 			"id": experiment_guid
 		});
 		window.location.href = delete_experiment;
 	})
 	$('#table_experiments').on('click', '.experiment-edit', function () {
-		var experiment_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var experiment_guid = $(this).parents('tr').attr('class').split(' ')[1];
 		var edit_experiment = Flask.url_for('forms.edit_experiment', {
 			"id": experiment_guid
 		});
