@@ -69,9 +69,26 @@ $(document).ready(function () {
 		});
 		window.location.href = edit_project;
 	})
+//Show linked experiments for project
+  $('#table_projects').on('click', 'tbody tr td:not(:last-child)', function () {
+		var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
+		var filter_experiments_by_project_guid = Flask.url_for('queries.experiments', {
+			"project-guid-filter": project_guid
+		});
+		window.location.href = filter_experiments_by_project_guid;
+	});
+  
+  function getExperimentsLinkedToProject(k){
+    if($('table').is('#table_experiments') && (window.location.href.indexOf("project-guid-filter") > -1)){
+      var p={};
+      location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){p[k]=v})
+    return (k?p[k]:p).split('%')[0];
+   }
+  }
 
 	// DataTable for Experiments Page
 	$('#table_experiments').DataTable({
+    "oSearch": {"sSearch": getExperimentsLinkedToProject("project-guid-filter")},
 		"lengthMenu": [
 			[10, 25, 50, -1],
 			[10, 25, 50, "All"]
@@ -80,7 +97,7 @@ $(document).ready(function () {
 		"bServerSide": true,
 		"sPaginationType": "full_numbers",
 		"iDisplayLength": 10,
-		"stateSave": true,
+		"stateSave": false,
 		"sAjaxSource": "/load-experiments",
 		columns: [{
 				data: 'guid'
@@ -106,6 +123,9 @@ $(document).ready(function () {
 			{
 				data: 'created_date'
 			},
+      {
+				data: 'project_guid'
+			},
 			{
 				"className": '',
 				"orderable": false,
@@ -121,6 +141,7 @@ $(document).ready(function () {
 		initComplete: function () {
 			var api = this.api();
 			api.column(0).visible(false);
+      api.column(8).visible(false);
 		},
 		drawCallback: function (settings) {
 			$('[data-toggle="tooltip"]').tooltip();
@@ -136,7 +157,8 @@ $(document).ready(function () {
 				.attr('data-status', data.status ? 'locked' : 'unlocked')
 				.addClass(data.guid);
 		}
-	});
+  });
+
 	$('#table_experiments').on('click', '.experiment-delete', function () {
 		var experiment_guid = $(this).parents('tr').find("td:eq(0)").attr('class');
 		var delete_experiment = Flask.url_for('forms.delete_experiment', {
