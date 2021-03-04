@@ -73,10 +73,10 @@ def test_new_experiment(new_user, new_project):
     assert experiment.eln == 'ELN-NUMBER-00'
     assert experiment.title == 'Experiment Title'
     assert experiment.description == 'Experiment Description'
-    assert experiment.site == new_user.site
-    assert experiment.building == new_user.building
-    assert experiment.room == new_user.room
-    assert experiment.user_id == new_user.name
+    assert experiment.site == 'Site'
+    assert experiment.building == 'Building'
+    assert experiment.room == 'Room'
+    assert experiment.user_id == 'Name'
     assert experiment.created_date == date
     assert experiment.last_modified_date == last_changed_date
     assert experiment.project_guid == new_project.guid
