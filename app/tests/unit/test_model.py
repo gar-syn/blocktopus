@@ -41,9 +41,9 @@ def test_new_project():
     
 def test_new_experiment():
     """
-    GIVEN a Project model
-    WHEN a new Project is created
-    THEN check the guid, title, description and creation date
+    GIVEN a Experiment model
+    WHEN a new Experiment is created
+    THEN check the guid, eln, title, description, site, building, room, user, creation date, last edited date and project guid
     """
     
     from ...models.model import User, Projects, Experiments
