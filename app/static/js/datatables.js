@@ -24,17 +24,22 @@ $(document).ready(function() {
               "orderable": false,
               "data": null,
               defaultContent: `<button type="submit" class="btn btn-info project-edit table-buttons" data-toggle="tooltip" data-placement="bottom" title="Edit Project">
-      <i class="far fa-edit fa-sm"></i>
-      </button> 
-      <button type="submit" class="btn btn-danger project-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Project"> 
-      <i class="fas fa-trash fa-sm"></i>
-      </button>`
+    <i class="far fa-edit fa-sm"></i>
+    </button> 
+    <button type="submit" class="btn btn-danger project-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Project"> 
+    <i class="fas fa-trash fa-sm"></i>
+    </button>`
           }
       ],
-      'columnDefs': [
-        {'width': '25%', 'targets': 2},
-        {'width': '15%', 'targets': 4}
-      ],  
+      'columnDefs': [{
+              'width': '25%',
+              'targets': 2
+          },
+          {
+              'width': '15%',
+              'targets': 4
+          }
+      ],
       dom: 'Bfrtip',
       lengthMenu: [
           [10, 25, 50, -1],
@@ -70,6 +75,15 @@ $(document).ready(function() {
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
+              }
+          }, {
+              extend: 'pdfHtml5',
+              text: '<i class="fas fa-file-pdf"></i> PDF',
+              className: 'btn-outline-primary',
+              orientation: 'landscape',
+              pageSize: 'LEGAL',
+              exportOptions: {
+                  columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'print',
@@ -181,16 +195,17 @@ $(document).ready(function() {
               "orderable": false,
               "data": null,
               defaultContent: `<button type="submit" class="btn btn-info experiment-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Edit Experiment">
-    <i class="far fa-edit fa-sm"></i>
-    </button> 
-    <button type="submit" class="btn btn-danger experiment-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Experiment"> 
-    <i class="fas fa-trash fa-sm"></i>
-    </button>`
+  <i class="far fa-edit fa-sm"></i>
+  </button> 
+  <button type="submit" class="btn btn-danger experiment-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Experiment"> 
+  <i class="fas fa-trash fa-sm"></i>
+  </button>`
           }
       ],
-      'columnDefs': [
-        {'width': '20%', 'targets': 3}
-      ], 
+      'columnDefs': [{
+          'width': '20%',
+          'targets': 3
+      }],
       dom: 'Bfrtip',
       lengthMenu: [
           [10, 25, 50, -1],
@@ -224,6 +239,15 @@ $(document).ready(function() {
               extend: 'excel',
               text: '<i class="fas fa-file-excel"></i> Excel',
               className: 'btn-outline-primary',
+              exportOptions: {
+                  columns: [1, 2, 3, 4, 5, 6, 7]
+              }
+          }, {
+              extend: 'pdfHtml5',
+              text: '<i class="fas fa-file-pdf"></i> PDF',
+              className: 'btn-outline-primary',
+              orientation: 'landscape',
+              pageSize: 'LEGAL',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
