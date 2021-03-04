@@ -49,32 +49,32 @@ $(document).ready(function() {
           },
           buttons: [{
               extend: 'pageLength',
-              className: 'btn-secondary',
+              className: 'btn-primary',
           }, {
               extend: 'copy',
               text: '<i class="fas fa-copy"></i> Copy',
-              className: 'btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'csv',
               text: '<i class="fas fa-file-csv"></i> CSV',
-              className: 'btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'excel',
               text: '<i class="fas fa-file-excel"></i> Excel',
-              className: 'btn btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'print',
               text: '<i class="fas fa-print"></i> Print',
-              className: 'btn btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
@@ -202,32 +202,32 @@ $(document).ready(function() {
           },
           buttons: [{
               extend: 'pageLength',
-              className: 'btn-secondary',
+              className: 'btn-primary',
           }, {
               extend: 'copy',
               text: '<i class="fas fa-copy"></i> Copy',
-              className: 'btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'csv',
               text: '<i class="fas fa-file-csv"></i> CSV',
-              className: 'btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'excel',
               text: '<i class="fas fa-file-excel"></i> Excel',
-              className: 'btn btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'print',
               text: '<i class="fas fa-print"></i> Print',
-              className: 'btn btn-secondary',
+              className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
