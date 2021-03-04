@@ -33,6 +33,17 @@ def test_new_user(new_user):
     assert new_user.site == 'Site'
     assert new_user.building == 'Building'
     assert new_user.room == 'Room'
+
+def test_user_id(new_user):
+    """
+    GIVEN an existing User
+    WHEN the ID of the user is defined to a value
+    THEN check the user ID returns a string (and not an integer) as needed by Flask-WTF
+    """
+    new_user.id = 17
+    assert isinstance(new_user.get_id(), str)
+    assert not isinstance(new_user.get_id(), int)
+    assert new_user.get_id() == '17'
     
 def test_new_project(new_project):
     """
@@ -45,7 +56,6 @@ def test_new_project(new_project):
     assert new_project.title == 'Project Title'
     assert new_project.description == 'Project Description'
     assert new_project.created_date == new_project.created_date
-    
     
 def test_new_experiment(new_user, new_project):
     """
