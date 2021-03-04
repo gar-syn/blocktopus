@@ -5,7 +5,7 @@ from sqlalchemy.dialects.sqlite import BLOB
 from werkzeug.security import check_password_hash
 from flask import Markup
 
-from .. import db
+from ..util.extensions import db
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'

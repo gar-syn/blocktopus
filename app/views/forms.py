@@ -5,7 +5,7 @@ from datetime import date, datetime
 import uuid
 
 from ..models.model import Projects, Experiments
-from .. import db
+from ..util.extensions import db
 from ..util.form_validation import CreateProject, CreateExperiment
 
 forms = Blueprint("forms", __name__)

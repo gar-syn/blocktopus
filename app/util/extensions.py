@@ -3,7 +3,6 @@ from flask_jsglue import JSGlue
 from celery import Celery
 from flask_bootstrap import Bootstrap
 
-
 db = SQLAlchemy()
 jsglue = JSGlue()
 bootstrap = Bootstrap()
