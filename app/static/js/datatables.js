@@ -35,6 +35,10 @@ $(document).ready(function() {
       </button>`
           }
       ],
+      'columnDefs': [
+        {'width': '25%', 'targets': 2},
+        {'width': '15%', 'targets': 4}
+      ],  
       dom: 'Bfrtip',
       lengthMenu: [
           [10, 25, 50, -1],
@@ -188,6 +192,9 @@ $(document).ready(function() {
     </button>`
           }
       ],
+      'columnDefs': [
+        {'width': '20%', 'targets': 3}
+      ], 
       dom: 'Bfrtip',
       lengthMenu: [
           [10, 25, 50, -1],
