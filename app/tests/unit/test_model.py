@@ -2,11 +2,11 @@
 This file (test_models.py) contains the unit tests for the models/model.py file.
 """
 import pytest
+from werkzeug.security import generate_password_hash
+import uuid
 
 from ...models.model import User, Projects, Experiments
 from ...views.forms import stringdate, stringdatetime
-from werkzeug.security import generate_password_hash
-import uuid
 
 @pytest.fixture(scope='module')
 def new_user():
