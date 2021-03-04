@@ -30,7 +30,7 @@ class ProdConfig(Config):
     DEBUG = False
     
 class DevConfig(Config):
-    """Test configuration."""
+    """Devolopment configuration."""
     
     ENV = 'dev'
     DEBUG = True
@@ -41,6 +41,18 @@ class DevConfig(Config):
     CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
     CELERY_BROKER_URL='redis://localhost:6379',
     CELERY_RESULT_BACKEND='redis://localhost:6379'
-    SECRET_KEY = "secret_key123"
+    SECRET_KEY = os.urandom(24)
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(10 ** 6)
+    
+class TestConfig(Config):
+    """Testing configuration."""
+
+    TESTING = True
+    DEBUG = True
+    DB_NAME = 'testing.db'
+    DB_PATH = os.path.join(Config.PROJECT_ROOT, 'tests', DB_NAME)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
+    BCRYPT_LOG_ROUNDS = 4
+    SECRET_KEY = os.urandom(12)
+    SESSION_TYPE = 'filesystem'
