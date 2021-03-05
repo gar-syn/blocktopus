@@ -1,32 +1,30 @@
 {% extends "layout.html" %} 
 {% import "bootstrap/wtf.html" as wtf %}
-
 {% block title %}Create a new Project{% endblock %} 
 {% block content %}
-
 <div class="container">
-	<div class="row pb-5">
-		<div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-		<h1 class="pt-5 pb-2">Create a new Project</h1>
-		{% if message %}
-			<!-- Successful Submit -->
-			<p class="alert alert-success"><strong>{{ message }}</strong></p>
-			 <a href="{{ url_for('queries.choose_projects') }}" class="nav-link">
-			<button class="w-100 btn btn-lg btn-primary button">Create an Experiment</button>
-			</a>
-		{% else %}
-			<!-- form is displayed when template opens via GET not POST -->
-			   {% with messages = get_flashed_messages(with_categories=true) %}
-   				{% if messages %}
-				{% for category, message in messages %}
-   					<div class="alert alert-{{ category }}" role="alert"> {{ message }}
-      					<button type="button" class="close" data-dismiss="alert">&times;</button>
-   					</div>
-   				{% endfor %}
-				{% endif %}
-			   {% endwith %}
-			<!-- end of flash -->
-			         <form action="" method="post" class="form-horizontal" role="create_project_form">
+   <div class="row pb-5">
+      <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+         <h1 class="pt-5 pb-2">Create a new Project</h1>
+         {% if message %}
+         <!-- Successful Submit -->
+         <p class="alert alert-success"><strong>{{ message }}</strong></p>
+         <a href="{{ url_for('queries.choose_projects') }}" class="nav-link">
+         <button class="w-100 btn btn-lg btn-primary button">Create an Experiment</button>
+         </a>
+         {% else %}
+         <!-- form is displayed when template opens via GET not POST -->
+         {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+         {% for category, message in messages %}
+         <div class="alert alert-{{ category }}" role="alert"> {{ message }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+         </div>
+         {% endfor %}
+         {% endif %}
+         {% endwith %}
+         <!-- end of flash -->
+         <form action="" method="post" class="form-horizontal" role="create_project_form">
             {{ create_project_form.csrf_token() }}
             <div class="form-group">
                {{ wtf.form_field(create_project_form.title, class='form-control', placeholder='Project Title') }}
@@ -36,8 +34,8 @@
             </div>
             <button type="submit" class="btn btn-primary btn-lg">Create Project</button>
          </form>
-		{% endif %}
-		</div>
-	</div>
+         {% endif %}
+      </div>
+   </div>
 </div>
 {% endblock %}
