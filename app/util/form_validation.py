@@ -4,32 +4,32 @@ from wtforms.validators import InputRequired, Length, Regexp, NumberRange, Equal
 from wtforms.fields.html5 import EmailField
 
 class RegisterForm(FlaskForm):
-    email = EmailField('Email', validators=[InputRequired(), Length(min=6, max=40)])
-    password = PasswordField('Password', validators=[InputRequired(), Length(min=3, max=40)])
+    email = EmailField('', validators=[InputRequired(), Length(min=6, max=40)], render_kw={"placeholder": "Your Email",})
+    password = PasswordField('', validators=[InputRequired(), Length(min=3, max=40)])
     #confirm = PasswordField('Repeat Password', validators=[InputRequired(), EqualTo('password')])
-    name = StringField('Name', [ InputRequired(),
+    name = StringField('', [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Experiment Description"),
         Length(min=1, max=500, message="Invalid Experiment Description length")
-        ])
-    site = StringField('Site', [ InputRequired(),
+        ], render_kw={"placeholder": "Your name",})
+    site = StringField('', [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
         Length(min=1, max=75, message="Invalid Experiment Site length")
         ])
-    building = StringField('Building', [ InputRequired(),
+    building = StringField('', [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Building"),
         Length(min=1, max=75, message="Invalid Experiment Building length")
         ])
-    room = StringField('Room', [ InputRequired(),
+    room = StringField('', [ InputRequired(),
         Regexp(r'^[A-Za-z0-9 /]*$', message="Invalid Experiment Room"),
         Length(min=1, max=75, message="Invalid Experiment Room length")
         ])
-    submit = SubmitField('Register')
+    submit = SubmitField('')
 
 class LoginForm(FlaskForm):
-    email = EmailField('Email', validators=[InputRequired()])
-    password = PasswordField('Password', validators=[InputRequired()])
+    email = EmailField('', validators=[InputRequired()])
+    password = PasswordField('', validators=[InputRequired()])
     remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Log in')
+    submit = SubmitField('')
 
 class CreateProject(FlaskForm):
     guid = HiddenField()

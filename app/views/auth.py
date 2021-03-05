@@ -39,7 +39,7 @@ def login():
             user = User.query.filter_by(email=form.email.data).first()
             if user is None or not user.check_password(form.password.data):
                 flash('Invalid username or password. Please check your login credentials.', 'danger')
-                return redirect(url_for('auth.login'))
+                return render_template('auth/login.html', form=form)
             login_user(user, remember=form.remember_me.data)
             return redirect(url_for('auth.profile'))                
     return render_template('auth/login.html', form=form)
