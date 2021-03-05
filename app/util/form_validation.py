@@ -33,11 +33,11 @@ class LoginForm(FlaskForm):
 
 class CreateProject(FlaskForm):
     guid = HiddenField()
-    title = StringField('Project Title', [ InputRequired(),
+    title = StringField('', [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message="Invalid Project Title"),
         Length(min=3, max=75, message="Invalid Project Title length")
         ])
-    description = TextAreaField('Project Description', [ InputRequired(),
+    description = TextAreaField('', [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Project Description"),
         Length(min=1, max=500, message="Invalid Project Description length")
         ])
