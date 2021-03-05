@@ -6,7 +6,6 @@ class Config(object):
 
     APP_DIR = os.path.abspath(os.path.dirname(__file__))  # This directory
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
-    BCRYPT_LOG_ROUNDS = 13
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -53,6 +52,5 @@ class TestConfig(Config):
     DB_NAME = 'testing.db'
     DB_PATH = os.path.join(Config.PROJECT_ROOT, 'tests', DB_NAME)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
-    BCRYPT_LOG_ROUNDS = 4
     SECRET_KEY = os.urandom(12)
     SESSION_TYPE = 'filesystem'

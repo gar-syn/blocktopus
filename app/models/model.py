@@ -1,9 +1,9 @@
-from flask_login import UserMixin
-from sqlalchemy import Table, Column, Integer, String, ForeignKey
+from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean, Binary
 from sqlalchemy.orm import relationship
-from sqlalchemy.dialects.sqlite import BLOB
-from werkzeug.security import check_password_hash
+from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 from flask import Markup
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from ..util.extensions import db
 
@@ -11,7 +11,7 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String(50), unique=True, nullable=False)
-    password = Column(String(200), unique=False, nullable=False)
+    password = Column(String(128), unique=False, nullable=False)
     name = Column(String(100), unique=False, nullable=False)
     site = Column(String(100), unique=False)
     building = Column(String(100), unique=False)
@@ -24,14 +24,15 @@ class User(UserMixin, db.Model):
         self.site = site
         self.building = building
         self.room = room
+        
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
 
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+  
     def __repr__(self):
-        return '<User %r>' % self.name
-
-    def check_password(self, value):
-        """Check password."""
-        return check_password_hash(self.password, value)
-
+        return '<User {0}>'.format(self.name)
     
 class Sketches(db.Model):
     __tablename__ = 'sketches'
