@@ -5,7 +5,6 @@ from flask_bootstrap import Bootstrap
 from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
-bcrypt = Bcrypt()
 jsglue = JSGlue()
 bootstrap = Bootstrap()
 

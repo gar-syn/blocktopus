@@ -21,6 +21,7 @@ def register():
         if form.validate_on_submit():
             try:
                 new_user = User(form.email.data, form.password.data, form.name.data, form.site.data, form.building.data, form.room.data)
+                new_user.set_password(form.password.data)
                 db.session.add(new_user)
                 db.session.commit()
                 flash('Your account has been registered. Please log in:', 'success')
@@ -36,13 +37,11 @@ def login():
     if request.method == 'POST':
         if form.validate_on_submit():
             user = User.query.filter_by(email=form.email.data).first()
-            if user is not None and user.is_correct_password(form.password.data):
-                db.session.add(user)
-                db.session.commit()
-                login_user(user)
-                return redirect(url_for('auth.profile'))
-            else:
+            if user is None or not user.check_password(form.password.data):
                 flash('Invalid username or password. Please check your login credentials.', 'danger')
+                return redirect(url_for('auth.login'))
+            login_user(user, remember=form.remember_me.data)
+            return redirect(url_for('auth.profile'))                
     return render_template('auth/login.html', form=form)
 
 @auth.route('/logout')

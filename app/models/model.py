@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 from flask import Markup
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from ..util.extensions import db, bcrypt
 
@@ -10,31 +11,25 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String(50), unique=True, nullable=False)
-    _password = Column(Binary(60), unique=False, nullable=False)
+    password = Column(String(128), unique=False, nullable=False)
     name = Column(String(100), unique=False, nullable=False)
     site = Column(String(100), unique=False)
     building = Column(String(100), unique=False)
     room = Column(String(100), unique=False)
 
-    def __init__(self, email, plaintext_password, name, site, building, room):
+    def __init__(self, email, password, name, site, building, room):
         self.email = email
-        self.password = plaintext_password
+        self.password = password
         self.name = name
         self.site = site
         self.building = building
         self.room = room
         
-    @hybrid_property
-    def password(self):
-        return self._password
- 
-    @password.setter
-    def password(self, plaintext_password):
-        self._password = bcrypt.generate_password_hash(plaintext_password)
- 
-    @hybrid_method
-    def is_correct_password(self, plaintext_password):
-        return bcrypt.check_password_hash(self.password, plaintext_password)
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
   
     def __repr__(self):
         return '<User {0}>'.format(self.name)
