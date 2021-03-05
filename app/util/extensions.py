@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jsglue import JSGlue
 from celery import Celery
 from flask_bootstrap import Bootstrap
-from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
 jsglue = JSGlue()
