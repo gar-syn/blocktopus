@@ -29,7 +29,6 @@ class LoginForm(FlaskForm):
     email = EmailField('', validators=[InputRequired()])
     password = PasswordField('', validators=[InputRequired()])
     remember_me = BooleanField('Remember Me')
-    submit = SubmitField('')
 
 class CreateProject(FlaskForm):
     guid = HiddenField()

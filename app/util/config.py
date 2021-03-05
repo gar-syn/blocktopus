@@ -33,7 +33,7 @@ class DevConfig(Config):
     
     ENV = 'dev'
     DEBUG = True
-    TESTING = True
+    TESTING = False
     DB_NAME = "db.sqlite"
     DB_PATH = os.path.join(Config.PROJECT_ROOT, DB_NAME)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
@@ -48,9 +48,10 @@ class TestConfig(Config):
     """Testing configuration."""
 
     TESTING = True
-    DEBUG = True
+    DEBUG = False
     DB_NAME = 'testing.db'
     DB_PATH = os.path.join(Config.PROJECT_ROOT, 'tests', DB_NAME)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
     SECRET_KEY = os.urandom(12)
     SESSION_TYPE = 'filesystem'
+    WTF_CSRF_CHECK_DEFAULT = False
