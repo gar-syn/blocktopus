@@ -26,7 +26,16 @@
 				{% endif %}
 			   {% endwith %}
 			<!-- end of flash -->
-		    {{ wtf.quick_form(create_project_form) }}
+			         <form action="" method="post" class="form-horizontal" role="create_project_form">
+            {{ create_project_form.csrf_token() }}
+            <div class="form-group">
+               {{ wtf.form_field(create_project_form.title, class='form-control', placeholder='Project Title') }}
+            </div>
+            <div class="form-group">
+               {{ wtf.form_field(create_project_form.description, class='form-control', placeholder='Project Description') }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Create Project</button>
+         </form>
 		{% endif %}
 		</div>
 	</div>
