@@ -12,9 +12,7 @@ def test_client():
     testing_client = flask_app.test_client()
     ctx = flask_app.app_context()
     ctx.push()
- 
     yield testing_client
- 
     ctx.pop()
     
 @pytest.fixture(scope='module')
@@ -25,7 +23,5 @@ def init_database():
     db.session.add(user1)
     db.session.add(user2)
     db.session.commit()
-
     yield db
- 
     db.drop_all()
