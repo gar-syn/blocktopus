@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, BooleanField, PasswordField, TextAreaField
-from wtforms.validators import InputRequired, Length, Regexp, NumberRange
+from wtforms.validators import InputRequired, Length, Regexp, NumberRange, EqualTo
 from wtforms.fields.html5 import EmailField
 
 
@@ -78,3 +78,30 @@ class ChangePassword(FlaskForm):
     password = PasswordField('Your new Password', validators=[InputRequired()],id='password')
     show_password = BooleanField('Show password', id='check')
     submit = SubmitField('Change your password')
+    
+class RegisterForm(FlaskForm):
+    email = EmailField('Email', validators=[InputRequired(), Length(min=6, max=40)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=3, max=40)])
+    #confirm = PasswordField('Repeat Password', validators=[InputRequired(), EqualTo('password')])
+    name = StringField('Name', [ InputRequired(),
+        Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Experiment Description"),
+        Length(min=1, max=500, message="Invalid Experiment Description length")
+        ])
+    site = StringField('Site', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
+        Length(min=1, max=75, message="Invalid Experiment Site length")
+        ])
+    building = StringField('Building', [ InputRequired(),
+        Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Building"),
+        Length(min=1, max=75, message="Invalid Experiment Building length")
+        ])
+    room = StringField('Room', [ InputRequired(),
+        Regexp(r'^[A-Za-z0-9 /]*$', message="Invalid Experiment Room"),
+        Length(min=1, max=75, message="Invalid Experiment Room length")
+        ])
+    submit = SubmitField('Register')
+
+class LoginForm(FlaskForm):
+    email = EmailField('Email', validators=[InputRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
+    submit = SubmitField('Log in')

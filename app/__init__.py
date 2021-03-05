@@ -4,7 +4,7 @@ from flask_assets import Environment
 from flask_login import LoginManager
 
 from .util.config import DevConfig
-from .util.extensions import db, jsglue, bootstrap, create_celery_app
+from .util.extensions import db, bcrypt, jsglue, bootstrap, create_celery_app
 
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
@@ -27,6 +27,7 @@ def register_extensions(app):
     """Register Flask extensions."""
     bootstrap.init_app(app)
     db.init_app(app)
+    bcrypt.init_app(app)
     jsglue.init_app(app)
     #celery = create_celery_app(app)
     

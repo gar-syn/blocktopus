@@ -6,8 +6,6 @@ from ...util.extensions import db
 from ...models.model import User
 from ...util.config import TestConfig
 
-
-
 @pytest.fixture(scope='module')
 def test_client():
     flask_app = create_app(TestConfig)

@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
+from sqlalchemy.exc import IntegrityError
 
 from ..models.model import User
 from ..util.extensions import db
-from ..util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail
+from ..util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail, RegisterForm, LoginForm
 
 auth = Blueprint('auth', __name__)
 
@@ -13,57 +14,43 @@ auth = Blueprint('auth', __name__)
 def profile():
     return render_template('auth/profile.html', name=current_user.name)
 
-@auth.route('/register')
+@auth.route('/register', methods=['GET', 'POST'])
 def register():
-    print("register")
-    return render_template('auth/register.html')
-    
-@auth.route('/register', methods=['POST'])
-def register_post():
-    email = request.form.get('email')
-    name = request.form.get('name')
-    password = request.form.get('password')
-    site = request.form.get('site')
-    building = request.form.get('building')
-    room = request.form.get('room')
+    form = RegisterForm(request.form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            try:
+                new_user = User(form.email.data, form.password.data, form.name.data, form.site.data, form.building.data, form.room.data)
+                db.session.add(new_user)
+                db.session.commit()
+                flash('Your account has been registered. Please log in:', 'success')
+                return redirect(url_for('auth.login'))
+            except IntegrityError:
+                db.session.rollback()
+                flash('Email address ({}) is already registered!'.format(form.email.data), 'danger')
+    return render_template('auth/register.html', form=form)    
 
-    user = User.query.filter_by(email=email).first()
-    if user:
-        flash('Email address is already registered' , 'danger')
-        return redirect(url_for('auth.register'))
-    
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), site=site, building=building, room=room)
-    try:
-        db.session.add(new_user)
-        db.session.commit()
-        flash('Account has been registered. Please log in:', 'success')
-    except:
-        db.session.rollback()
-        flash('An error occurred. Unable to add the user to database.', 'danger')
-        return redirect(url_for('auth.register'))
-    return redirect(url_for('auth.login'))
-
-@auth.route('/login', methods=['GET'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
-    print("Login")
-    return render_template('auth/login.html')
-
-@auth.route('/login', methods=['POST'])
-def login_post():
-    email = request.form.get('email')
-    password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
-    user = User.query.filter_by(email=email).first()
-
-    if not user or not user.check_password(password):
-        flash('Invalid username or password. Please check your login details.', 'danger')
-        return redirect(url_for('auth.login'))
-    login_user(user, remember=remember)
-    return redirect(url_for('auth.profile'))
+    form = LoginForm(request.form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            user = User.query.filter_by(email=form.email.data).first()
+            if user is not None and user.is_correct_password(form.password.data):
+                db.session.add(user)
+                db.session.commit()
+                login_user(user)
+                return redirect(url_for('auth.profile'))
+            else:
+                flash('Invalid username or password. Please check your login credentials.', 'danger')
+    return render_template('auth/login.html', form=form)
 
 @auth.route('/logout')
 @login_required
 def logout():
+    user = current_user
+    db.session.add(user)
+    db.session.commit()
     logout_user()
     return redirect(url_for('main.index'))
 

@@ -1,43 +1,24 @@
-{% extends "layout.html" %} 
-{% block title %}Login{% endblock %} 
+{% extends "layout.html" %} {% block title %}Login{% endblock %} 
+{% import "bootstrap/wtf.html" as wtf %}
+{% block headerscripts %}
+{% endblock %} 
 {% block content %}
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
-   <main class="form-signin">
-      <h1 class="h3 mb-3 text-gray-800">Please sign in</h1>
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <div class="alert alert-{{ category }}" role="alert"> {{ message }}</div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-      <form method="POST" action="/login">
-         <label for="inputEmail" class="visually-hidden">Email address</label>
-         <input
-            type="email"
-            name="email"
-            id="inputEmail"
-            class="input form-control mb-2"
-            placeholder="Email address"
-            required
-            autofocus
-            />
-         <label for="inputPassword" class="visually-hidden">Password</label>
-         <input
-            type="password"
-            name="password"
-            id="inputPassword"
-            class="input form-control"
-            placeholder="Password"
-            required
-            />
-         <div class="checkbox mb-3">
-            <label>
-            <input type="checkbox" value="remember-me" /> Remember me
-            </label>
-         </div>
-         <button class="w-100 btn btn-lg btn-primary button">Login</button>
-      </form>
-   </main>
-</div>
+<main class="change-form">
+   <h1 class="h3 mb-3 text-gray-900">Login</h1>
+   {% with messages = get_flashed_messages(with_categories=true) %}
+   				{% if messages %}
+				{% for category, message in messages %}
+   					<div class="alert alert-{{ category }}" role="alert"> {{ message }}
+      					<button type="button" class="close" data-dismiss="alert">&times;</button>
+   					</div>
+   				{% endfor %}
+				{% endif %}
+			   {% endwith %}
+   <div class="box">
+      {{ wtf.quick_form(form) }}
+    </div> 
+	  <em>Need an account? </em><a href="/register">Signup!</a>
+</main>
 {% endblock %}
+</div>

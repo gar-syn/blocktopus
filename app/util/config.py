@@ -44,6 +44,7 @@ class DevConfig(Config):
     SECRET_KEY = os.urandom(24)
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(10 ** 6)
+    BCRYPT_LOG_ROUNDS = 15
     
 class TestConfig(Config):
     """Testing configuration."""
