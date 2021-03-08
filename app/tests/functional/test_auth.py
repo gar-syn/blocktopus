@@ -206,6 +206,6 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Your room has been changed', response.data)
         self.assertIn(b'New Room', response.data)
-
+        
 if __name__ == '__main__':
     unittest.main()
