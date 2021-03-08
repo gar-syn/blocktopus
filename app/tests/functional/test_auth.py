@@ -49,6 +49,7 @@ class ProjectTests(unittest.TestCase):
     #### tests ####
     ###############
 
+    ############### Registration Process ###############
     def test_user_registration_page(self):
         response = self.app.get('/register')
         self.assertEqual(response.status_code, 200)
@@ -75,7 +76,7 @@ class ProjectTests(unittest.TestCase):
         response = self.register('account@company.tld', 'SuperStrongPw123', 'anotherName', 'Another Site', 'Another Building', 'Room')
         self.assertIn(b'Email address (account@company.tld) is already registered!', response.data)
 
-        
+    ############### Login Process ###############
     def test_login_page(self):
         response = self.app.get('/login', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -100,7 +101,7 @@ class ProjectTests(unittest.TestCase):
         self.assertIn(b'Invalid username or password.', response.data)
         self.assertIn(b'Please check your login credentials.', response.data)
 
-        
+    ############### Logout Process ###############
     def test_valid_logout(self):
         self.app.get('/register', follow_redirects=True)
         response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
@@ -117,7 +118,7 @@ class ProjectTests(unittest.TestCase):
         response = self.app.get('/logout', follow_redirects=True)
         self.assertIn(b'Please log in to access this page.', response.data)
 
-
+    ############### User Profile Process (changing items) ###############
     def test_change_email_page(self):
         self.app.get('/register', follow_redirects=True)
         self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
