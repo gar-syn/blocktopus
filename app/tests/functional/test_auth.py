@@ -1,10 +1,10 @@
 import unittest
 import os
  
-from ... import create_app
-from ...util.extensions import db
-from ...models.model import User
-from ...util.config import TestConfig
+from app import create_app
+from app.util.extensions import db
+from app.models.model import User
+from app.util.config import TestConfig
 
  
 class ProjectTests(unittest.TestCase):
@@ -206,6 +206,6 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Your room has been changed', response.data)
         self.assertIn(b'New Room', response.data)
-
+        
 if __name__ == '__main__':
     unittest.main()

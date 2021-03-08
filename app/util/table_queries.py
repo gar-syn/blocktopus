@@ -2,7 +2,7 @@ from flask import request
 from sqlalchemy import or_
 from sqlalchemy.sql import func
 
-from ..util.extensions import db
+from app.util.extensions import db
 
 class ProjectsDataTable:
     def __init__(self, request, model_object):

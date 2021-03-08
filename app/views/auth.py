@@ -3,9 +3,9 @@ from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.exc import IntegrityError
 
-from ..models.model import User
-from ..util.extensions import db
-from ..util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail, RegisterForm, LoginForm
+from app.models.model import User
+from app.util.extensions import db
+from app.util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail, RegisterForm, LoginForm
 
 auth = Blueprint('auth', __name__)
 

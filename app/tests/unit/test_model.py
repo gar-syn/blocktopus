@@ -5,8 +5,8 @@ import pytest
 from werkzeug.security import generate_password_hash
 import uuid
 
-from ...models.model import User, Projects, Experiments
-from ...views.forms import stringdate, stringdatetime
+from app.models.model import User, Projects, Experiments
+from app.views.forms import stringdate, stringdatetime
 
 @pytest.fixture(scope='module')
 def new_user():

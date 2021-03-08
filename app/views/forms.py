@@ -4,9 +4,9 @@ from flask_login import current_user, login_required
 from datetime import date, datetime
 import uuid
 
-from ..models.model import Projects, Experiments
-from ..util.extensions import db
-from ..util.form_validation import CreateProject, CreateExperiment
+from app.models.model import Projects, Experiments
+from app.util.extensions import db
+from app.util.form_validation import CreateProject, CreateExperiment
 
 forms = Blueprint("forms", __name__)
 
