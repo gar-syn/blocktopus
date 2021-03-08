@@ -49,15 +49,8 @@ class ProjectTests(unittest.TestCase):
     ###############
     #### tests ####
     ###############
- 
-    def test_login_page(self):
-        response = self.app.get('/login', follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Login', response.data)
-        self.assertIn(b'Remember Me', response.data)
-        self.assertIn(b'Need an account?', response.data)
-        
-    def test_user_registration_form_displays(self):
+         
+    def test_user_registration_page(self):
         response = self.app.get('/register')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Sign up', response.data)
@@ -70,6 +63,19 @@ class ProjectTests(unittest.TestCase):
         self.assertIn(b'Your account has been registered.', response.data)
         self.assertIn(b'Please log in:', response.data)
         
+    def test_missing_field_user_registration_error(self):
+        self.app.get('/register', follow_redirects=True)
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', '')
+        self.assertIn(b'This field is required.', response.data)
+        
+        
+    def test_login_page(self):
+        response = self.app.get('/login', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Login', response.data)
+        self.assertIn(b'Remember Me', response.data)
+        self.assertIn(b'Need an account?', response.data)
+
     def test_valid_user_login(self):
         self.app.get('/register', follow_redirects=True)
         response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
@@ -80,12 +86,30 @@ class ProjectTests(unittest.TestCase):
         self.assertIn(b'account@company.tld', response.data)
         self.assertIn(b'myName', response.data)
         self.assertIn(b'Change your Email', response.data)
-
+        
     def test_login_without_registering(self):
         self.app.get('/login', follow_redirects=True)
         response = self.login('unregistered_email@company.tld', 'NotExistingPassword123')
         self.assertIn(b'Invalid username or password.', response.data)
         self.assertIn(b'Please check your login credentials.', response.data)
+
+        
+    def test_valid_logout(self):
+        self.app.get('/register', follow_redirects=True)
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.assertIn(b'Your account has been registered.', response.data)
+        response = self.login('account@company.tld', 'SuperStrongPw123')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Your Profile', response.data)
+        self.assertIn(b'account@company.tld', response.data)
+        response = self.app.get('/logout', follow_redirects=True)
+        self.assertIn(b'Blocktopus Dashboard', response.data)
+        self.assertIn(b'New Sketch', response.data)
+        
+    def test_invalid_logout_within_being_logged_in(self):
+        response = self.app.get('/logout', follow_redirects=True)
+        self.assertIn(b'Please log in to access this page.', response.data)
+
 
 if __name__ == '__main__':
     unittest.main()
