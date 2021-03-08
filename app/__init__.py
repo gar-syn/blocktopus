@@ -61,5 +61,3 @@ def register_errorhandlers(app):
 
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_error)
-
-db.create_all(app=create_app())
