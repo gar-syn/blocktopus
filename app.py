@@ -1,6 +1,7 @@
 import os
 import sys
 import unittest
+import pytest
 
 from app import create_app
 from app.util.extensions import db
@@ -20,6 +21,19 @@ manager.add_command('db', MigrateCommand)
 @manager.command
 def run():
     app.run()
+
+@manager.command
+def test():
+    """Runs the pytest unit tests."""
+    print("Running unit tests")
+    pytest.main(['--rootdir', './app/tests/unit/'])
+    """Runs the nose2 functional tests."""
+    print("Running functional tests")
+    tests = unittest.TestLoader().discover('app/tests/functional', pattern='test*.py')
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    return 1
 
 if __name__ == '__main__':
     manager.run()

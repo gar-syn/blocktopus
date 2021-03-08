@@ -2,11 +2,11 @@ import unittest
 import os
 import uuid
 
-from ...views.forms import stringdate, stringdatetime
-from ... import create_app
-from ...util.extensions import db
-from ...models.model import User, Projects
-from ...util.config import TestConfig
+from app import create_app
+from app.views.forms import stringdate, stringdatetime
+from app.util.extensions import db
+from app.models.model import User, Projects
+from app.util.config import TestConfig
 
  
 class ProjectTests(unittest.TestCase):

@@ -1,9 +1,9 @@
 import unittest
  
-from ... import create_app
-from ...util.extensions import db
-from ...models.model import User
-from ...util.config import TestConfig
+from app import create_app
+from app.util.extensions import db
+from app.models.model import User
+from app.util.config import TestConfig
 
  
 class ProjectTests(unittest.TestCase):
