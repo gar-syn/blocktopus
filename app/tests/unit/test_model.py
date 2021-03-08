@@ -28,7 +28,7 @@ def test_new_user(new_user):
     """
     
     assert new_user.email == 'lastname@proivder.tld'
-    assert new_user.password != generate_password_hash('SuperStrongPassword', method='sha256')
+    assert new_user.password != generate_password_hash('SuperStrongPassword')
     assert new_user.name == 'Name'
     assert new_user.site == 'Site'
     assert new_user.building == 'Building'
