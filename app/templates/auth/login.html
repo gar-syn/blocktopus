@@ -17,7 +17,9 @@
       {% endwith %}
       <div class="box">
          <form action="" method="post" class="form-horizontal" role="form">
-            {{ form.csrf_token() }}
+         {% if 'csrf_token' in form %}
+            {{form.csrf_token}}
+         {% endif %}
             <div class="form-group">
                {{ wtf.form_field(form.email, class='form-control', placeholder='E-Mail') }}
             </div>

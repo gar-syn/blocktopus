@@ -25,7 +25,9 @@
          {% endwith %}
          <!-- end of flash -->
          <form action="" method="post" class="form-horizontal" role="create_project_form">
-            {{ create_project_form.csrf_token() }}
+            {% if 'csrf_token' in create_project_form %}
+               {{ create_project_form.csrf_token() }}
+            {% endif %}
             <div class="form-group">
                {{ wtf.form_field(create_project_form.title, class='form-control', placeholder='Project Title') }}
             </div>
