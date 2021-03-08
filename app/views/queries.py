@@ -5,7 +5,6 @@ from ..models.model import Projects, Experiments
 from ..util.extensions import db
 from ..util.table_queries import ProjectsDataTable, ExperimentsDataTable
 
-
 queries = Blueprint("queries", __name__)
 
 @queries.route('/projects')

@@ -1,6 +1,5 @@
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean, Binary
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
