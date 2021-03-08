@@ -3,13 +3,12 @@ from flask import Flask, render_template
 from flask_assets import Environment
 from flask_login import LoginManager
 
-from app.util.config import DevConfig
+from app.util.config import configuration_classes
 from app.util.extensions import db, jsglue, bootstrap, create_celery_app
 
-def create_app(config_object=DevConfig):
+def create_app(config_object):
     app = Flask(__name__)
-    app.config.from_object(config_object)
-    
+    app.config.from_object(configuration_classes[config_object])
     register_assets(app)
     register_extensions(app)
     register_loginmanager(app)

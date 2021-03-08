@@ -57,3 +57,9 @@ class TestConfig(Config):
     WTF_CSRF_METHODS = []
     WTF_CSRF_ENABLED = False
     JWT_COOKIE_CSRF_PROTECT = False
+    
+configuration_classes = dict(
+    dev=DevConfig,
+    test=TestConfig,
+    prod=ProdConfig
+)
