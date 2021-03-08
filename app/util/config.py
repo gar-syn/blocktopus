@@ -54,3 +54,6 @@ class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
     SECRET_KEY = os.urandom(12)
     SESSION_TYPE = 'filesystem'
+    WTF_CSRF_METHODS = []
+    WTF_CSRF_ENABLED = False
+    JWT_COOKIE_CSRF_PROTECT = False

@@ -74,3 +74,6 @@ container_data/*
 instance/
 .webassets-cache
 app/static/gen/*
+
+# Flask testing:
+app/tests/testing.sqlite
