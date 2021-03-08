@@ -77,7 +77,7 @@ def change_building():
             user.building = change_building_form.building.data
             db.session.add(user)
             db.session.commit()
-            flash('Your buulding has been changed.', 'success')
+            flash('Your building has been changed.', 'success')
             return redirect(url_for('auth.profile'))
     return render_template('auth/change-building.html', building=current_user.building, change_building_form=change_building_form)
 

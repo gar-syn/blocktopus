@@ -39,6 +39,18 @@ class ProjectTests(unittest.TestCase):
         self.assertIn(b'Blocktopus Dashboard', response.data)
         self.assertIn(b'New Sketch', response.data)
         self.assertIn(b'Standard Library', response.data)
+        response = self.app.get('/home', follow_redirects=True)
+        self.assertIn(b'Blocktopus Dashboard', response.data)
+        self.assertIn(b'New Sketch', response.data)
+        self.assertIn(b'Standard Library', response.data)
+        response = self.app.get('/index', follow_redirects=True)
+        self.assertIn(b'Blocktopus Dashboard', response.data)
+        self.assertIn(b'New Sketch', response.data)
+        self.assertIn(b'Standard Library', response.data)
+        response = self.app.get('/index.html', follow_redirects=True)
+        self.assertIn(b'Blocktopus Dashboard', response.data)
+        self.assertIn(b'New Sketch', response.data)
+        self.assertIn(b'Standard Library', response.data)
 
 if __name__ == "__main__":
     unittest.main()

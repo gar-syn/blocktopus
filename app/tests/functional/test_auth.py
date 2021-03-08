@@ -48,7 +48,7 @@ class ProjectTests(unittest.TestCase):
     ###############
     #### tests ####
     ###############
-         
+
     def test_user_registration_page(self):
         response = self.app.get('/register')
         self.assertEqual(response.status_code, 200)
@@ -67,6 +67,14 @@ class ProjectTests(unittest.TestCase):
         response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', '')
         self.assertIn(b'This field is required.', response.data)
         
+    def test_invalid_user_registration_duplicate_email(self):
+        self.app.get('/register', follow_redirects=True)
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.assertIn(b'Your account has been registered.', response.data)
+        self.app.get('/register', follow_redirects=True)
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'anotherName', 'Another Site', 'Another Building', 'Room')
+        self.assertIn(b'Email address (account@company.tld) is already registered!', response.data)
+
         
     def test_login_page(self):
         response = self.app.get('/login', follow_redirects=True)
@@ -109,6 +117,94 @@ class ProjectTests(unittest.TestCase):
         response = self.app.get('/logout', follow_redirects=True)
         self.assertIn(b'Please log in to access this page.', response.data)
 
+
+    def test_change_email_page(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.get('/change-email', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Change your Email', response.data)
+        self.assertIn(b'Your current Email is: account@company.tld', response.data)
+
+    def test_change_email(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.post('/change-email', data=dict(email='new-account@company.tld'), follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Your email has been changed', response.data)
+        self.assertIn(b'new-account@company.tld', response.data)
+
+    def test_change_password_page(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.get('/change-password', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Change your Password', response.data)
+
+    def test_change_password(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.post('/change-password', data=dict(password='NewSuperStrongPw321'), follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Your password has been changed', response.data)
+
+    def test_change_current_site_page(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.get('/change-site', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Change your Site', response.data)
+        self.assertIn(b'Your current Site is: Site', response.data)
+
+    def test_change_current_site(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.post('/change-site', data=dict(site='New Site'), follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Your site has been changed', response.data)
+        self.assertIn(b'New Site', response.data)
+
+    def test_change_current_building_page(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.get('/change-building', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Change your Building', response.data)
+        self.assertIn(b'Your current Building is: Building', response.data)
+
+    def test_change_current_building(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.post('/change-building', data=dict(building='New Building'), follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Your building has been changed', response.data)
+        self.assertIn(b'New Building', response.data)
+
+    def test_change_current_room_page(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.get('/change-room', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Change your Room', response.data)
+        self.assertIn(b'Your current Room is: Room', response.data)
+
+    def test_change_current_room(self):
+        self.app.get('/register', follow_redirects=True)
+        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.login('account@company.tld', 'SuperStrongPw123')
+        response = self.app.post('/change-room', data=dict(room='New Room'), follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Your room has been changed', response.data)
+        self.assertIn(b'New Room', response.data)
 
 if __name__ == '__main__':
     unittest.main()
