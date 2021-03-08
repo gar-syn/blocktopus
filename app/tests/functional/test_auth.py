@@ -17,16 +17,15 @@ class ProjectTests(unittest.TestCase):
     def setUp(self):
         app = create_app(TestConfig)
         self.app = app.test_client()
+        self.assertEqual(app.debug, False)
+
         with app.app_context():
             db.drop_all()
             db.create_all()
-        
-        self.assertEqual(app.debug, False)
  
         # executed after each test
     def tearDown(self):
         pass
-
  
     ########################
     #### helper methods ####
