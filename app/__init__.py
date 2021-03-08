@@ -3,8 +3,8 @@ from flask import Flask, render_template
 from flask_assets import Environment
 from flask_login import LoginManager
 
-from .util.config import DevConfig
-from .util.extensions import db, jsglue, bootstrap, create_celery_app
+from app.util.config import DevConfig
+from app.util.extensions import db, jsglue, bootstrap, create_celery_app
 
 def create_app(config_object=DevConfig):
     app = Flask(__name__)
@@ -19,7 +19,7 @@ def create_app(config_object=DevConfig):
 
 def register_assets(app):
     """Register Flask assets."""
-    from .util.assets import bundles
+    from app.util.assets import bundles
     assets = Environment(app)
     assets.register(bundles)
 
@@ -35,17 +35,17 @@ def register_loginmanager(app):
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
-    from .models.model import User
+    from app.models.model import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
 
 def register_blueprints(app):
     """Register Flask blueprints."""
-    from .views.main import main as main_blueprint
-    from .views.auth import auth as auth_blueprint
-    from .views.forms import forms as forms_blueprint
-    from .views.queries import queries as queries_blueprint
+    from app.views.main import main as main_blueprint
+    from app.views.auth import auth as auth_blueprint
+    from app.views.forms import forms as forms_blueprint
+    from app.views.queries import queries as queries_blueprint
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(forms_blueprint)

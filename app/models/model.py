@@ -4,7 +4,7 @@ from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from ..util.extensions import db
+from app.util.extensions import db
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'

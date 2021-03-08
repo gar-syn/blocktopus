@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, send_from_directory
 
-from ..util.extensions import db
+from app.util.extensions import db
 
 main = Blueprint('main', __name__)
 
