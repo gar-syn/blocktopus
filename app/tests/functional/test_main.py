@@ -17,7 +17,7 @@ class ProjectTests(unittest.TestCase):
         app = create_app(TestConfig)
         self.app = app.test_client()
  
-        self.assertEquals(app.debug, False)
+        self.assertEqual(app.debug, False)
  
     # executed after each test
     def tearDown(self):
