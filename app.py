@@ -15,7 +15,6 @@ app.app_context().push()
 db.create_all()
 manager = Manager(app)
 migrate = Migrate(app, db)
-
 manager.add_command('db', MigrateCommand)
 
 @manager.command
@@ -29,7 +28,7 @@ def test():
     pytest.main(['--rootdir', './app/tests/unit/'])
     """Runs the nose2 functional tests."""
     print("Running functional tests")
-    tests = unittest.TestLoader().discover('app/tests/functional', pattern='test*.py')
+    tests = unittest.TestLoader().discover('app/tests/functional/', pattern='test*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         return 0
