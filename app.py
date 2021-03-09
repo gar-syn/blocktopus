@@ -10,7 +10,7 @@ from flask_migrate import Migrate, MigrateCommand
 
 sys.path.append(os.path.dirname(__name__))
 
-app = create_app()
+app = create_app('dev')
 app.app_context().push()
 db.create_all()
 manager = Manager(app)
@@ -24,10 +24,10 @@ def run():
 @manager.command
 def test():
     """Runs the pytest unit tests."""
-    print("Running unit tests")
+    print("Running unit tests...")
     pytest.main(['--rootdir', './app/tests/unit/'])
     """Runs the nose2 functional tests."""
-    print("Running functional tests")
+    print("Running functional tests...")
     tests = unittest.TestLoader().discover('app/tests/functional/', pattern='test*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():

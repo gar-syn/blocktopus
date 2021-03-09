@@ -3,8 +3,6 @@ import unittest
 from app import create_app
 from app.util.extensions import db
 from app.models.model import User
-from app.util.config import TestConfig
-
  
 class ProjectTests(unittest.TestCase):
  
@@ -14,7 +12,7 @@ class ProjectTests(unittest.TestCase):
  
     # executed prior to each test
     def setUp(self):
-        app = create_app(TestConfig)
+        app = create_app('test')
         self.app = app.test_client()
  
         self.assertEqual(app.debug, False)
