@@ -4,7 +4,6 @@ from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
-from fastapi_utils.guid_type import GUID, GUID_DEFAULT_SQLITE
 
 from app.util.extensions import db
 
