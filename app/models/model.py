@@ -4,13 +4,15 @@ from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
-from fastapi_utils.guid_type import GUID, GUID_DEFAULT_SQLITE
 
 from app.util.extensions import db
 
+def generate_uuid():
+    return str(uuid.uuid4())
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
-    id = Column(GUID, primary_key=True, default=GUID_DEFAULT_SQLITE)
+    id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
     email = Column(String(50), unique=True, nullable=False)
     password = Column(String(128), unique=False, nullable=False)
     name = Column(String(100), unique=False, nullable=False)
@@ -53,22 +55,21 @@ class Sketches(db.Model):
         
 class Experiments(db.Model):
     __tablename__ = 'experiments'
-    guid = Column(String(200),unique=True, primary_key=True)
+    id = Column(String(36), primary_key=True, default=generate_uuid)
     eln = Column(String(100), unique=True)
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)
     site = Column(String(50), unique=False)
     building = Column(String(30), unique=False)
     room = Column(String(30), unique=False)
-    user_id = Column(GUID, unique=False)
+    user_id = Column(String(36), unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     last_modified_date = Column(Integer, unique=False)
-    project_guid = Column(String, ForeignKey('projects.guid'), nullable=False)
+    project_id = Column(String(36), ForeignKey('projects.id'), nullable=False)
     #sketch_guid = Column(String(200), ForeignKey('sketches.guid'), nullable=False)
     #sketches = relationship("Sketches", uselist=False, back_populates="experiments")
 
-    def __init__(self, guid, eln, title, description, site, building, room, user_id, created_date, last_modified_date, project_guid):
-        self.guid = guid
+    def __init__(self, eln, title, description, site, building, room, user_id, created_date, last_modified_date, project_id):
         self.eln = eln
         self.title = title
         self.description = description
@@ -78,7 +79,7 @@ class Experiments(db.Model):
         self.user_id = user_id
         self.created_date = created_date
         self.last_modified_date = last_modified_date
-        self.project_guid = project_guid
+        self.project_id = project_id
         
     def __repr__(self):
         return '<Project GUID {}>'.format(self.project_guid)
@@ -86,7 +87,7 @@ class Experiments(db.Model):
     @property
     def experiments_table_to_json(self):
         return {
-            'guid': self.guid,
+            'id': self.id,
             'eln': self.eln,
             'title': self.title,
             'description': self.description,
@@ -97,19 +98,18 @@ class Experiments(db.Model):
             'user_id': self.user_id,
             'created_date': self.created_date,
             'last_modified_date': self.last_modified_date,
-            'project_guid': self.project_guid,
+            'project_id': self.project_id,
         }
         
 class Projects(db.Model):
     __tablename__ = 'projects'
-    guid = Column(String(200),unique=True, primary_key=True)
+    id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
     experiments = relationship("Experiments", backref='project', lazy=True)
 
-    def __init__(self, guid, title, description, created_date):
-        self.guid = guid
+    def __init__(self, title, description, created_date):
         self.title = title
         self.description = description
         self.created_date = created_date
@@ -120,7 +120,7 @@ class Projects(db.Model):
     @property
     def projects_table_to_json(self):
         return {
-            'guid': self.guid,
+            'id': self.id,
             'title': self.title,
             'description': self.description,
             'created_date': self.created_date,
