@@ -30,7 +30,6 @@ class ProdConfig(Config):
     
 class DevConfig(Config):
     """Devolopment configuration."""
-    
     ENV = 'dev'
     DEBUG = True
     TESTING = False
