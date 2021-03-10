@@ -8,7 +8,7 @@ $(document).ready(function() {
       "stateSave": true,
       "sAjaxSource": "/load-projects",
       columns: [{
-              data: 'guid'
+              data: 'id'
           },
           {
               data: 'title'
@@ -102,15 +102,15 @@ $(document).ready(function() {
           $('[data-toggle="tooltip"]').tooltip();
       },
       rowCallback: function(row, data) {
-          $(row).addClass(data.guid);
+          $(row).addClass(data.id);
       },
       createdRow: function(row, data, dataIndex) {
           $(row).find('td:eq(4) input')
               .attr('data-status', data.status ? 'locked' : 'unlocked')
-              .addClass(data.guid);
+              .addClass(data.id);
           $(row).find('td:eq(0)')
               .attr('data-status', data.status ? 'locked' : 'unlocked')
-              .addClass(data.guid);
+              .addClass(data.id);
       }
   });
 
@@ -164,7 +164,7 @@ $(document).ready(function() {
       "stateSave": false,
       "sAjaxSource": "/load-experiments",
       columns: [{
-              data: 'guid'
+              data: 'id'
           },
           {
               data: 'eln'
@@ -188,7 +188,7 @@ $(document).ready(function() {
               data: 'created_date'
           },
           {
-              data: 'project_guid'
+              data: 'project_id'
           },
           {
               "className": '',
@@ -269,15 +269,15 @@ $(document).ready(function() {
           $('[data-toggle="tooltip"]').tooltip();
       },
       rowCallback: function(row, data) {
-          $(row).addClass(data.guid);
+          $(row).addClass(data.id);
       },
       createdRow: function(row, data, dataIndex) {
           $(row).find('td:eq(8) input')
               .attr('data-status', data.status ? 'locked' : 'unlocked')
-              .addClass(data.guid);
+              .addClass(data.id);
           $(row).find('td:eq(0)')
               .attr('data-status', data.status ? 'locked' : 'unlocked')
-              .addClass(data.guid);
+              .addClass(data.id);
       }
   });
 
@@ -309,7 +309,7 @@ $(document).ready(function() {
       "stateSave": true,
       "sAjaxSource": "/select-project",
       columns: [{
-              data: 'guid'
+              data: 'id'
           },
           {
               data: 'title'
@@ -332,12 +332,12 @@ $(document).ready(function() {
           api.column(0).visible(false);
       },
       rowCallback: function(row, data) {
-          $(row).addClass(data.guid);
+          $(row).addClass(data.id);
       },
       createdRow: function(row, data, dataIndex) {
           $(row).find('td:eq(0)')
               .attr('data-status', data.status ? 'locked' : 'unlocked')
-              .addClass(data.guid);
+              .addClass(data.id);
       }
   });
 

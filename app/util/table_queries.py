@@ -22,7 +22,7 @@ class ProjectsDataTable:
         return output
 
     def run_query(self):
-        self.cardinality = db.session.query(func.count(self.model_object.guid)).first()
+        self.cardinality = db.session.query(func.count(self.model_object.id)).first()
         #get columns name from request
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
@@ -52,7 +52,7 @@ class ProjectsDataTable:
 
         items = self.model_object.query.filter(or_(*filter_list)).order_by(order_object) \
                     .offset(start).limit(length).all()
-        self.cardinality_filtered = db.session.query(func.count(self.model_object.guid)) \
+        self.cardinality_filtered = db.session.query(func.count(self.model_object.id)) \
                     .filter(or_(*filter_list)).order_by(None).first()
         self.results = [i.projects_table_to_json for i in items]
 
@@ -75,7 +75,7 @@ class ExperimentsDataTable:
         return output
 
     def run_query(self):
-        self.cardinality = db.session.query(func.count(self.model_object.guid)).first()
+        self.cardinality = db.session.query(func.count(self.model_object.id)).first()
         #get columns name from request
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
@@ -105,6 +105,6 @@ class ExperimentsDataTable:
 
         items = self.model_object.query.filter(or_(*filter_list)).order_by(order_object) \
                     .offset(start).limit(length).all()
-        self.cardinality_filtered = db.session.query(func.count(self.model_object.guid)) \
+        self.cardinality_filtered = db.session.query(func.count(self.model_object.id)) \
                     .filter(or_(*filter_list)).order_by(None).first()
         self.results = [i.experiments_table_to_json for i in items]

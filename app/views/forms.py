@@ -27,11 +27,10 @@ def stringdatetime():
 def create_project():
     create_project_form = CreateProject()
     if create_project_form.validate_on_submit():
-        guid = str(uuid.uuid4())
         title = request.form["title"]
         description = request.form["description"]
         created_date = stringdate()
-        create_new_project = Projects(guid, title, description, created_date)
+        create_new_project = Projects(title, description, created_date)
 
         try:
             db.session.add(create_new_project)
@@ -59,7 +58,6 @@ def create_project():
 def create_experiment():
     create_experiment_form = CreateExperiment()
     if create_experiment_form.validate_on_submit():
-        guid = str(uuid.uuid4())
         eln = request.form["eln"]
         title = request.form["title"]
         description = request.form["description"]
@@ -70,7 +68,7 @@ def create_experiment():
         created_date = stringdate()
         last_modified_date = stringdate()
         select_project_guid = request.args.get('project-guid', default = '*', type = str)
-        create_new_experiment = Experiments(guid, eln, title, description, site, building, room, user_id, created_date, last_modified_date, select_project_guid)
+        create_new_experiment = Experiments(eln, title, description, site, building, room, user_id, created_date, last_modified_date, select_project_guid)
         try:
             db.session.add(create_new_experiment)
             db.session.commit()
@@ -112,7 +110,6 @@ def delete_project(id):
         return redirect(url_for('queries.projects'))
     
 def save_project_changes(project, form, new=False):
-    project.guid = form.guid.data
     project.title = form.title.data
     project.description = form.description.data
     project.created_date = form.created_date.data
@@ -123,7 +120,7 @@ def save_project_changes(project, form, new=False):
 @forms.route('/projects/<string:id>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit_project(id):
-    qry = db.session.query(Projects).filter(Projects.guid==id)
+    qry = db.session.query(Projects).filter(Projects.id==id)
     project = qry.first()
     if project:
         create_project_form = CreateProject(formdata=request.form, obj=project)
@@ -165,7 +162,7 @@ def save_experiment_changes(experiment, form, new=False):
 @forms.route('/experiments/<string:id>/edit/', methods=['GET', 'POST'])
 @login_required
 def edit_experiment(id):
-    qry = db.session.query(Experiments).filter(Experiments.guid==id)
+    qry = db.session.query(Experiments).filter(Experiments.id==id)
     experiment = qry.first()
     if experiment:
         create_experiment_form = CreateExperiment(formdata=request.form, obj=experiment)

@@ -31,7 +31,6 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
 
 class CreateProject(FlaskForm):
-    guid = HiddenField()
     title = StringField('', [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message="Invalid Project Title"),
         Length(min=3, max=75, message="Invalid Project Title length")
@@ -44,8 +43,7 @@ class CreateProject(FlaskForm):
     submit = SubmitField('Create new Project')
     
 class CreateExperiment(FlaskForm):
-    select_project_guid = HiddenField()
-    guid = HiddenField()
+    select_project_id = HiddenField()
     eln = StringField('Experiment ELN Number', [ InputRequired(),
         Regexp(r'[A-Za-z0-9 ]*$', message="Invalid ELN"),
         Length(min=1, max=40, message="Invalid ELN length")
