@@ -15,9 +15,8 @@ def new_user():
 
 @pytest.fixture(scope='module')
 def new_project():
-    project_guid = str(uuid.uuid4())
     date = stringdate()
-    project = Projects(project_guid, 'Project Title', 'Project Description', date)
+    project = Projects('Project Title', 'Project Description', date)
     return project
 
 def test_new_user(new_user):
@@ -51,8 +50,6 @@ def test_new_project(new_project):
     WHEN a new Project is created
     THEN check the guid, title, description and creation date
     """    
-    
-    assert new_project.guid == new_project.guid
     assert new_project.title == 'Project Title'
     assert new_project.description == 'Project Description'
     assert new_project.created_date == new_project.created_date
@@ -64,12 +61,10 @@ def test_new_experiment(new_user, new_project):
     THEN check the guid, eln, title, description, site, building, room, user, creation date, last edited date and project guid
     """
 
-    experiment_guid = str(uuid.uuid4())
     date = stringdate()
     last_changed_date = stringdatetime()
     
-    experiment = Experiments(experiment_guid, 'ELN-NUMBER-00', 'Experiment Title', 'Experiment Description', new_user.site, new_user.building, new_user.room, new_user.name, date, last_changed_date, new_project.guid)
-    assert experiment.guid == experiment_guid
+    experiment = Experiments('ELN-NUMBER-00', 'Experiment Title', 'Experiment Description', new_user.site, new_user.building, new_user.room, new_user.name, date, last_changed_date, new_project.id)
     assert experiment.eln == 'ELN-NUMBER-00'
     assert experiment.title == 'Experiment Title'
     assert experiment.description == 'Experiment Description'
@@ -79,4 +74,4 @@ def test_new_experiment(new_user, new_project):
     assert experiment.user_id == 'Name'
     assert experiment.created_date == date
     assert experiment.last_modified_date == last_changed_date
-    assert experiment.project_guid == new_project.guid
+    assert experiment.project_id == new_project.id
