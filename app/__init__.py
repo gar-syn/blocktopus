@@ -6,7 +6,7 @@ from flask_login import LoginManager
 from app.util.config import configuration_classes
 from app.util.extensions import db, jsglue, bootstrap, create_celery_app
 
-def create_app(config_object):
+def create_app(config_object='dev'):
     app = Flask(__name__)
     app.config.from_object(configuration_classes[config_object])
     register_assets(app)

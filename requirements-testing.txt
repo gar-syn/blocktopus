@@ -1,3 +1,0 @@
-pytest==6.2.2
-flask-test==0.1.6
-nose==2-0.10.0

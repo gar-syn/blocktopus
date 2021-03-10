@@ -3,12 +3,14 @@ from sqlalchemy.orm import relationship
 from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
+from fastapi_utils.guid_type import GUID, GUID_DEFAULT_SQLITE
 
 from app.util.extensions import db
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
+    id = Column(GUID, primary_key=True, default=GUID_DEFAULT_SQLITE)
     email = Column(String(50), unique=True, nullable=False)
     password = Column(String(128), unique=False, nullable=False)
     name = Column(String(100), unique=False, nullable=False)
@@ -58,7 +60,7 @@ class Experiments(db.Model):
     site = Column(String(50), unique=False)
     building = Column(String(30), unique=False)
     room = Column(String(30), unique=False)
-    user_id = Column(Integer, unique=False)
+    user_id = Column(GUID, unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     last_modified_date = Column(Integer, unique=False)
     project_guid = Column(String, ForeignKey('projects.guid'), nullable=False)
