@@ -1,4 +1,4 @@
-FROM python:3.7-stretch
+FROM python:3.8-buster
 
 EXPOSE 80 80
 EXPOSE 3000 3000
