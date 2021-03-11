@@ -31,10 +31,10 @@ class ProjectTests(unittest.TestCase):
     #### helper methods ####
     ########################
     
-    def register(self, email, password, name, site, building, room):
+    def register(self, email, password, confirm, name, site, building, room):
         return self.app.post(
         '/register',
-        data=dict(email=email, password=password, name=name, site=site, building=building, room=room),
+        data=dict(email=email, password=password, confirm=password, name=name, site=site, building=building, room=room),
         follow_redirects=True
     )
         
@@ -51,7 +51,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_create_project(self):
         self.app.get('/register', follow_redirects=True)
-        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.assertIn(b'Your account has been registered.', response.data)
         response = self.login('account@company.tld', 'SuperStrongPw123')
         self.assertIn(b'Your Profile', response.data)

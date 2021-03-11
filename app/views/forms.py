@@ -147,7 +147,6 @@ def delete_experiment(id):
         return redirect(url_for('queries.experiment'))
 
 def save_experiment_changes(experiment, form, new=False):
-    experiment.guid = form.guid.data
     experiment.eln = form.eln.data
     experiment.title = form.title.data
     experiment.description = form.description.data

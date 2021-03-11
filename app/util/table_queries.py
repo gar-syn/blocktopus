@@ -4,6 +4,7 @@ from sqlalchemy.sql import func
 
 from app.util.extensions import db
 
+#Server Side processing for data tables
 class ProjectsDataTable:
     def __init__(self, request, model_object):
         self.request = request
@@ -22,7 +23,7 @@ class ProjectsDataTable:
         return output
 
     def run_query(self):
-        self.cardinality = db.session.query(func.count(self.model_object.id)).first()
+        self.cardinality = self.model_object.query.count()
         #get columns name from request
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
@@ -36,7 +37,7 @@ class ProjectsDataTable:
         if search_value != "":
             for col in column_list[:-1]:
                 column_type = getattr(getattr(self.model_object, col), 'type')
-                #col_name like '%search_value%', datatime-type column will raise exception in mysql
+                print(column_type)
                 if not isinstance(column_type, db.DateTime):
                     filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))
 
@@ -89,7 +90,6 @@ class ExperimentsDataTable:
         if search_value != "":
             for col in column_list[:-1]:
                 column_type = getattr(getattr(self.model_object, col), 'type')
-                #col_name like '%search_value%', datatime-type column will raise exception in mysql
                 if not isinstance(column_type, db.DateTime):
                     filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))
 

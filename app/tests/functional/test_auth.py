@@ -29,10 +29,10 @@ class ProjectTests(unittest.TestCase):
     #### helper methods ####
     ########################
     
-    def register(self, email, password, name, site, building, room):
+    def register(self, email, password, confirm, name, site, building, room):
         return self.app.post(
         '/register',
-        data=dict(email=email, password=password, name=name, site=site, building=building, room=room),
+        data=dict(email=email, password=password, confirm=password, name=name, site=site, building=building, room=room),
         follow_redirects=True
     )
         
@@ -56,22 +56,22 @@ class ProjectTests(unittest.TestCase):
         
     def test_valid_user_registration(self):
         self.app.get('/register', follow_redirects=True)
-        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Your account has been registered.', response.data)
         self.assertIn(b'Please log in:', response.data)
         
     def test_missing_field_user_registration_error(self):
         self.app.get('/register', follow_redirects=True)
-        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', '')
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', '')
         self.assertIn(b'This field is required.', response.data)
         
     def test_invalid_user_registration_duplicate_email(self):
         self.app.get('/register', follow_redirects=True)
-        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.assertIn(b'Your account has been registered.', response.data)
         self.app.get('/register', follow_redirects=True)
-        response = self.register('account@company.tld', 'SuperStrongPw123', 'anotherName', 'Another Site', 'Another Building', 'Room')
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'anotherName', 'Another Site', 'Another Building', 'Room')
         self.assertIn(b'Email address (account@company.tld) is already registered!', response.data)
 
     ############### Login Process ###############
@@ -84,7 +84,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_valid_user_login(self):
         self.app.get('/register', follow_redirects=True)
-        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.assertIn(b'Your account has been registered.', response.data)
         response = self.login('account@company.tld', 'SuperStrongPw123')
         self.assertEqual(response.status_code, 200)
@@ -102,7 +102,7 @@ class ProjectTests(unittest.TestCase):
     ############### Logout Process ###############
     def test_valid_logout(self):
         self.app.get('/register', follow_redirects=True)
-        response = self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        response = self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.assertIn(b'Your account has been registered.', response.data)
         response = self.login('account@company.tld', 'SuperStrongPw123')
         self.assertEqual(response.status_code, 200)
@@ -119,7 +119,7 @@ class ProjectTests(unittest.TestCase):
     ############### User Profile Process (changing items) ###############
     def test_change_email_page(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.get('/change-email', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -128,7 +128,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_email(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.post('/change-email', data=dict(email='new-account@company.tld'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -137,7 +137,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_password_page(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.get('/change-password', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -145,7 +145,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_password(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.post('/change-password', data=dict(password='NewSuperStrongPw321'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -153,7 +153,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_current_site_page(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.get('/change-site', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -162,7 +162,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_current_site(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.post('/change-site', data=dict(site='New Site'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -171,7 +171,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_current_building_page(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.get('/change-building', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -180,7 +180,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_current_building(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.post('/change-building', data=dict(building='New Building'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -189,7 +189,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_current_room_page(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.get('/change-room', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -198,7 +198,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_change_current_room(self):
         self.app.get('/register', follow_redirects=True)
-        self.register('account@company.tld', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
+        self.register('account@company.tld', 'SuperStrongPw123', 'SuperStrongPw123', 'myName', 'Site', 'Building', 'Room')
         self.login('account@company.tld', 'SuperStrongPw123')
         response = self.app.post('/change-room', data=dict(room='New Room'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)

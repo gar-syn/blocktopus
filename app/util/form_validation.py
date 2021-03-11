@@ -4,13 +4,13 @@ from wtforms.validators import InputRequired, Length, Regexp, NumberRange, Equal
 from wtforms.fields.html5 import EmailField
 
 class RegisterForm(FlaskForm):
-    email = EmailField('', validators=[InputRequired(), Length(min=6, max=40)], render_kw={"placeholder": "Your Email",})
+    email = EmailField('', validators=[InputRequired(), Length(min=6, max=40)])
     password = PasswordField('', validators=[InputRequired(), Length(min=3, max=40)])
-    #confirm = PasswordField('Repeat Password', validators=[InputRequired(), EqualTo('password')])
+    confirm = PasswordField('', validators=[InputRequired(), EqualTo('password')])
     name = StringField('', [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message="Invalid Experiment Description"),
         Length(min=1, max=500, message="Invalid Experiment Description length")
-        ], render_kw={"placeholder": "Your name",})
+        ])
     site = StringField('', [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message="Invalid Experiment Site"),
         Length(min=1, max=75, message="Invalid Experiment Site length")
