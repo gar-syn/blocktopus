@@ -2,9 +2,11 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, BooleanField, PasswordField, TextAreaField
 from wtforms.validators import InputRequired, Length, Regexp, NumberRange, EqualTo
 from wtforms.fields.html5 import EmailField
+from flask_babel import lazy_gettext
+
 
 class RegisterForm(FlaskForm):
-    email = EmailField('', validators=[InputRequired(), Length(min=6, max=40)])
+    email = EmailField(lazy_gettext('Email'), validators=[InputRequired(), Length(min=6, max=40)])
     password = PasswordField('', validators=[InputRequired(), Length(min=3, max=40)])
     confirm = PasswordField('', validators=[InputRequired(), EqualTo('password')])
     name = StringField('', [ InputRequired(),

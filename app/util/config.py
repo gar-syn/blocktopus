@@ -3,7 +3,12 @@ from datetime import timedelta
 
 class Config(object):
     """Base configuration."""
-
+    
+    LANGUAGES = {
+    'en': 'English',
+    'de': 'German'
+    }
+        
     APP_DIR = os.path.abspath(os.path.dirname(__file__))  # This directory
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
     DEBUG_TB_INTERCEPT_REDIRECTS = False

@@ -79,3 +79,13 @@
   border-radius: .35rem;
   margin-top: .30rem;
 }
+
+.selected-lang {
+  width: 10%;
+  max-width: 10%;
+  position: absolute;
+}
+
+.selected-lang-text {
+  padding-left: 30px
+}

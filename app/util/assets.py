@@ -7,6 +7,7 @@ bundles = {
         'css/libraries/all.css',
         'css/libraries/dataTables.bootstrap4.css',
         'css/libraries/buttons.dataTables.css',
+        'css/libraries/flag-icon.css',
         filters='cssmin',
         output='gen/css/style.min.css',
         extra={'rel': 'stylesheet/css'}),
