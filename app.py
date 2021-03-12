@@ -30,8 +30,7 @@ def get_locale():
 @app.context_processor
 def inject_conf_var():
     return dict(AVAILABLE_LANGUAGES=app.config['LANGUAGES'],
-                CURRENT_LANGUAGE=session.get('language',request.accept_languages.best_match(app.config['LANGUAGES'].keys())))
-
+                CURRENT_LANGUAGE=session.get('language', request.accept_languages.best_match(app.config['LANGUAGES'].keys())))
 
 manager = Manager(app)
 migrate = Migrate(app, db)
