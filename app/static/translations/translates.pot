@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-12 16:22+0100\n"
+"POT-Creation-Date: 2021-03-12 17:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,92 +47,6 @@ msgstr ""
 
 #: app/templates/index.html:119
 msgid "Completed Experiments"
-msgstr ""
-
-#: app/templates/layout.html:33
-msgid "Home"
-msgstr ""
-
-#: app/templates/layout.html:39
-msgid "Interface"
-msgstr ""
-
-#: app/templates/layout.html:46
-msgid "Create..."
-msgstr ""
-
-#: app/templates/layout.html:51
-msgid "Create a new:"
-msgstr ""
-
-#: app/templates/layout.html:52
-msgid "Project"
-msgstr ""
-
-#: app/templates/layout.html:53
-msgid "Experiment"
-msgstr ""
-
-#: app/templates/layout.html:54
-msgid "Sketch"
-msgstr ""
-
-#: app/templates/layout.html:62
-msgid "Projects"
-msgstr ""
-
-#: app/templates/layout.html:68
-msgid "Experiments"
-msgstr ""
-
-#: app/templates/layout.html:74
-msgid "Pages"
-msgstr ""
-
-#: app/templates/auth/profile.html:2 app/templates/layout.html:80
-msgid "Profile"
-msgstr ""
-
-#: app/templates/auth/login.html:1 app/templates/auth/login.html:8
-#: app/templates/auth/login.html:32 app/templates/layout.html:88
-msgid "Login"
-msgstr ""
-
-#: app/templates/auth/register.html:1 app/templates/auth/register.html:44
-#: app/templates/layout.html:93
-msgid "Register"
-msgstr ""
-
-#: app/templates/layout.html:99 app/templates/layout.html:171
-msgid "Logout"
-msgstr ""
-
-#: app/templates/layout.html:107
-msgid "Current Language"
-msgstr ""
-
-#: app/templates/layout.html:114 app/templates/layout.html:127
-msgid "English"
-msgstr ""
-
-#: app/templates/layout.html:119 app/templates/layout.html:130
-msgid "German"
-msgstr ""
-
-#: app/templates/layout.html:125
-msgid "Change language to:"
-msgstr ""
-
-#: app/templates/layout.html:163
-msgid "Ready to Leave?"
-msgstr ""
-
-#: app/templates/layout.html:168
-msgid "Select \"Logout\" below if you are ready to end your current session."
-msgstr ""
-
-#: app/templates/layout.html:170
-msgid "Cancel"
 msgstr ""
 
 #: app/templates/auth/change-building.html:1
@@ -192,12 +106,21 @@ msgstr ""
 msgid "Your current Site is:"
 msgstr ""
 
+#: app/templates/auth/login.html:1 app/templates/auth/login.html:8
+#: app/templates/auth/login.html:32
+msgid "Login"
+msgstr ""
+
 #: app/templates/auth/login.html:35
 msgid "Need an account?"
 msgstr ""
 
 #: app/templates/auth/login.html:35
 msgid "Signup!"
+msgstr ""
+
+#: app/templates/auth/profile.html:2
+msgid "Profile"
 msgstr ""
 
 #: app/templates/auth/profile.html:14
@@ -242,6 +165,10 @@ msgstr ""
 
 #: app/templates/auth/profile.html:89
 msgid "Change Current Room"
+msgstr ""
+
+#: app/templates/auth/register.html:1 app/templates/auth/register.html:44
+msgid "Register"
 msgstr ""
 
 #: app/templates/auth/register.html:8
