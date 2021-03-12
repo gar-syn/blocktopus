@@ -21,25 +21,25 @@
             {{form.csrf_token}}
          {% endif %}
             <div class="form-group">
-               {{ wtf.form_field(form.email, class='form-control', placeholder='E-Mail') }}
+               {{ wtf.form_field(form.email, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.password, class='form-control', placeholder='Password') }}
+               {{ wtf.form_field(form.password, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.confirm, class='form-control', placeholder='Confirm your password') }}
+               {{ wtf.form_field(form.confirm, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.name, class='form-control', placeholder='Name') }}
+               {{ wtf.form_field(form.name, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.site, class='form-control', placeholder='Site') }}
+               {{ wtf.form_field(form.site, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.building, class='form-control', placeholder='Building') }}
+               {{ wtf.form_field(form.building, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.room, class='form-control', placeholder='Room') }}
+               {{ wtf.form_field(form.room, class='form-control') }}
             </div>
             <button type="submit" class="btn btn-primary btn-lg">{{ _('Register') }} <i class="fas fa-user-plus"></i></button>
          </form>

@@ -29,10 +29,10 @@
                {{ create_project_form.csrf_token() }}
             {% endif %}
             <div class="form-group">
-               {{ wtf.form_field(create_project_form.title, class='form-control', placeholder='Project Title') }}
+               {{ wtf.form_field(create_project_form.title, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(create_project_form.description, class='form-control', placeholder='Project Description') }}
+               {{ wtf.form_field(create_project_form.description, class='form-control') }}
             </div>
             <button type="submit" class="btn btn-primary btn-lg">{{ _('Create Project') }}</button>
          </form>

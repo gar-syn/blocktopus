@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-12 15:22+0100\n"
+"POT-Creation-Date: 2021-03-12 16:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,7 +152,7 @@ msgid "Change User Email"
 msgstr ""
 
 #: app/templates/auth/change-email.html:8 app/templates/auth/profile.html:59
-#: app/util/form_validation.py:100
+#: app/util/form_validation.py:103
 msgid "Change your Email"
 msgstr ""
 
@@ -313,13 +313,15 @@ msgstr ""
 
 #: app/templates/interface/choose-project.html:20
 #: app/templates/interface/experiments.html:30
-#: app/templates/interface/projects.html:29 app/util/form_validation.py:35
+#: app/templates/interface/projects.html:29 app/util/form_validation.py:38
+#: app/util/form_validation.py:41 app/util/form_validation.py:58
 msgid "Title"
 msgstr ""
 
 #: app/templates/interface/choose-project.html:21
 #: app/templates/interface/experiments.html:31
-#: app/templates/interface/projects.html:30 app/util/form_validation.py:39
+#: app/templates/interface/projects.html:30 app/util/form_validation.py:42
+#: app/util/form_validation.py:45 app/util/form_validation.py:62
 msgid "Description"
 msgstr ""
 
@@ -340,22 +342,28 @@ msgstr ""
 msgid "Existing Experiments in Database"
 msgstr ""
 
-#: app/templates/interface/experiments.html:29
+#: app/templates/interface/experiments.html:29 app/util/form_validation.py:54
 msgid "ELN"
 msgstr ""
 
-#: app/templates/interface/experiments.html:32 app/util/form_validation.py:15
-#: app/util/form_validation.py:60 app/util/form_validation.py:78
+#: app/templates/interface/experiments.html:32 app/util/form_validation.py:18
+#: app/util/form_validation.py:21 app/util/form_validation.py:63
+#: app/util/form_validation.py:66 app/util/form_validation.py:81
+#: app/util/form_validation.py:84
 msgid "Site"
 msgstr ""
 
-#: app/templates/interface/experiments.html:33 app/util/form_validation.py:19
-#: app/util/form_validation.py:64 app/util/form_validation.py:85
+#: app/templates/interface/experiments.html:33 app/util/form_validation.py:22
+#: app/util/form_validation.py:25 app/util/form_validation.py:67
+#: app/util/form_validation.py:70 app/util/form_validation.py:88
+#: app/util/form_validation.py:91
 msgid "Building"
 msgstr ""
 
-#: app/templates/interface/experiments.html:34 app/util/form_validation.py:23
-#: app/util/form_validation.py:68 app/util/form_validation.py:92
+#: app/templates/interface/experiments.html:34 app/util/form_validation.py:26
+#: app/util/form_validation.py:29 app/util/form_validation.py:71
+#: app/util/form_validation.py:74 app/util/form_validation.py:95
+#: app/util/form_validation.py:98
 msgid "Room"
 msgstr ""
 
@@ -380,68 +388,73 @@ msgstr ""
 msgid "Existing Projects in Database"
 msgstr ""
 
-#: app/util/form_validation.py:8 app/util/form_validation.py:30
-#: app/util/form_validation.py:99
+#: app/util/form_validation.py:8 app/util/form_validation.py:9
+#: app/util/form_validation.py:33 app/util/form_validation.py:102
 msgid "Email"
 msgstr ""
 
-#: app/util/form_validation.py:9 app/util/form_validation.py:31
+#: app/util/form_validation.py:10 app/util/form_validation.py:11
+#: app/util/form_validation.py:34 app/util/form_validation.py:106
 msgid "Password"
 msgstr ""
 
-#: app/util/form_validation.py:10
+#: app/util/form_validation.py:12
 msgid "Repeat Password"
 msgstr ""
 
-#: app/util/form_validation.py:11
+#: app/util/form_validation.py:13
+msgid "Confirm your password"
+msgstr ""
+
+#: app/util/form_validation.py:14 app/util/form_validation.py:17
 msgid "Name"
 msgstr ""
 
-#: app/util/form_validation.py:32
+#: app/util/form_validation.py:35
 msgid "Remember Me"
 msgstr ""
 
-#: app/util/form_validation.py:44
+#: app/util/form_validation.py:47
 msgid "Create new Project"
 msgstr ""
 
-#: app/util/form_validation.py:48
+#: app/util/form_validation.py:51
 msgid "Experiment ELN Number"
 msgstr ""
 
-#: app/util/form_validation.py:52
+#: app/util/form_validation.py:55
 msgid "Experiment Title"
 msgstr ""
 
-#: app/util/form_validation.py:56
+#: app/util/form_validation.py:59
 msgid "Experiment Description"
 msgstr ""
 
-#: app/util/form_validation.py:75
+#: app/util/form_validation.py:78
 msgid "Create new Experiment"
 msgstr ""
 
-#: app/util/form_validation.py:82
+#: app/util/form_validation.py:85
 msgid "Change your site"
 msgstr ""
 
-#: app/util/form_validation.py:89
+#: app/util/form_validation.py:92
 msgid "Change your building"
 msgstr ""
 
-#: app/util/form_validation.py:96
+#: app/util/form_validation.py:99
 msgid "Change your room"
 msgstr ""
 
-#: app/util/form_validation.py:103
+#: app/util/form_validation.py:106
 msgid "Your new Password"
 msgstr ""
 
-#: app/util/form_validation.py:104
+#: app/util/form_validation.py:107
 msgid "Show password"
 msgstr ""
 
-#: app/util/form_validation.py:105
+#: app/util/form_validation.py:108
 msgid "Change your password"
 msgstr ""
 

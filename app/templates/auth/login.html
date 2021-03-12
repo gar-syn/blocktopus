@@ -21,13 +21,13 @@
             {{form.csrf_token}}
          {% endif %}
             <div class="form-group">
-               {{ wtf.form_field(form.email, class='form-control', placeholder='E-Mail') }}
+               {{ wtf.form_field(form.email, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.password, class='form-control', placeholder='Password') }}
+               {{ wtf.form_field(form.password, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.remember_me, class='form-control', placeholder='Remember me?') }}
+               {{ wtf.form_field(form.remember_me, class='form-control') }}
             </div>
             <button type="submit" class="btn btn-primary btn-lg">{{ _('Login') }} <i class="fas fa-sign-in-alt"></i></button>
          </form>
