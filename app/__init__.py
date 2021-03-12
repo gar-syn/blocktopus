@@ -4,7 +4,9 @@ from flask_assets import Environment
 from flask_login import LoginManager
 
 from app.util.config import configuration_classes
-from app.util.extensions import db, jsglue, bootstrap, create_celery_app
+from app.util.extensions import db, jsglue, bootstrap, create_celery_app, babel
+
+#SELECTED_LANGUAGE = 'en'
 
 def create_app(config_object='dev'):
     app = Flask(__name__)
@@ -27,6 +29,7 @@ def register_extensions(app):
     bootstrap.init_app(app)
     db.init_app(app)
     jsglue.init_app(app)
+    babel.init_app(app)
     #celery = create_celery_app(app)
     
 def register_loginmanager(app):
@@ -60,3 +63,4 @@ def register_errorhandlers(app):
 
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_error)
+    

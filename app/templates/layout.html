@@ -100,6 +100,37 @@
             {% endif %}
          </li>
          <!-- Divider -->
+         <!-- Divider -->
+         <hr class="sidebar-divider">
+         <!-- Heading -->
+         <div class="sidebar-heading">
+            Change language
+         </div>
+         <!-- Nav Item - Pages Collapse Menu -->
+         <li class="nav-item">
+               {% if CURRENT_LANGUAGE == 'en' %}
+               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+               <div class="selected-lang flag flag-icon-background flag-icon-us" title="us" id="us">&nbsp;</div><span class="selected-lang-text">English</span>
+                </a>
+               {% elif CURRENT_LANGUAGE == 'de' %}
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+               <div class="selected-lang flag flag-icon-background flag-icon-de" title="de" id="de">&nbsp;</div><span class="selected-lang-text">German</span>
+               </a>
+               {%  endif %}
+            
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="language-selector" class="bg-white py-2 collapse-inner rounded">
+               <h6 class="collapse-header">Change language:</h6>
+               <a class="collapse-item" href="{{ url_for('main.set_language', language='en') }}">
+                  <div class="flag flag-icon-background flag-icon-us" title="us" id="us"> English</div>
+               </a>
+               <a class="collapse-item" href="{{ url_for('main.set_language', language='de') }}">
+                  <div class="flag flag-icon-background flag-icon-de" title="de" id="de"> German</div>
+               </a>
+            </div>
+         </li>
          <hr class="sidebar-divider d-none d-md-block">
          <!-- Sidebar Toggler -->
          <div class="text-center d-none d-md-inline">

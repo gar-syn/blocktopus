@@ -62,4 +62,5 @@
         $('input#submit').val('Update Experiment');
     }
 });
+
 })(jQuery); // End of use strict

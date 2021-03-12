@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.exc import IntegrityError
+from flask_babel import _
 
 from app.models.model import User
 from app.util.extensions import db
@@ -24,7 +25,7 @@ def register():
                 new_user.set_password(form.password.data)
                 db.session.add(new_user)
                 db.session.commit()
-                flash('Your account has been registered. Please log in:', 'success')
+                flash(_('Your account has been registered. Please log in:'), 'success')
                 return redirect(url_for('auth.login'))
             except IntegrityError:
                 db.session.rollback()
