@@ -1,11 +1,11 @@
-{% extends "layout.html" %} {% block title %}Register{% endblock %} 
+{% extends "layout.html" %} {% block title %}{{ _('Register') }}{% endblock %} 
 {% import "bootstrap/wtf.html" as wtf %}
 {% block headerscripts %}
 {% endblock %} 
 {% block content %}
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
    <main class="change-form">
-      <h1 class="h3 mb-3 text-gray-900">Sign up</h1>
+      <h1 class="h3 mb-3 text-gray-900">{{ _('Sign up') }}</h1>
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
       {% for category, message in messages %}
@@ -41,7 +41,7 @@
             <div class="form-group">
                {{ wtf.form_field(form.room, class='form-control', placeholder='Room') }}
             </div>
-            <button type="submit" class="btn btn-primary btn-lg">Register <i class="fas fa-user-plus"></i></button>
+            <button type="submit" class="btn btn-primary btn-lg">{{ _('Register') }} <i class="fas fa-user-plus"></i></button>
          </form>
       </div>
    </main>

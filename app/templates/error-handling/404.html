@@ -11,13 +11,13 @@
       <div class="text-center error-text">
          <div class="error mx-auto" data-text="404">404</div>
          <p class="lead text-gray-800 mb-5">Page Not Found</p>
-         <p class="text-gray-500 mb-0">Remember those old 404 pages from the 90s that said something like 
-         “Something’s gone wrong, but don’t worry, our webmasters have been notified.” 
+         <p class="text-gray-500 mb-0">{{ _('Remember those old 404 pages from the 90s that said something like 
+         “Something’s gone wrong, but don’t worry, our webmasters have been notified.” ') }}
          <br>
-         But were the webmasters ever notified? <strong>I mean, were they really?</strong>
+         {{ _('But were the webmasters ever notified?') }} <strong>{{ _('I mean, were they really?') }}</strong>
          </p>
          <a href="{{ url_for('main.index') }}" class="nav-link">
-         <span>&larr; Back to Home &amp; Reality</span></a>
+         <span>&larr;{{ _(' Back to Home &amp; Reality') }}</span></a>
       </div>
    </div>
 </div>

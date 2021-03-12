@@ -89,3 +89,16 @@
 .selected-lang-text {
   padding-left: 30px
 }
+
+.sidebar-toggled .selected-lang {
+  display: none;
+}
+
+.sidebar-toggled .selected-lang-text {
+  padding-left: 0px
+}
+
+.sidebar-toggled .flag-icon-background {
+  background-position: 60%;
+
+}

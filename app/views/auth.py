@@ -29,7 +29,7 @@ def register():
                 return redirect(url_for('auth.login'))
             except IntegrityError:
                 db.session.rollback()
-                flash('Email address ({}) is already registered!'.format(form.email.data), 'danger')
+                flash(_('Email address ({}) is already registered!'.format(form.email.data)), 'danger')
     return render_template('auth/register.html', form=form)    
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -39,7 +39,7 @@ def login():
         if form.validate_on_submit():
             user = User.query.filter_by(email=form.email.data).first()
             if user is None or not user.check_password(form.password.data):
-                flash('Invalid username or password. Please check your login credentials.', 'danger')
+                flash(_('Invalid username or password. Please check your login credentials.'), 'danger')
                 return render_template('auth/login.html', form=form)
             login_user(user, remember=form.remember_me.data)
             return redirect(url_for('auth.profile'))                
@@ -64,7 +64,7 @@ def change_site():
             user.site = change_site_form.site.data
             db.session.add(user)
             db.session.commit()
-            flash('Your site has been changed.', 'success')
+            flash(_('Your site has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
     return render_template('auth/change-site.html', site=current_user.site, change_site_form=change_site_form)
 
@@ -78,7 +78,7 @@ def change_building():
             user.building = change_building_form.building.data
             db.session.add(user)
             db.session.commit()
-            flash('Your building has been changed.', 'success')
+            flash(_('Your building has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
     return render_template('auth/change-building.html', building=current_user.building, change_building_form=change_building_form)
 
@@ -92,7 +92,7 @@ def change_room():
             user.room = change_room_form.room.data
             db.session.add(user)
             db.session.commit()
-            flash('Your room has been changed.', 'success')
+            flash(_('Your room has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
     return render_template('auth/change-room.html', room=current_user.room, change_room_form=change_room_form)
 
@@ -106,7 +106,7 @@ def change_password():
             user.password = generate_password_hash(change_password_form.password.data, method='sha256')
             db.session.add(user)
             db.session.commit()
-            flash('Your password has been changed.', 'success')
+            flash(_('Your password has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
     return render_template('auth/change-password.html', change_password_form=change_password_form)
 
@@ -123,13 +123,13 @@ def change_email():
                     user.email = change_email_form.email.data
                     db.session.add(user)
                     db.session.commit()
-                    flash('Your email has been changed', 'success')
+                    flash(_('Your email has been changed'), 'success')
                     return redirect(url_for('auth.profile'))
                 else:
                     db.session.rollback()
-                    flash('Sorry, that email already exists!', 'danger')
+                    flash(_('Sorry, that email already exists!'), 'danger')
                     return render_template('auth/change-email.html', change_email_form=change_email_form)
             except IntegrityError:
                 db.session.rollback()
-                flash('Error! That email already exists!', 'danger')
+                flash(_('Error! That email already exists!'), 'danger')
     return render_template('auth/change-email.html', email=current_user.email, change_email_form=change_email_form)

@@ -1,12 +1,12 @@
-{% extends "layout.html" %} {% block title %}Change User Email{% endblock %} 
+{% extends "layout.html" %} {% block title %}{{ _('Change User Email') }}{% endblock %} 
 {% import "bootstrap/wtf.html" as wtf %}
 {% block headerscripts %}
 {% endblock %} 
 {% block content %}
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
 <main class="change-form">
-   <h1 class="h3 mb-3 text-gray-900">Change your Email</h1>
-   <h3 class="h6 mb-3 text-gray-500">Your current Email is: {{ email }}</h3>
+   <h1 class="h3 mb-3 text-gray-900">{{ _('Change your Email') }}</h1>
+   <h3 class="h6 mb-3 text-gray-500">{{ _('Your current Email is:') }} {{ email }}</h3>
    {% with messages = get_flashed_messages(with_categories=true) %}
    				{% if messages %}
 				{% for category, message in messages %}

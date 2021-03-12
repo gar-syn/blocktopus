@@ -1,17 +1,17 @@
 {% extends "layout.html" %} 
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Create a new Experiment{% endblock %} 
+{% block title %}{{ _('Create a new Experiment') }}{% endblock %} 
 {% block content %}
 
 <div class="container">
 	<div class="row pb-5">
 		<div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-		<h1 class="pt-5 pb-2">Create a new Experiment</h1>
+		<h1 class="pt-5 pb-2">{{ _('Create a new Experiment') }}</h1>
 		{% if message %}
 			<!-- Successful Submit -->
 			<p class="alert alert-success"><strong>{{ message }}</strong></p>
-			<button class="w-100 btn btn-lg btn-primary button">Create a Sketch</button>
+			<button class="w-100 btn btn-lg btn-primary button">{{ _('Create a Sketch') }}</button>
 		{% else %}
 			<!-- form is displayed when template opens via GET not POST -->
 			   {% with messages = get_flashed_messages(with_categories=true) %}
