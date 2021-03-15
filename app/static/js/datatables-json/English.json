@@ -21,5 +21,12 @@
 	"oAria": {
 		"sSortAscending":  ": activate to sort column ascending",
 		"sSortDescending": ": activate to sort column descending"
+	},
+	"buttons": {
+        "copy": "<i class=\"fas fa-copy\"></i> Copy",
+		"csv": "<i class=\"fas fa-file-csv\"></i> CSV",
+		"excel": "<i class=\"fas fa-file-excel\"></i> Excel",
+		"pdf": "<i class=\"fas fa-file-pdf\"></i> PDF",
+		"print": "<i class=\"fas fa-print\"></i> Print"
 	}
 }

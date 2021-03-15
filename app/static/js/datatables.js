@@ -71,28 +71,24 @@ $(document).ready(function() {
               className: 'btn-primary',
           }, {
               extend: 'copy',
-              text: '<i class="fas fa-copy"></i> Copy',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'csv',
-              text: '<i class="fas fa-file-csv"></i> CSV',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'excel',
-              text: '<i class="fas fa-file-excel"></i> Excel',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'pdfHtml5',
-              text: '<i class="fas fa-file-pdf"></i> PDF',
               className: 'btn-outline-primary',
               orientation: 'landscape',
               pageSize: 'LEGAL',
@@ -101,7 +97,6 @@ $(document).ready(function() {
               }
           }, {
               extend: 'print',
-              text: '<i class="fas fa-print"></i> Print',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
@@ -240,28 +235,24 @@ $(document).ready(function() {
               className: 'btn-primary',
           }, {
               extend: 'copy',
-              text: '<i class="fas fa-copy"></i> Copy',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'csv',
-              text: '<i class="fas fa-file-csv"></i> CSV',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'excel',
-              text: '<i class="fas fa-file-excel"></i> Excel',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'pdfHtml5',
-              text: '<i class="fas fa-file-pdf"></i> PDF',
               className: 'btn-outline-primary',
               orientation: 'landscape',
               pageSize: 'LEGAL',
@@ -270,7 +261,6 @@ $(document).ready(function() {
               }
           }, {
               extend: 'print',
-              text: '<i class="fas fa-print"></i> Print',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
