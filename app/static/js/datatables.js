@@ -1,6 +1,20 @@
+
 // DataTable for Projects Page
 $(document).ready(function() {
+
+      function getCurrentSelectedLanguage() {
+        var languageMap = {
+            'en' : 'English',
+            'de' : 'German'
+        }
+        var lang = $('.selected-lang').attr('lang'); 
+        return 'static/js/datatables-json/'+languageMap[lang]+'.json'
+    }
+    
   $('#table_projects').DataTable({
+      language : {
+          url: getCurrentSelectedLanguage()
+        },
       "lengthChange": true,
       "bServerSide": true,
       "sPaginationType": "full_numbers",
@@ -57,28 +71,24 @@ $(document).ready(function() {
               className: 'btn-primary',
           }, {
               extend: 'copy',
-              text: '<i class="fas fa-copy"></i> Copy',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'csv',
-              text: '<i class="fas fa-file-csv"></i> CSV',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'excel',
-              text: '<i class="fas fa-file-excel"></i> Excel',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
               }
           }, {
               extend: 'pdfHtml5',
-              text: '<i class="fas fa-file-pdf"></i> PDF',
               className: 'btn-outline-primary',
               orientation: 'landscape',
               pageSize: 'LEGAL',
@@ -87,7 +97,6 @@ $(document).ready(function() {
               }
           }, {
               extend: 'print',
-              text: '<i class="fas fa-print"></i> Print',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3]
@@ -150,6 +159,9 @@ $(document).ready(function() {
 
   // DataTable for Experiments Page
   $('#table_experiments').DataTable({
+    language : {
+        url: getCurrentSelectedLanguage()
+      },
       "oSearch": {
           "sSearch": getExperimentsLinkedToProject("project-guid-filter")
       },
@@ -223,28 +235,24 @@ $(document).ready(function() {
               className: 'btn-primary',
           }, {
               extend: 'copy',
-              text: '<i class="fas fa-copy"></i> Copy',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'csv',
-              text: '<i class="fas fa-file-csv"></i> CSV',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'excel',
-              text: '<i class="fas fa-file-excel"></i> Excel',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
               }
           }, {
               extend: 'pdfHtml5',
-              text: '<i class="fas fa-file-pdf"></i> PDF',
               className: 'btn-outline-primary',
               orientation: 'landscape',
               pageSize: 'LEGAL',
@@ -253,7 +261,6 @@ $(document).ready(function() {
               }
           }, {
               extend: 'print',
-              text: '<i class="fas fa-print"></i> Print',
               className: 'btn-outline-primary',
               exportOptions: {
                   columns: [1, 2, 3, 4, 5, 6, 7]
@@ -298,6 +305,9 @@ $(document).ready(function() {
 
   // DataTable to choose an Project for creating an Experiment
   $('#table_selection').DataTable({
+    language : {
+        url: getCurrentSelectedLanguage()
+      },
       "lengthMenu": [
           [10, 25, 50, -1],
           [10, 25, 50, "All"]

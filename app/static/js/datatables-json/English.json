@@ -1,0 +1,32 @@
+
+
+{
+	"sEmptyTable":     "No data available in table",
+	"sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
+	"sInfoEmpty":      "Showing 0 to 0 of 0 entries",
+	"sInfoFiltered":   "(filtered from _MAX_ total entries)",
+	"sInfoPostFix":    "",
+	"sInfoThousands":  ",",
+	"sLengthMenu":     "Show _MENU_ entries",
+	"sLoadingRecords": "Loading...",
+	"sProcessing":     "Processing...",
+	"sSearch":         "Search:",
+	"sZeroRecords":    "No matching records found",
+	"oPaginate": {
+		"sFirst":    "First",
+		"sLast":     "Last",
+		"sNext":     "Next",
+		"sPrevious": "Previous"
+	},
+	"oAria": {
+		"sSortAscending":  ": activate to sort column ascending",
+		"sSortDescending": ": activate to sort column descending"
+	},
+	"buttons": {
+        "copy": "<i class=\"fas fa-copy\"></i> Copy",
+		"csv": "<i class=\"fas fa-file-csv\"></i> CSV",
+		"excel": "<i class=\"fas fa-file-excel\"></i> Excel",
+		"pdf": "<i class=\"fas fa-file-pdf\"></i> PDF",
+		"print": "<i class=\"fas fa-print\"></i> Print"
+	}
+}
