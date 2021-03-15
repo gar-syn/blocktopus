@@ -1,5 +1,5 @@
 {% extends "layout.html" %} 
-{% block title %}Profile{% endblock %} 
+{% block title %}{{ _('Profile') }}{% endblock %} 
 {% block content %}
 <div class="container-fluid my-4">
    {% with messages = get_flashed_messages(with_categories=true) %}
@@ -11,44 +11,44 @@
    {% endfor %}
    {% endif %}
    {% endwith %}
-   <h1 class="h3 mb-2 text-gray-800">Your Profile</h1>
+   <h1 class="h3 mb-2 text-gray-800">{{ _('Your Profile') }}</h1>
    <div class="mb-4">
    </div>
     <div class ="row"> <div class ="col-xl-6">
    <div class="card shadow mb-4">
       <div class="card-header py-3">
-         <h6 class="m-0 font-weight-bold text-primary">Profile Information</h6>
+         <h6 class="m-0 font-weight-bold text-primary">{{ _('Profile Information') }}</h6>
       </div>
       <div class="card-body">
          <div class="panel panel-primary">
-            <div class="text-xs">Name:</div>
+            <div class="text-xs">{{ _('Name:') }}</div>
             <div class="text-lg font-weight-bold text-gray-700">{{current_user.name}}</div>
          </div>
          <hr>
          <div class="panel panel-primary">
-            <div class="text-xs">Email:</div>
+            <div class="text-xs">{{ _('Email:') }}</div>
             <div class="text-lg font-weight-bold text-gray-700">{{current_user.email}}</div>
          </div>
          <hr>
          <div class="panel panel-primary">
-            <div class="text-xs">Current Site:</div>
+            <div class="text-xs">{{ _('Current Site:') }}</div>
             <div class="text-lg font-weight-bold text-gray-700">{{current_user.site}}</div>
          </div>
          <hr>
          <div class="panel panel-primary">
-            <div class="text-xs">Current Building:</div>
+            <div class="text-xs">{{ _('Current Building:') }}</div>
             <div class="text-lg font-weight-bold text-gray-700">{{current_user.building}}</div>
          </div>
          <hr>
          <div class="panel panel-primary">
-            <div class="text-xs">Current Room:</div>
+            <div class="text-xs">{{ _('Current Room:') }}</div>
             <div class="text-lg font-weight-bold text-gray-700">{{current_user.room}}</div>
          </div>
       </div>
    </div>
    <div class="card shadow mb-4">
       <div class="card-header py-3">
-         <h6 class="m-0 font-weight-bold text-primary">Profile Actions</h6>
+         <h6 class="m-0 font-weight-bold text-primary">{{ _('Profile Actions') }}</h6>
       </div>
       <div class="card-body">
          <div class="panel panel-info">
@@ -56,14 +56,14 @@
                <span class="icon text-gray-600">
                <i class="fas fa-arrow-right"></i>
                </span>
-               <span class="text">Change your Email</span>
+               <span class="text">{{ _('Change your Email') }}</span>
             </a>
             <div class="mb-2"></div>
             <a href="{{ url_for('auth.change_password') }}" class="btn btn-light btn-icon-split">
                <span class="icon text-gray-600">
                <i class="fas fa-arrow-right"></i>
                </span>
-               <span class="text">Change your Password</span>
+               <span class="text">{{ _('Change your Password') }}</span>
             </a>
          </div>
          <hr>
@@ -72,21 +72,21 @@
             <span class="icon text-gray-600">
             <i class="fas fa-arrow-right"></i>
             </span>
-            <span class="text">Change Current Site</span>
+            <span class="text">{{ _('Change Current Site') }}</span>
             </a>
             <div class="mb-2"></div>
             <a href="{{ url_for('auth.change_building') }}" class="btn btn-light btn-icon-split">
             <span class="icon text-gray-600">
             <i class="fas fa-arrow-right"></i>
             </span>
-            <span class="text">Change Current Building</span>
+            <span class="text">{{ _('Change Current Building') }}</span>
             </a>
             <div class="mb-2"></div>
             <a href="{{ url_for('auth.change_room') }}" class="btn btn-light btn-icon-split">
             <span class="icon text-gray-600">
             <i class="fas fa-arrow-right"></i>
             </span>
-            <span class="text">Change Current Room</span>
+            <span class="text">{{ _('Change Current Room') }}</span>
             </a>
          </div>
       </div>

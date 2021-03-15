@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
 from datetime import date, datetime
-import uuid
+from flask_babel import _
 
 from app.models.model import Projects, Experiments
 from app.util.extensions import db
@@ -39,7 +39,7 @@ def create_project():
             return render_template("forms/create-project.html", message=success_message)
         except IntegrityError:
             db.session.rollback()
-            flash("GUID is already linked to an existing Project!" , 'danger')
+            flash(_('GUID is already linked to an existing Project!'), 'danger')
             return render_template("forms/create-project.html", create_project_form=create_project_form)
     else:
         # show validaton errors
@@ -76,7 +76,7 @@ def create_experiment():
             return render_template("forms/create-experiment.html", message=success_message)
         except IntegrityError:
             db.session.rollback()
-            flash("ELN Number is already linked to an existing Project!" , 'danger')
+            flash(_('ELN Number is already linked to an existing Project!'), 'danger')
             return render_template("forms/create-experiment.html", create_experiment_form=create_experiment_form)
     #Autopopulate fields, if user is logged in
     elif request.method == 'GET' and current_user.is_authenticated:
@@ -102,11 +102,11 @@ def delete_project(id):
     try:
         db.session.delete(project)
         db.session.commit()
-        flash('You have successfully deleted the project!', 'success')
+        flash(_('You have successfully deleted the project!'), 'success')
         return redirect(url_for('queries.projects'))
     except IntegrityError:
         db.session.rollback()
-        flash("You can't delete this project, because there are experiments linked to it!" , 'danger')
+        flash(_('You can not delete this project, because there are experiments linked to it!') , 'danger')
         return redirect(url_for('queries.projects'))
     
 def save_project_changes(project, form, new=False):
@@ -126,7 +126,7 @@ def edit_project(id):
         create_project_form = CreateProject(formdata=request.form, obj=project)
         if request.method == 'POST' and create_project_form.validate():
             save_project_changes(project, create_project_form)
-            flash('Project updated successfully!', 'success')
+            flash(_('Project updated successfully!'), 'success')
             return redirect(url_for('queries.projects'))
         return render_template('forms/create-project.html', create_project_form=create_project_form)
     else:
@@ -139,11 +139,11 @@ def delete_experiment(id):
     try:
         db.session.delete(experiment)
         db.session.commit()
-        flash('You have successfully deleted the experiment!', 'success')
+        flash(_('You have successfully deleted the experiment!'), 'success')
         return redirect(url_for('queries.experiments'))
     except IntegrityError:
         db.session.rollback()
-        flash("You can't delete this project" , 'danger')
+        flash(_('You can not delete this project'), 'danger')
         return redirect(url_for('queries.experiment'))
 
 def save_experiment_changes(experiment, form, new=False):
@@ -169,11 +169,11 @@ def edit_experiment(id):
             try:
                 save_experiment_changes(experiment, create_experiment_form)
                 db.session.commit()
-                flash('Experiment updated successfully!', 'success')
+                flash(_('Experiment updated successfully!'), 'success')
                 return redirect(url_for('queries.experiments'))
             except IntegrityError:
                 db.session.rollback()
-                flash("You can't update this experiment - This ELN Number is already in use!" , 'danger')
+                flash(_('You can not update this experiment - This ELN Number is already in use!'), 'danger')
                 return render_template('forms/create-experiment.html', create_experiment_form=create_experiment_form)
         return render_template('forms/create-experiment.html', create_experiment_form=create_experiment_form)
     else:

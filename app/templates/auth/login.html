@@ -1,11 +1,11 @@
-{% extends "layout.html" %} {% block title %}Login{% endblock %} 
+{% extends "layout.html" %} {% block title %}{{ _('Login') }}{% endblock %} 
 {% import "bootstrap/wtf.html" as wtf %}
 {% block headerscripts %}
 {% endblock %} 
 {% block content %}
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
    <main class="change-form">
-      <h1 class="h3 mb-3 text-gray-900">Login</h1>
+      <h1 class="h3 mb-3 text-gray-900">{{ _('Login') }}</h1>
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
       {% for category, message in messages %}
@@ -21,18 +21,18 @@
             {{form.csrf_token}}
          {% endif %}
             <div class="form-group">
-               {{ wtf.form_field(form.email, class='form-control', placeholder='E-Mail') }}
+               {{ wtf.form_field(form.email, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.password, class='form-control', placeholder='Password') }}
+               {{ wtf.form_field(form.password, class='form-control') }}
             </div>
             <div class="form-group">
-               {{ wtf.form_field(form.remember_me, class='form-control', placeholder='Remember me?') }}
+               {{ wtf.form_field(form.remember_me, class='form-control') }}
             </div>
-            <button type="submit" class="btn btn-primary btn-lg">Login <i class="fas fa-sign-in-alt"></i></button>
+            <button type="submit" class="btn btn-primary btn-lg">{{ _('Login') }} <i class="fas fa-sign-in-alt"></i></button>
          </form>
          <div class="mt-3">
-            <em>Need an account? </em><a href="/register">Signup!</a>
+            <em>{{ _('Need an account?') }} </em><a href="/register">{{ _('Signup!') }}</a>
          </div>
       </div>
    </main>

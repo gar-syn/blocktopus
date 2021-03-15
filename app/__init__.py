@@ -1,22 +1,43 @@
 import os
-from flask import Flask, render_template
+import sys
+from flask import Flask, render_template, session, request
 from flask_assets import Environment
 from flask_login import LoginManager
 
 from app.util.config import configuration_classes
 from app.util.extensions import db, jsglue, bootstrap, create_celery_app, babel
 
-#SELECTED_LANGUAGE = 'en'
-
 def create_app(config_object='dev'):
     app = Flask(__name__)
     app.config.from_object(configuration_classes[config_object])
+    configure_languages(app)
     register_assets(app)
     register_extensions(app)
     register_loginmanager(app)
     register_blueprints(app)
     register_errorhandlers(app)
     return app
+
+def configure_languages(app):
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    sys.path.append(os.path.dirname(__name__))
+    app.config["BABEL_TRANSLATION_DIRECTORIES"] = os.path.join(base_dir, "static/translations")
+    
+    @babel.localeselector
+    def get_locale():
+        try:
+            language = session['language']
+        except KeyError:
+            language = None
+        if language is not None:
+            return language
+        return request.accept_languages.best_match(app.config['LANGUAGES'].keys())
+
+    @app.context_processor
+    def inject_conf_var():
+        return dict(AVAILABLE_LANGUAGES=app.config['LANGUAGES'],
+                    CURRENT_LANGUAGE=session.get('language', request.accept_languages.best_match(app.config['LANGUAGES'].keys())))
+
 
 def register_assets(app):
     """Register Flask assets."""
@@ -63,4 +84,3 @@ def register_errorhandlers(app):
 
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_error)
-    

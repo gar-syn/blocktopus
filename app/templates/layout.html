@@ -30,28 +30,28 @@
          <li class="nav-item">
             <a href="{{ url_for('main.index') }}" class="nav-link">
             <i class="fas fa-home"></i>
-            <span>Home</span></a>
+            <span>{{ _('Home') }}</span></a>
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider">
          <!-- Heading -->
          <div class="sidebar-heading">
-            Interface
+            {{ _('Interface') }}
          </div>
          <!-- Nav Item - Interface -->
          <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-plus-circle"></i>
-            <span>Create...</span>
+            <span>{{ _('Create...') }}</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
-                  <h6 class="collapse-header">Create a new:</h6>
-                  <a href="{{ url_for('forms.create_project') }}" class="collapse-item"><i class="far fa-folder-open"></i> Project</a>
-                  <a href="{{ url_for('queries.choose_projects') }}" class="collapse-item"><i class="fas fa-flask"></i> Experiment</a>
-                  <a class="collapse-item" href="/"><i class="fas fa-pencil-alt"></i> Sketch</a>
+                  <h6 class="collapse-header">{{ _('Create a new:') }}</h6>
+                  <a href="{{ url_for('forms.create_project') }}" class="collapse-item"><i class="far fa-folder-open"></i> {{ _('Project') }}</a>
+                  <a href="{{ url_for('queries.choose_projects') }}" class="collapse-item"><i class="fas fa-flask"></i> {{ _('Experiment') }}</a>
+                  <a class="collapse-item" href="/"><i class="fas fa-pencil-alt"></i> {{ _('Sketch') }}</a>
                </div>
             </div>
          </li>
@@ -59,25 +59,25 @@
          <li class="nav-item">
             <a href="{{ url_for('queries.projects') }}" class="nav-link">
             <i class="fas fa-fw fa-folder-open"></i>
-            <span>Projects</span></a>
+            <span>{{ _('Projects') }}</span></a>
          </li>
          <!-- Nav Item - Experiments -->
          <li class="nav-item">
             <a href="{{ url_for('queries.experiments') }}" class="nav-link">
             <i class="fas fa-fw fa-flask"></i>
-            <span>Experiments</span></a>
+            <span>{{ _('Experiments') }}</span></a>
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider">
          <!-- Heading -->
          <div class="sidebar-heading">
-            Pages
+            {{ _('Pages') }}
          </div>
          <li class="nav-item">
             {% if current_user.is_authenticated %}
             <a href="{{ url_for('auth.profile') }}" class="nav-link">
             <i class="fas fa-user-circle"></i>
-            <span>Profile</span>
+            <span>{{ _('Profile') }}</span>
             </a>
          </li>
          <!-- Nav Item - Pages -->
@@ -85,18 +85,18 @@
             {% endif %} {% if not current_user.is_authenticated %}
             <a href="{{ url_for('auth.login') }}" class="nav-link">
             <i class="fas fa-sign-in-alt"></i>                   
-            <span>Login</span></a>
+            <span>{{ _('Login') }}</span></a>
          </li>
          <li class="nav-item">
             <a href="{{ url_for('auth.register') }}" class="nav-link">
             <i class="fas fa-user-plus"></i>
-            <span>Register</span></a>
+            <span>{{ _('Register') }}</span></a>
          </li>
          <li class="nav-item">
             {% endif %} {% if current_user.is_authenticated %}
             <a href="{{ url_for('auth.logout') }}" class="nav-link" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-times-circle"></i>
-            <span>Logout</span></a>
+            <span>{{ _('Logout') }}</span></a>
             {% endif %}
          </li>
          <!-- Divider -->
@@ -104,30 +104,30 @@
          <hr class="sidebar-divider">
          <!-- Heading -->
          <div class="sidebar-heading">
-            Change language
+            {{ _('Current Language') }}
          </div>
          <!-- Nav Item - Pages Collapse Menu -->
          <li class="nav-item">
                {% if CURRENT_LANGUAGE == 'en' %}
                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
-               <div class="selected-lang flag flag-icon-background flag-icon-us" title="us" id="us">&nbsp;</div><span class="selected-lang-text">English</span>
+               <div class="selected-lang flag flag-icon-background flag-icon-us" title="us" id="us">&nbsp;</div><span class="selected-lang-text">{{ _('English') }}</span>
                 </a>
                {% elif CURRENT_LANGUAGE == 'de' %}
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
-               <div class="selected-lang flag flag-icon-background flag-icon-de" title="de" id="de">&nbsp;</div><span class="selected-lang-text">German</span>
+               <div class="selected-lang flag flag-icon-background flag-icon-de" title="de" id="de">&nbsp;</div><span class="selected-lang-text">{{ _('German') }}</span>
                </a>
                {%  endif %}
             
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div id="language-selector" class="bg-white py-2 collapse-inner rounded">
-               <h6 class="collapse-header">Change language:</h6>
+               <h6 class="collapse-header">{{ _('Change language to:') }}</h6>
                <a class="collapse-item" href="{{ url_for('main.set_language', language='en') }}">
-                  <div class="flag flag-icon-background flag-icon-us" title="us" id="us"> English</div>
+                  <div class="flag flag-icon-background flag-icon-us" title="us" id="us"> {{ _('English') }}</div>
                </a>
                <a class="collapse-item" href="{{ url_for('main.set_language', language='de') }}">
-                  <div class="flag flag-icon-background flag-icon-de" title="de" id="de"> German</div>
+                  <div class="flag flag-icon-background flag-icon-de" title="de" id="de"> {{ _('German') }}</div>
                </a>
             </div>
          </li>
@@ -160,15 +160,15 @@
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">{{ _('Ready to Leave?') }}</h5>
                   <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                   </button>
                </div>
-               <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+               <div class="modal-body">{{ _('Select "Logout" below if you are ready to end your current session.') }}</div>
                <div class="modal-footer">
-                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                  <a href="{{ url_for('auth.logout') }}" class="btn btn-primary">Logout</a>
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">{{ _('Cancel') }}</button>
+                  <a href="{{ url_for('auth.logout') }}" class="btn btn-primary">{{ _('Logout') }}</a>
                </div>
             </div>
          </div>

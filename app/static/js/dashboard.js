@@ -59,7 +59,7 @@
         $('input#submit').val('Update Project');
     } else if ((window.location.href.indexOf("experiments") > -1)   && (window.location.href.indexOf("edit") > -1) && (window.location.href.indexOf('login') === -1)) {
         $('h1').html('Update this Experiment!');
-        $('input#submit').val('Update Experiment');
+        $('input#submit').val("Update Experiment");
     }
 });
 
