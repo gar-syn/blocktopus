@@ -19,6 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # needed for vscode
 RUN pip install pylint
 
-COPY . .
+COPY . /usr/src/app
+RUN pybabel compile -d app/static/translations
 # TODO: implement gunicorn or some other productiongrade server
 CMD [ "flask", "run", "--host=0.0.0.0", "--port=5000" ]
