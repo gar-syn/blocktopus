@@ -1,11 +1,10 @@
 from flask import Blueprint, render_template, send_from_directory, request, redirect, url_for, session
 
 from app.util.extensions import db
-from flask_babel import _, get_locale
 
 main = Blueprint('main', __name__)
 
-def redirect_previous_url(default='index'):
+def redirect_previous_url(default='main.index'):
     return request.args.get('next') or \
            request.referrer or \
            url_for(default)
