@@ -35,7 +35,7 @@ def create_project():
         try:
             db.session.add(create_new_project)
             db.session.commit()
-            success_message = f"New project '{title}' has been created."
+            success_message = _("New project '%(title)s' has been created.", title=title)
             return render_template("forms/create-project.html", message=success_message)
         except IntegrityError:
             db.session.rollback()
@@ -72,7 +72,7 @@ def create_experiment():
         try:
             db.session.add(create_new_experiment)
             db.session.commit()
-            success_message = f"New experiment '{title}' has been created."
+            success_message = _("New experiment '%(title)s' has been created.", title=title)
             return render_template("forms/create-experiment.html", message=success_message)
         except IntegrityError:
             db.session.rollback()

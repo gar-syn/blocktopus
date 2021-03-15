@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-12 17:20+0100\n"
+"POT-Creation-Date: 2021-03-15 11:11+0100\n"
 "PO-Revision-Date: 2021-03-12 13:53+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -109,7 +109,6 @@ msgid "Logout"
 msgstr "Ausloggen"
 
 #: app/templates/layout.html:107
-#, fuzzy
 msgid "Current Language"
 msgstr "Aktuelle Sprache"
 
@@ -275,7 +274,9 @@ msgstr "Zurück zur Startseite &amp; Realität"
 
 #: app/templates/error-handling/500.html:14
 msgid "Oh no! Our spaghetti code is not working properly. We will be back soon!"
-msgstr "Oh nein! Unser Spaghetti-Code funktioniert nicht richtig. Wir sind bald wieder da!"
+msgstr ""
+"Oh nein! Unser Spaghetti-Code funktioniert nicht richtig. Wir sind bald "
+"wieder da!"
 
 #: app/templates/error-handling/500.html:17
 msgid "Back to Home"
@@ -504,9 +505,19 @@ msgstr "Diese E-Mail existiert bereits!"
 msgid "Error! That email already exists!"
 msgstr "Fehler! Diese E-Mail existiert bereits!"
 
+#: app/views/forms.py:38
+#, python-format
+msgid "New project '%(title)s' has been created."
+msgstr "Das Projekt '%(title)s' wurde erfolgreich erstellt."
+
 #: app/views/forms.py:42
 msgid "GUID is already linked to an existing Project!"
 msgstr "GUID ist bereits mit einem bestehenden Projekt verknüpft!"
+
+#: app/views/forms.py:75
+#, python-format
+msgid "New experiment '%(title)s' has been created."
+msgstr "Das Experiment '%(title)s' wurde erfolgreich erstellt."
 
 #: app/views/forms.py:79
 msgid "ELN Number is already linked to an existing Project!"
@@ -542,5 +553,7 @@ msgstr "Experiment erfolgreich aktualisiert!"
 
 #: app/views/forms.py:176
 msgid "You can not update this experiment - This ELN Number is already in use!"
-msgstr "Du kannst dieses Experiment nicht aktualisieren - Diese ELN-Nummer ist bereits in Verwendung!"
+msgstr ""
+"Du kannst dieses Experiment nicht aktualisieren - Diese ELN-Nummer ist "
+"bereits in Verwendung!"
 
