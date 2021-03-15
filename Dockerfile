@@ -10,9 +10,6 @@ RUN apt-get -y install sqlite3 libsqlite3-dev
 
 
 WORKDIR /usr/src/app
-# In order for the Docker build cache to cache packages installed via pip,
-# it’s necessary to add the requirements.txt file to the image, and run pip install
-# before adding the rest of the app code (via COPY . .)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
