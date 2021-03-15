@@ -1,6 +1,20 @@
+
 // DataTable for Projects Page
 $(document).ready(function() {
+
+      function getCurrentSelectedLanguage() {
+        var languageMap = {
+            'en' : 'English',
+            'de' : 'German'
+        }
+        var lang = $('.selected-lang').attr('lang'); 
+        return 'static/js/datatables-json/'+languageMap[lang]+'.json'
+    }
+    
   $('#table_projects').DataTable({
+      language : {
+          url: getCurrentSelectedLanguage()
+        },
       "lengthChange": true,
       "bServerSide": true,
       "sPaginationType": "full_numbers",
@@ -150,6 +164,9 @@ $(document).ready(function() {
 
   // DataTable for Experiments Page
   $('#table_experiments').DataTable({
+    language : {
+        url: getCurrentSelectedLanguage()
+      },
       "oSearch": {
           "sSearch": getExperimentsLinkedToProject("project-guid-filter")
       },
@@ -298,6 +315,9 @@ $(document).ready(function() {
 
   // DataTable to choose an Project for creating an Experiment
   $('#table_selection').DataTable({
+    language : {
+        url: getCurrentSelectedLanguage()
+      },
       "lengthMenu": [
           [10, 25, 50, -1],
           [10, 25, 50, "All"]
