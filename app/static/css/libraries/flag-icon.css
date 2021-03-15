@@ -30,3 +30,9 @@
 .flag-icon-us.flag-icon-squared {
   background-image: url(../../img/flags/1x1/us.svg);
 }
+.flag-icon-fr {
+  background-image: url(../../img/flags/4x3/fr.svg);
+}
+.flag-icon-fr.flag-icon-squared {
+  background-image: url(../../img/flags/1x1/fr.svg);
+}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-15 11:59+0100\n"
+"POT-Creation-Date: 2021-03-15 12:56+0100\n"
 "PO-Revision-Date: 2021-03-12 13:53+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -108,7 +108,7 @@ msgstr "Anmelden"
 msgid "Register"
 msgstr "Registrieren"
 
-#: app/templates/layout.html:99 app/templates/layout.html:171
+#: app/templates/layout.html:99 app/templates/layout.html:180
 msgid "Logout"
 msgstr "Ausloggen"
 
@@ -116,27 +116,31 @@ msgstr "Ausloggen"
 msgid "Current Language"
 msgstr "Aktuelle Sprache"
 
-#: app/templates/layout.html:114 app/templates/layout.html:127
+#: app/templates/layout.html:114 app/templates/layout.html:133
 msgid "English"
 msgstr "Englisch"
 
-#: app/templates/layout.html:119 app/templates/layout.html:130
+#: app/templates/layout.html:119 app/templates/layout.html:136
 msgid "German"
 msgstr "Deutsch"
 
-#: app/templates/layout.html:125
+#: app/templates/layout.html:124 app/templates/layout.html:139
+msgid "French"
+msgstr "Französisch"
+
+#: app/templates/layout.html:131
 msgid "Change language to:"
 msgstr "Sprache ändern zu:"
 
-#: app/templates/layout.html:163
+#: app/templates/layout.html:172
 msgid "Ready to Leave?"
 msgstr "Bereit dich auszuloggen?"
 
-#: app/templates/layout.html:168
+#: app/templates/layout.html:177
 msgid "Select \"Logout\" below if you are ready to end your current session."
 msgstr "Wähle \"Logout\" wenn du deine Sitzung beenden möchtest."
 
-#: app/templates/layout.html:170
+#: app/templates/layout.html:179
 msgid "Cancel"
 msgstr "Abbrechen"
 
