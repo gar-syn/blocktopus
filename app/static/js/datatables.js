@@ -5,7 +5,8 @@ $(document).ready(function() {
       function getCurrentSelectedLanguage() {
         var languageMap = {
             'en' : 'English',
-            'de' : 'German'
+            'de' : 'German',
+            'fr' : 'French'
         }
         var lang = $('.selected-lang').attr('lang'); 
         return 'static/js/datatables-json/'+languageMap[lang]+'.json'
