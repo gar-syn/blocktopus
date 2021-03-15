@@ -100,5 +100,10 @@
 
 .sidebar-toggled .flag-icon-background {
   background-position: 60%;
+}
 
+.alert-message {
+  color: #806520;
+  background-color: #fdf3d8;
+  border-color: #fceec9;
 }

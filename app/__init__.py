@@ -58,6 +58,8 @@ def register_loginmanager(app):
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+    from flask_babel import lazy_gettext as _l
+    login_manager.login_message = _l('Please log in to access this page.')
     from app.models.model import User
     @login_manager.user_loader
     def load_user(user_id):
