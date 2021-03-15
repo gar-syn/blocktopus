@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-15 12:56+0100\n"
+"POT-Creation-Date: 2021-03-15 15:00+0100\n"
 "PO-Revision-Date: 2021-03-15 12:57+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -46,7 +46,6 @@ msgstr "Expériences en cours"
 msgid "No running Experiments!"
 msgstr "Pas d'expériences en cours!"
 
-Saved Sketches
 #: app/templates/index.html:77
 msgid "Saved Sketches"
 msgstr "Croquis sauvegardés"
@@ -139,7 +138,9 @@ msgstr "Prêt à partir ?"
 
 #: app/templates/layout.html:177
 msgid "Select \"Logout\" below if you are ready to end your current session."
-msgstr "Sélectionnez \"Déconnexion\" ci-dessous si vous êtes prêt à mettre fin à votre session actuelle."
+msgstr ""
+"Sélectionnez \"Déconnexion\" ci-dessous si vous êtes prêt à mettre fin à "
+"votre session actuelle."
 
 #: app/templates/layout.html:179
 msgid "Cancel"
@@ -212,7 +213,7 @@ msgstr "Inscrivez-vous!"
 
 #: app/templates/auth/profile.html:14
 msgid "Your Profile"
-msgstr Votre profil"
+msgstr "otre profil"
 
 #: app/templates/auth/profile.html:20
 msgid "Profile Information"
@@ -263,8 +264,11 @@ msgid ""
 "Remember those old 404 pages from the 90s that said something like \n"
 "         “Something’s gone wrong, but don’t worry, our webmasters have "
 "been notified.” "
-msgstr "Rappelez-vous ces vieilles pages 404 des années 90 qui disaient quelque chose comme \n"
-"         “Il y a eu un problème, mais ne vous inquiétez pas, nos webmasters ont été prévenus.” "
+msgstr ""
+"Rappelez-vous ces vieilles pages 404 des années 90 qui disaient quelque "
+"chose comme \n"
+"         “Il y a eu un problème, mais ne vous inquiétez pas, nos "
+"webmasters ont été prévenus.” "
 
 #: app/templates/error-handling/404.html:17
 msgid "But were the webmasters ever notified?"
@@ -284,7 +288,9 @@ msgstr ""
 
 #: app/templates/error-handling/500.html:17
 msgid "Back to Home"
-msgstr "Oh non! Notre code spaghetti ne fonctionne pas correctement. Nous serons de retour bientôt!"
+msgstr ""
+"Oh non! Notre code spaghetti ne fonctionne pas correctement. Nous serons "
+"de retour bientôt!"
 
 #: app/templates/forms/create-experiment.html:4
 #: app/templates/forms/create-experiment.html:10
@@ -421,9 +427,63 @@ msgstr "Confirmez votre mot de passe"
 msgid "Name"
 msgstr "Nom"
 
+#: app/util/form_validation.py:15 app/util/form_validation.py:60
+msgid "Invalid Experiment Description"
+msgstr "Description invalide de l'expérience"
+
+#: app/util/form_validation.py:16 app/util/form_validation.py:61
+msgid "Invalid Experiment Description length"
+msgstr "Longueur de la description de l'expérience non valide"
+
+#: app/util/form_validation.py:19 app/util/form_validation.py:64
+#: app/util/form_validation.py:82
+msgid "Invalid Experiment Site"
+msgstr "Emplacement de l'expérience non valide"
+
+#: app/util/form_validation.py:20 app/util/form_validation.py:65
+#: app/util/form_validation.py:83
+msgid "Invalid Experiment Site length"
+msgstr "Longueur de l'emplacement de l'expérience non valide"
+
+#: app/util/form_validation.py:23 app/util/form_validation.py:68
+#: app/util/form_validation.py:89
+msgid "Invalid Experiment Building"
+msgstr "Bâtiment d'expérimentation invalide"
+
+#: app/util/form_validation.py:24 app/util/form_validation.py:69
+#: app/util/form_validation.py:90
+msgid "Invalid Experiment Building length"
+msgstr "Longueur du bâtiment expérimental non valide"
+
+#: app/util/form_validation.py:27 app/util/form_validation.py:72
+#: app/util/form_validation.py:96
+msgid "Invalid Experiment Room"
+msgstr "Salle d'expérience invalide"
+
+#: app/util/form_validation.py:28 app/util/form_validation.py:73
+#: app/util/form_validation.py:97
+msgid "Invalid Experiment Room length"
+msgstr "Longueur de la salle d'expérience non valide"
+
 #: app/util/form_validation.py:35
 msgid "Remember Me"
 msgstr "Souviens-toi de moi"
+
+#: app/util/form_validation.py:39
+msgid "Invalid Project Title"
+msgstr "Titre du projet non valide"
+
+#: app/util/form_validation.py:40
+msgid "Invalid Project Title length"
+msgstr "Longueur du titre du projet non valide"
+
+#: app/util/form_validation.py:43
+msgid "Invalid Project Description"
+msgstr "Description du projet non valide"
+
+#: app/util/form_validation.py:44
+msgid "Invalid Project Description length"
+msgstr "Longueur de la description du projet non valide"
 
 #: app/util/form_validation.py:47
 msgid "Create new Project"
@@ -433,9 +493,25 @@ msgstr "Créer un nouveau projet"
 msgid "Experiment ELN Number"
 msgstr "Numéro d'ELN de l'expérience"
 
+#: app/util/form_validation.py:52
+msgid "Invalid ELN"
+msgstr "Numéro d'ELN non valide"
+
+#: app/util/form_validation.py:53
+msgid "Invalid ELN length"
+msgstr "Longueur du numéro ELN non valide"
+
 #: app/util/form_validation.py:55
 msgid "Experiment Title"
 msgstr "Titre de l'expérience"
+
+#: app/util/form_validation.py:56
+msgid "Invalid Experiment Title"
+msgstr "Titre de l'expérience non valide"
+
+#: app/util/form_validation.py:57
+msgid "Invalid Experiment Title length"
+msgstr "Longueur du titre de l'expérience non valide"
 
 #: app/util/form_validation.py:59
 msgid "Experiment Description"
@@ -479,7 +555,9 @@ msgstr "L'adresse e-mail ({}) est déjà enregistrée"
 
 #: app/views/auth.py:42
 msgid "Invalid username or password. Please check your login credentials."
-msgstr "Nom d'utilisateur ou mot de passe invalide. Veuillez vérifier vos identifiants de connexion."
+msgstr ""
+"Nom d'utilisateur ou mot de passe invalide. Veuillez vérifier vos "
+"identifiants de connexion."
 
 #: app/views/auth.py:67
 msgid "Your site has been changed."
@@ -535,7 +613,9 @@ msgstr "Vous avez réussi à supprimer le projet!"
 msgid ""
 "You can not delete this project, because there are experiments linked to "
 "it!"
-msgstr "Vous ne pouvez pas supprimer ce projet, car il y a des expériences qui lui sont liées!"
+msgstr ""
+"Vous ne pouvez pas supprimer ce projet, car il y a des expériences qui "
+"lui sont liées!"
 
 #: app/views/forms.py:129
 msgid "Project updated successfully!"
@@ -555,5 +635,7 @@ msgstr "Expérience mise à jour avec succès!"
 
 #: app/views/forms.py:176
 msgid "You can not update this experiment - This ELN Number is already in use!"
-msgstr "Vous ne pouvez pas mettre à jour cette expérience - Ce numéro ELN est déjà utilisé!"
+msgstr ""
+"Vous ne pouvez pas mettre à jour cette expérience - Ce numéro ELN est "
+"déjà utilisé!"
 

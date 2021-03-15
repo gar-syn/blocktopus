@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-15 12:56+0100\n"
+"POT-Creation-Date: 2021-03-15 15:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -418,8 +418,62 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
+#: app/util/form_validation.py:15 app/util/form_validation.py:60
+msgid "Invalid Experiment Description"
+msgstr ""
+
+#: app/util/form_validation.py:16 app/util/form_validation.py:61
+msgid "Invalid Experiment Description length"
+msgstr ""
+
+#: app/util/form_validation.py:19 app/util/form_validation.py:64
+#: app/util/form_validation.py:82
+msgid "Invalid Experiment Site"
+msgstr ""
+
+#: app/util/form_validation.py:20 app/util/form_validation.py:65
+#: app/util/form_validation.py:83
+msgid "Invalid Experiment Site length"
+msgstr ""
+
+#: app/util/form_validation.py:23 app/util/form_validation.py:68
+#: app/util/form_validation.py:89
+msgid "Invalid Experiment Building"
+msgstr ""
+
+#: app/util/form_validation.py:24 app/util/form_validation.py:69
+#: app/util/form_validation.py:90
+msgid "Invalid Experiment Building length"
+msgstr ""
+
+#: app/util/form_validation.py:27 app/util/form_validation.py:72
+#: app/util/form_validation.py:96
+msgid "Invalid Experiment Room"
+msgstr ""
+
+#: app/util/form_validation.py:28 app/util/form_validation.py:73
+#: app/util/form_validation.py:97
+msgid "Invalid Experiment Room length"
+msgstr ""
+
 #: app/util/form_validation.py:35
 msgid "Remember Me"
+msgstr ""
+
+#: app/util/form_validation.py:39
+msgid "Invalid Project Title"
+msgstr ""
+
+#: app/util/form_validation.py:40
+msgid "Invalid Project Title length"
+msgstr ""
+
+#: app/util/form_validation.py:43
+msgid "Invalid Project Description"
+msgstr ""
+
+#: app/util/form_validation.py:44
+msgid "Invalid Project Description length"
 msgstr ""
 
 #: app/util/form_validation.py:47
@@ -430,8 +484,24 @@ msgstr ""
 msgid "Experiment ELN Number"
 msgstr ""
 
+#: app/util/form_validation.py:52
+msgid "Invalid ELN"
+msgstr ""
+
+#: app/util/form_validation.py:53
+msgid "Invalid ELN length"
+msgstr ""
+
 #: app/util/form_validation.py:55
 msgid "Experiment Title"
+msgstr ""
+
+#: app/util/form_validation.py:56
+msgid "Invalid Experiment Title"
+msgstr ""
+
+#: app/util/form_validation.py:57
+msgid "Invalid Experiment Title length"
 msgstr ""
 
 #: app/util/form_validation.py:59
