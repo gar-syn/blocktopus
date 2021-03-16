@@ -1,6 +1,5 @@
 import os
 from datetime import timedelta
-
 class Config(object):
     """Base configuration."""
     
@@ -24,6 +23,8 @@ class Config(object):
         'http://localhost:4200',
         'http://0.0.0.0:5000',
         'http://localhost:5000',
+        'http://0.0.0.0:8003',
+        'http://localhost:8003',
     ]
     JWT_HEADER_TYPE = 'Token'
 

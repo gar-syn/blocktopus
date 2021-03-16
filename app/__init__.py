@@ -64,7 +64,7 @@ def register_loginmanager(app):
     from app.models.model import User
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.filter(User.id == str(id)).first()
+        return User.query.get(user_id)
 
 def register_blueprints(app):
     """Register Flask blueprints."""

@@ -1,4 +1,4 @@
-from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean, Binary
+from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from flask import Markup
 from flask_login import UserMixin
