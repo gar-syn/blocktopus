@@ -4,19 +4,27 @@ EXPOSE 80 80
 EXPOSE 3000 3000
 EXPOSE 5000 5000
 
-
 RUN apt-get update
 RUN apt-get -y install sqlite3 libsqlite3-dev
 
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
+
+# Install pip requirements
+COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
 
 WORKDIR /usr/src/app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY . /usr/src/app
 
 # needed for vscode
 RUN pip install pylint
 
-COPY . /usr/src/app
 RUN pybabel compile -d app/static/translations
-# TODO: implement gunicorn or some other productiongrade server
-CMD [ "flask", "run", "--host=0.0.0.0", "--port=5000" ]
+
+CMD ["gunicorn", "--bind", "0.0.0.0:8003", "--worker-tmp-dir", "/dev/shm", "--workers", "2", "wsgi:app"]
+#docker build -t flask-docker .
+#docker run -p 8003:8003 flask-docker

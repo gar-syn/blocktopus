@@ -11,10 +11,10 @@ services:
       - "5001:5001" # app(debug) port
       - "3000:3000" # remote debugger attach port
     volumes:
-      - ./app:/usr/src/app/
+      - ./app:/usr/src/
     environment:
       - FLASK_DEBUG=1
-      - FLASK_APP=__init__.py
+      - FLASK_APP=wsgi.py
       - FLASK_ENV=development
       #- DATABASE_URL=mysql://root:supersecretpassword@sqldb/your_awesome_db
     command: flask run --host 0.0.0.0 # host=0.0.0.0 to make sure you can connect through Dockers networking
