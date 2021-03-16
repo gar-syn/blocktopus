@@ -213,7 +213,7 @@ msgstr "Inscrivez-vous!"
 
 #: app/templates/auth/profile.html:14
 msgid "Your Profile"
-msgstr "otre profil"
+msgstr "Otre profil"
 
 #: app/templates/auth/profile.html:20
 msgid "Profile Information"

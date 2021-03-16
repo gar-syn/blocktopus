@@ -33,6 +33,7 @@ class ProdConfig(Config):
 
     ENV = 'prod'
     DEBUG = False
+    SECRET_KEY = ']g\xe9\xfc\x0e\x9a=\x1a\x96\xcd[+N]\xf1\xba2b\xf9WQ\xe3XoHZ\x86\x054\x15\xf7\xfa'
     
 class DevConfig(Config):
     """Devolopment configuration."""
