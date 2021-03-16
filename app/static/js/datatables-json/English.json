@@ -12,6 +12,7 @@
 	"sProcessing":     "Processing...",
 	"sSearch":         "Search:",
 	"sZeroRecords":    "No matching records found",
+	"searchPlaceholder": "Search for...",
 	"oPaginate": {
 		"sFirst":    "First",
 		"sLast":     "Last",

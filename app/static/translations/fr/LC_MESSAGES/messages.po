@@ -1,17 +1,18 @@
-# Translations template for PROJECT.
+# French translations for PROJECT.
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-03-15 15:00+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2021-03-15 12:57+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,242 +20,244 @@ msgstr ""
 
 #: app/__init__.py:62
 msgid "Please log in to access this page."
-msgstr ""
+msgstr "Veuillez vous connecter pour accéder à cette page."
 
 #: app/templates/index.html:19
 msgid "Create new Sketch with Blockly"
-msgstr ""
+msgstr "Créer une nouvelle esquisse avec Blockly"
 
 #: app/templates/index.html:22
 msgid "New Sketch"
-msgstr ""
+msgstr "Nouvelle esquisse"
 
 #: app/templates/index.html:42
 msgid "Mass Flow, pH Control"
-msgstr ""
+msgstr "Débit massique, contrôle du pH"
 
 #: app/templates/index.html:45
 msgid "Standard Library"
-msgstr ""
+msgstr "Bibliothèque standard"
 
 #: app/templates/index.html:62
 msgid "Running Experiments"
-msgstr ""
+msgstr "Expériences en cours"
 
 #: app/templates/index.html:66
 msgid "No running Experiments!"
-msgstr ""
+msgstr "Pas d'expériences en cours!"
 
 #: app/templates/index.html:77
 msgid "Saved Sketches"
-msgstr ""
+msgstr "Croquis sauvegardés"
 
 #: app/templates/index.html:119
 msgid "Completed Experiments"
-msgstr ""
+msgstr "Expériences achevées"
 
 #: app/templates/layout.html:33
 msgid "Home"
-msgstr ""
+msgstr "Page d'accueil"
 
 #: app/templates/layout.html:39
 msgid "Interface"
-msgstr ""
+msgstr "Interface"
 
 #: app/templates/layout.html:46
 msgid "Create..."
-msgstr ""
+msgstr "Créer..."
 
 #: app/templates/layout.html:51
 msgid "Create a new:"
-msgstr ""
+msgstr "Créer un nouveau :"
 
 #: app/templates/layout.html:52
 msgid "Project"
-msgstr ""
+msgstr "Projet"
 
 #: app/templates/layout.html:53
 msgid "Experiment"
-msgstr ""
+msgstr "Expérience"
 
 #: app/templates/layout.html:54
 msgid "Sketch"
-msgstr ""
+msgstr "Sketch"
 
 #: app/templates/layout.html:62
 msgid "Projects"
-msgstr ""
+msgstr "Projets"
 
 #: app/templates/layout.html:68
 msgid "Experiments"
-msgstr ""
+msgstr "Expériences"
 
 #: app/templates/layout.html:74
 msgid "Pages"
-msgstr ""
+msgstr "Pages"
 
 #: app/templates/auth/profile.html:2 app/templates/layout.html:80
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: app/templates/auth/login.html:1 app/templates/auth/login.html:8
 #: app/templates/auth/login.html:32 app/templates/layout.html:88
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: app/templates/auth/register.html:1 app/templates/auth/register.html:44
 #: app/templates/layout.html:93
 msgid "Register"
-msgstr ""
+msgstr "Registre"
 
 #: app/templates/layout.html:99 app/templates/layout.html:180
 msgid "Logout"
-msgstr ""
+msgstr "Déconnexion"
 
 #: app/templates/layout.html:107
 msgid "Current Language"
-msgstr ""
+msgstr "Langue actuelle"
 
 #: app/templates/layout.html:114 app/templates/layout.html:133
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: app/templates/layout.html:119 app/templates/layout.html:136
 msgid "German"
-msgstr ""
+msgstr "Allemand"
 
 #: app/templates/layout.html:124 app/templates/layout.html:139
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: app/templates/layout.html:131
 msgid "Change language to:"
-msgstr ""
+msgstr "Changez la langue en :"
 
 #: app/templates/layout.html:172
 msgid "Ready to Leave?"
-msgstr ""
+msgstr "Prêt à partir ?"
 
 #: app/templates/layout.html:177
 msgid "Select \"Logout\" below if you are ready to end your current session."
 msgstr ""
+"Sélectionnez \"Déconnexion\" ci-dessous si vous êtes prêt à mettre fin à "
+"votre session actuelle."
 
 #: app/templates/layout.html:179
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: app/templates/auth/change-building.html:1
 msgid "Change User Building"
-msgstr ""
+msgstr "Modifier le bâtiment des utilisateurs"
 
 #: app/templates/auth/change-building.html:8
 msgid "Change your Building"
-msgstr ""
+msgstr "Changez votre bâtiment"
 
 #: app/templates/auth/change-building.html:9
 msgid "Your current Building is:"
-msgstr ""
+msgstr "Votre bâtiment actuel est :"
 
 #: app/templates/auth/change-email.html:1
 msgid "Change User Email"
-msgstr ""
+msgstr "Modifier l'e-mail de l'utilisateur"
 
 #: app/templates/auth/change-email.html:8 app/templates/auth/profile.html:59
 #: app/util/form_validation.py:103
 msgid "Change your Email"
-msgstr ""
+msgstr "Changez votre e-mail"
 
 #: app/templates/auth/change-email.html:9
 msgid "Your current Email is:"
-msgstr ""
+msgstr "Votre adresse électronique actuelle est:"
 
 #: app/templates/auth/change-password.html:1
 msgid "Change User Password"
-msgstr ""
+msgstr "Modifier le mot de passe de l'utilisateur"
 
 #: app/templates/auth/change-password.html:8 app/templates/auth/profile.html:66
 msgid "Change your Password"
-msgstr ""
+msgstr "Changez votre mot de passe"
 
 #: app/templates/auth/change-room.html:1
 msgid "Change User Room"
-msgstr ""
+msgstr "Modifier la salle des utilisateurs"
 
 #: app/templates/auth/change-room.html:8
 msgid "Change your Room"
-msgstr ""
+msgstr "Changez votre chambre"
 
 #: app/templates/auth/change-room.html:9
 msgid "Your current Room is:"
-msgstr ""
+msgstr "Votre salle actuelle est :"
 
 #: app/templates/auth/change-site.html:1
 msgid "Change User Site"
-msgstr ""
+msgstr "Modifier le site de l'utilisateur"
 
 #: app/templates/auth/change-site.html:8
 msgid "Change your Site"
-msgstr ""
+msgstr "Changez votre site"
 
 #: app/templates/auth/change-site.html:9
 msgid "Your current Site is:"
-msgstr ""
+msgstr "Votre site actuel est:"
 
 #: app/templates/auth/login.html:35
 msgid "Need an account?"
-msgstr ""
+msgstr "Vous avez besoin d'un compte?"
 
 #: app/templates/auth/login.html:35
 msgid "Signup!"
-msgstr ""
+msgstr "Inscrivez-vous!"
 
 #: app/templates/auth/profile.html:14
 msgid "Your Profile"
-msgstr ""
+msgstr "Otre profil"
 
 #: app/templates/auth/profile.html:20
 msgid "Profile Information"
-msgstr ""
+msgstr "Informations sur le profil"
 
 #: app/templates/auth/profile.html:24
 msgid "Name:"
-msgstr ""
+msgstr "Nom:"
 
 #: app/templates/auth/profile.html:29
 msgid "Email:"
-msgstr ""
+msgstr "Courriel:"
 
 #: app/templates/auth/profile.html:34
 msgid "Current Site:"
-msgstr ""
+msgstr "Site actuel:"
 
 #: app/templates/auth/profile.html:39
 msgid "Current Building:"
-msgstr ""
+msgstr "Bâtiment actuel:"
 
 #: app/templates/auth/profile.html:44
 msgid "Current Room:"
-msgstr ""
+msgstr "Chambre actuelle:"
 
 #: app/templates/auth/profile.html:51
 msgid "Profile Actions"
-msgstr ""
+msgstr "Actions de profilage"
 
 #: app/templates/auth/profile.html:75
 msgid "Change Current Site"
-msgstr ""
+msgstr "Modifier le site actuel"
 
 #: app/templates/auth/profile.html:82
 msgid "Change Current Building"
-msgstr ""
+msgstr "Changement Bâtiment actuel"
 
 #: app/templates/auth/profile.html:89
 msgid "Change Current Room"
-msgstr ""
+msgstr "Changer la chambre actuelle"
 
 #: app/templates/auth/register.html:8
 msgid "Sign up"
-msgstr ""
+msgstr "S'inscrire"
 
 #: app/templates/error-handling/404.html:14
 msgid ""
@@ -262,18 +265,22 @@ msgid ""
 "         “Something’s gone wrong, but don’t worry, our webmasters have "
 "been notified.” "
 msgstr ""
+"Rappelez-vous ces vieilles pages 404 des années 90 qui disaient quelque "
+"chose comme \n"
+"         “Il y a eu un problème, mais ne vous inquiétez pas, nos "
+"webmasters ont été prévenus.” "
 
 #: app/templates/error-handling/404.html:17
 msgid "But were the webmasters ever notified?"
-msgstr ""
+msgstr "Mais les webmasters ont-ils été avertis ?"
 
 #: app/templates/error-handling/404.html:17
 msgid "I mean, were they really?"
-msgstr ""
+msgstr "Je veux dire, l'étaient-ils vraiment ?"
 
 #: app/templates/error-handling/404.html:20
 msgid " Back to Home &amp; Reality"
-msgstr ""
+msgstr "Retour à la maison &amp; à la réalité"
 
 #: app/templates/error-handling/500.html:14
 msgid "Oh no! Our spaghetti code is not working properly. We will be back soon!"
@@ -282,345 +289,353 @@ msgstr ""
 #: app/templates/error-handling/500.html:17
 msgid "Back to Home"
 msgstr ""
+"Oh non! Notre code spaghetti ne fonctionne pas correctement. Nous serons "
+"de retour bientôt!"
 
 #: app/templates/forms/create-experiment.html:4
 #: app/templates/forms/create-experiment.html:10
 msgid "Create a new Experiment"
-msgstr ""
+msgstr "Créer une nouvelle expérience"
 
 #: app/templates/forms/create-experiment.html:14
 msgid "Create a Sketch"
-msgstr ""
+msgstr "Créer une esquisse"
 
 #: app/templates/forms/create-project.html:3
 #: app/templates/forms/create-project.html:8
 msgid "Create a new Project"
-msgstr ""
+msgstr "Créer un nouveau projet"
 
 #: app/templates/forms/create-project.html:13
 msgid "Create an Experiment"
-msgstr ""
+msgstr "Créer une expérience"
 
 #: app/templates/forms/create-project.html:37
 msgid "Create Project"
-msgstr ""
+msgstr "Créer un projet"
 
 #: app/templates/interface/choose-project.html:8
 msgid "Choose a Project to create an Experiment for"
-msgstr ""
+msgstr "Choisissez un projet pour lequel vous souhaitez créer une expérience"
 
 #: app/templates/interface/choose-project.html:13
 msgid "Existing Projects in Database to choose from:"
-msgstr ""
+msgstr "Projets existants dans la base de données à choisir:"
 
 #: app/templates/interface/choose-project.html:19
 #: app/templates/interface/experiments.html:28
 #: app/templates/interface/projects.html:28
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: app/templates/interface/choose-project.html:20
 #: app/templates/interface/experiments.html:30
 #: app/templates/interface/projects.html:29 app/util/form_validation.py:38
 #: app/util/form_validation.py:41 app/util/form_validation.py:58
 msgid "Title"
-msgstr ""
+msgstr "Titre"
 
 #: app/templates/interface/choose-project.html:21
 #: app/templates/interface/experiments.html:31
 #: app/templates/interface/projects.html:30 app/util/form_validation.py:42
 #: app/util/form_validation.py:45 app/util/form_validation.py:62
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: app/templates/interface/choose-project.html:22
 #: app/templates/interface/projects.html:31
 msgid "Created"
-msgstr ""
+msgstr "Créé"
 
 #: app/templates/interface/choose-project.html:23
 msgid "User Action"
-msgstr ""
+msgstr "Action de l'utilisateur"
 
 #: app/templates/interface/experiments.html:17
 msgid "Existing Experiments"
-msgstr ""
+msgstr "Expériences existantes"
 
 #: app/templates/interface/experiments.html:22
 msgid "Existing Experiments in Database"
-msgstr ""
+msgstr "Expériences existantes dans la base de données"
 
 #: app/templates/interface/experiments.html:29 app/util/form_validation.py:54
 msgid "ELN"
-msgstr ""
+msgstr "ELN"
 
 #: app/templates/interface/experiments.html:32 app/util/form_validation.py:18
 #: app/util/form_validation.py:21 app/util/form_validation.py:63
 #: app/util/form_validation.py:66 app/util/form_validation.py:81
 #: app/util/form_validation.py:84
 msgid "Site"
-msgstr ""
+msgstr "Localisation"
 
 #: app/templates/interface/experiments.html:33 app/util/form_validation.py:22
 #: app/util/form_validation.py:25 app/util/form_validation.py:67
 #: app/util/form_validation.py:70 app/util/form_validation.py:88
 #: app/util/form_validation.py:91
 msgid "Building"
-msgstr ""
+msgstr "Bâtiment"
 
 #: app/templates/interface/experiments.html:34 app/util/form_validation.py:26
 #: app/util/form_validation.py:29 app/util/form_validation.py:71
 #: app/util/form_validation.py:74 app/util/form_validation.py:95
 #: app/util/form_validation.py:98
 msgid "Room"
-msgstr ""
+msgstr "Chambre"
 
 #: app/templates/interface/experiments.html:35
 msgid "Created Date"
-msgstr ""
+msgstr "Date de création"
 
 #: app/templates/interface/experiments.html:36
 msgid "Project GUID"
-msgstr ""
+msgstr "GUID du projet"
 
 #: app/templates/interface/experiments.html:37
 #: app/templates/interface/projects.html:32
 msgid "User Actions"
-msgstr ""
+msgstr "Actions"
 
 #: app/templates/interface/projects.html:17
 msgid "Existing Projects"
-msgstr ""
+msgstr "Projets existants"
 
 #: app/templates/interface/projects.html:22
 msgid "Existing Projects in Database"
-msgstr ""
+msgstr "Projets existants dans la base de données"
 
 #: app/util/form_validation.py:8 app/util/form_validation.py:9
 #: app/util/form_validation.py:33 app/util/form_validation.py:102
 msgid "Email"
-msgstr ""
+msgstr "Courriel:"
 
 #: app/util/form_validation.py:10 app/util/form_validation.py:11
 #: app/util/form_validation.py:34 app/util/form_validation.py:106
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: app/util/form_validation.py:12
 msgid "Repeat Password"
-msgstr ""
+msgstr "Répéter le mot de passe"
 
 #: app/util/form_validation.py:13
 msgid "Confirm your password"
-msgstr ""
+msgstr "Confirmez votre mot de passe"
 
 #: app/util/form_validation.py:14 app/util/form_validation.py:17
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: app/util/form_validation.py:15 app/util/form_validation.py:60
 msgid "Invalid Experiment Description"
-msgstr ""
+msgstr "Description invalide de l'expérience"
 
 #: app/util/form_validation.py:16 app/util/form_validation.py:61
 msgid "Invalid Experiment Description length"
-msgstr ""
+msgstr "Longueur de la description de l'expérience non valide"
 
 #: app/util/form_validation.py:19 app/util/form_validation.py:64
 #: app/util/form_validation.py:82
 msgid "Invalid Experiment Site"
-msgstr ""
+msgstr "Emplacement de l'expérience non valide"
 
 #: app/util/form_validation.py:20 app/util/form_validation.py:65
 #: app/util/form_validation.py:83
 msgid "Invalid Experiment Site length"
-msgstr ""
+msgstr "Longueur de l'emplacement de l'expérience non valide"
 
 #: app/util/form_validation.py:23 app/util/form_validation.py:68
 #: app/util/form_validation.py:89
 msgid "Invalid Experiment Building"
-msgstr ""
+msgstr "Bâtiment d'expérimentation invalide"
 
 #: app/util/form_validation.py:24 app/util/form_validation.py:69
 #: app/util/form_validation.py:90
 msgid "Invalid Experiment Building length"
-msgstr ""
+msgstr "Longueur du bâtiment expérimental non valide"
 
 #: app/util/form_validation.py:27 app/util/form_validation.py:72
 #: app/util/form_validation.py:96
 msgid "Invalid Experiment Room"
-msgstr ""
+msgstr "Salle d'expérience invalide"
 
 #: app/util/form_validation.py:28 app/util/form_validation.py:73
 #: app/util/form_validation.py:97
 msgid "Invalid Experiment Room length"
-msgstr ""
+msgstr "Longueur de la salle d'expérience non valide"
 
 #: app/util/form_validation.py:35
 msgid "Remember Me"
-msgstr ""
+msgstr "Souviens-toi de moi"
 
 #: app/util/form_validation.py:39
 msgid "Invalid Project Title"
-msgstr ""
+msgstr "Titre du projet non valide"
 
 #: app/util/form_validation.py:40
 msgid "Invalid Project Title length"
-msgstr ""
+msgstr "Longueur du titre du projet non valide"
 
 #: app/util/form_validation.py:43
 msgid "Invalid Project Description"
-msgstr ""
+msgstr "Description du projet non valide"
 
 #: app/util/form_validation.py:44
 msgid "Invalid Project Description length"
-msgstr ""
+msgstr "Longueur de la description du projet non valide"
 
 #: app/util/form_validation.py:47
 msgid "Create new Project"
-msgstr ""
+msgstr "Créer un nouveau projet"
 
 #: app/util/form_validation.py:51
 msgid "Experiment ELN Number"
-msgstr ""
+msgstr "Numéro d'ELN de l'expérience"
 
 #: app/util/form_validation.py:52
 msgid "Invalid ELN"
-msgstr ""
+msgstr "Numéro d'ELN non valide"
 
 #: app/util/form_validation.py:53
 msgid "Invalid ELN length"
-msgstr ""
+msgstr "Longueur du numéro ELN non valide"
 
 #: app/util/form_validation.py:55
 msgid "Experiment Title"
-msgstr ""
+msgstr "Titre de l'expérience"
 
 #: app/util/form_validation.py:56
 msgid "Invalid Experiment Title"
-msgstr ""
+msgstr "Titre de l'expérience non valide"
 
 #: app/util/form_validation.py:57
 msgid "Invalid Experiment Title length"
-msgstr ""
+msgstr "Longueur du titre de l'expérience non valide"
 
 #: app/util/form_validation.py:59
 msgid "Experiment Description"
-msgstr ""
+msgstr "Description de l'expérience"
 
 #: app/util/form_validation.py:78
 msgid "Create new Experiment"
-msgstr ""
+msgstr "Créer une nouvelle expérience"
 
 #: app/util/form_validation.py:85
 msgid "Change your site"
-msgstr ""
+msgstr "Changez votre site"
 
 #: app/util/form_validation.py:92
 msgid "Change your building"
-msgstr ""
+msgstr "Changez votre bâtiment"
 
 #: app/util/form_validation.py:99
 msgid "Change your room"
-msgstr ""
+msgstr "Changez de chambre"
 
 #: app/util/form_validation.py:106
 msgid "Your new Password"
-msgstr ""
+msgstr "Votre nouveau mot de passe"
 
 #: app/util/form_validation.py:107
 msgid "Show password"
-msgstr ""
+msgstr "Afficher le mot de passe"
 
 #: app/util/form_validation.py:108
 msgid "Change your password"
-msgstr ""
+msgstr "Changez votre mot de passe"
 
 #: app/views/auth.py:28
 msgid "Your account has been registered. Please log in:"
-msgstr ""
+msgstr "Votre compte a été enregistré. Veuillez vous connecter:"
 
 #: app/views/auth.py:32
 msgid "Email address ({}) is already registered!"
-msgstr ""
+msgstr "L'adresse e-mail ({}) est déjà enregistrée"
 
 #: app/views/auth.py:42
 msgid "Invalid username or password. Please check your login credentials."
 msgstr ""
+"Nom d'utilisateur ou mot de passe invalide. Veuillez vérifier vos "
+"identifiants de connexion."
 
 #: app/views/auth.py:67
 msgid "Your site has been changed."
-msgstr ""
+msgstr "Votre emplacement a été modifié."
 
 #: app/views/auth.py:81
 msgid "Your building has been changed."
-msgstr ""
+msgstr "Votre bâtiment a été modifié."
 
 #: app/views/auth.py:95
 msgid "Your room has been changed."
-msgstr ""
+msgstr "Votre chambre a été changée."
 
 #: app/views/auth.py:109
 msgid "Your password has been changed."
-msgstr ""
+msgstr "Votre mot de passe a été modifié."
 
 #: app/views/auth.py:126
 msgid "Your email has been changed"
-msgstr ""
+msgstr "Votre adresse électronique a été modifiée."
 
 #: app/views/auth.py:130
 msgid "Sorry, that email already exists!"
-msgstr ""
+msgstr "Désolé, cet e-mail existe déjà!"
 
 #: app/views/auth.py:134
 msgid "Error! That email already exists!"
-msgstr ""
+msgstr "Erreur! Ce courriel existe déjà!"
 
 #: app/views/forms.py:38
 #, python-format
 msgid "New project '%(title)s' has been created."
-msgstr ""
+msgstr "Le nouveau projet '%(title)s' a été créé."
 
 #: app/views/forms.py:42
 msgid "GUID is already linked to an existing Project!"
-msgstr ""
+msgstr "Le GUID est déjà lié à un projet existant!"
 
 #: app/views/forms.py:75
 #, python-format
 msgid "New experiment '%(title)s' has been created."
-msgstr ""
+msgstr "La nouvelle expérience '%(title)s' a été créée."
 
 #: app/views/forms.py:79
 msgid "ELN Number is already linked to an existing Project!"
-msgstr ""
+msgstr "Le numéro ELN est déjà lié à un projet existant."
 
 #: app/views/forms.py:105
 msgid "You have successfully deleted the project!"
-msgstr ""
+msgstr "Vous avez réussi à supprimer le projet!"
 
 #: app/views/forms.py:109
 msgid ""
 "You can not delete this project, because there are experiments linked to "
 "it!"
 msgstr ""
+"Vous ne pouvez pas supprimer ce projet, car il y a des expériences qui "
+"lui sont liées!"
 
 #: app/views/forms.py:129
 msgid "Project updated successfully!"
-msgstr ""
+msgstr "Projet mis à jour avec succès!"
 
 #: app/views/forms.py:142
 msgid "You have successfully deleted the experiment!"
-msgstr ""
+msgstr "Vous avez réussi à supprimer l'expérience!"
 
 #: app/views/forms.py:146
 msgid "You can not delete this project"
-msgstr ""
+msgstr "Vous ne pouvez pas supprimer ce projet"
 
 #: app/views/forms.py:172
 msgid "Experiment updated successfully!"
-msgstr ""
+msgstr "Expérience mise à jour avec succès!"
 
 #: app/views/forms.py:176
 msgid "You can not update this experiment - This ELN Number is already in use!"
 msgstr ""
+"Vous ne pouvez pas mettre à jour cette expérience - Ce numéro ELN est "
+"déjà utilisé!"
 

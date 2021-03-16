@@ -107,3 +107,9 @@
   background-color: #fdf3d8;
   border-color: #fceec9;
 }
+
+.alert-error {
+  color: #78261f;
+  background-color: #fadbd8;
+  border-color: #f8ccc8;
+}
