@@ -25,6 +25,7 @@ RUN pip install pylint
 
 RUN pybabel compile -d app/static/translations
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8003", "--worker-tmp-dir", "/dev/shm", "--workers", "2", "wsgi:app"]
+ENTRYPOINT ["./gunicorn_starter.sh"]
+
 #docker build -t flask-docker .
 #docker run -p 8003:8003 flask-docker
