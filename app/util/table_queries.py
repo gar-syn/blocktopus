@@ -1,5 +1,5 @@
 from flask import request
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 from sqlalchemy.sql import func
 
 from app.util.extensions import db
@@ -23,23 +23,23 @@ class ProjectsDataTable:
         return output
 
     def run_query(self):
-        self.cardinality = self.model_object.query.count()
+        self.cardinality = db.session.query(func.count(self.model_object.id)).first()
         #get columns name from request
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
         for i in range(column_count):
             column_name = self.request.args.get('mDataProp_%d' % i)
-            column_list.append(column_name)
+            if column_name:
+                column_list.append(column_name)
 
         #filtering
         search_value = self.request.args.get('sSearch')
         filter_list = []
         if search_value != "":
-            for col in column_list[:-1]:
+            print(search_value)
+            for col in column_list:
                 column_type = getattr(getattr(self.model_object, col), 'type')
-                print(column_type)
-                if not isinstance(column_type, db.DateTime):
-                    filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))
+                filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))
 
         #sorting
         order_column_index = int(self.request.args.get('iSortCol_0'))
@@ -56,7 +56,6 @@ class ProjectsDataTable:
         self.cardinality_filtered = db.session.query(func.count(self.model_object.id)) \
                     .filter(or_(*filter_list)).order_by(None).first()
         self.results = [i.projects_table_to_json for i in items]
-
         
 class ExperimentsDataTable:
     def __init__(self, request, model_object):
@@ -82,13 +81,15 @@ class ExperimentsDataTable:
         column_list = []
         for i in range(column_count):
             column_name = self.request.args.get('mDataProp_%d' % i)
-            column_list.append(column_name)
+            if column_name:
+                column_list.append(column_name)
+
 
         #filtering
         search_value = self.request.args.get('sSearch')
         filter_list = []
         if search_value != "":
-            for col in column_list[:-1]:
+            for col in column_list:
                 column_type = getattr(getattr(self.model_object, col), 'type')
                 if not isinstance(column_type, db.DateTime):
                     filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))

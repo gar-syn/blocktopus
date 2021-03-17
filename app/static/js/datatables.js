@@ -104,10 +104,6 @@ $(document).ready(function() {
               }
           }]
       },
-      initComplete: function() {
-          var api = this.api();
-          api.column(0).visible(false);
-      },
       drawCallback: function(settings) {
           $('[data-toggle="tooltip"]').tooltip();
       },
