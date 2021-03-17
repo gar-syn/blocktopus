@@ -3,9 +3,8 @@ from sqlalchemy.orm import relationship
 from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-import uuid
-from app.util.sqltypes import GUID, generate_uuid
 
+from app.util.sqltypes import GUID, generate_uuid
 from app.util.extensions import db
 
 class User(UserMixin, db.Model):
