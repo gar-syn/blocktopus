@@ -1,5 +1,6 @@
+cryptography==3.2.1
 twisted
-pandas
+pandas==1.2.2
 numpy 
 scipy 
 xlsxwriter  
