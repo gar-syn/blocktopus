@@ -69,15 +69,19 @@
 }
 
 .help-block {
-  color: #806520;
-  background-color: #fdf3d8;
-  border-color: #fceec9;
+  font-size: 80%;
+  color: #c4183c;
+  font-weight: 500;
   position: relative;
-  padding: .75rem;
   margin-bottom: 0rem;
   border: 1px solid transparent;
   border-radius: .35rem;
   margin-top: .30rem;
+}
+
+.has-error input.form-control {
+  border-color: #c4183c;
+  box-shadow: 0 5px 11.5px rgba(196,24,60,.1);
 }
 
 .selected-lang {
