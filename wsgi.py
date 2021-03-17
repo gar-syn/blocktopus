@@ -1,3 +1,4 @@
+#Fask Entrypoint
 from app import create_app
 from app.util.extensions import db
 

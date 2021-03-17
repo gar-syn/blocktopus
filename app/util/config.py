@@ -34,6 +34,9 @@ class ProdConfig(Config):
 
     ENV = 'prod'
     DEBUG = False
+    DB_NAME = 'blocktopus.sqlite'
+    DB_PATH = os.path.join(Config.PROJECT_ROOT, DB_NAME)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
     SECRET_KEY = ']g\xe9\xfc\x0e\x9a=\x1a\x96\xcd[+N]\xf1\xba2b\xf9WQ\xe3XoHZ\x86\x054\x15\xf7\xfa'
     
 class DevConfig(Config):
@@ -41,7 +44,7 @@ class DevConfig(Config):
     ENV = 'dev'
     DEBUG = True
     TESTING = False
-    DB_NAME = "db.sqlite"
+    DB_NAME = 'db.sqlite'
     DB_PATH = os.path.join(Config.PROJECT_ROOT, DB_NAME)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
     CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
@@ -53,7 +56,8 @@ class DevConfig(Config):
     
 class TestConfig(Config):
     """Testing configuration."""
-
+    
+    ENV = 'test'
     TESTING = True
     DEBUG = False
     DB_NAME = 'testing.sqlite'
