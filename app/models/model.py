@@ -4,12 +4,12 @@ from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app.util.sqltypes import GUID, generate_uuid
+from app.util.sqltypes import generate_uuid
 from app.util.extensions import db
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
-    id = db.Column(GUID, default=GUID.gen_value, primary_key=True)
+    id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
     email = Column(String(50), unique=True, nullable=False)
     password = Column(String(128), unique=False, nullable=False)
     name = Column(String(100), unique=False, nullable=False)
@@ -58,7 +58,7 @@ class Experiments(db.Model):
     site = Column(String(50), unique=False)
     building = Column(String(30), unique=False)
     room = Column(String(30), unique=False)
-    user_id = Column(GUID, unique=False)
+    user_id = Column(String(36), unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     last_modified_date = Column(Integer, unique=False)
     project_id = Column(String(36), ForeignKey('projects.id'), nullable=False)
