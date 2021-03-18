@@ -36,15 +36,14 @@ class User(UserMixin, db.Model):
     
 class Sketches(db.Model):
     __tablename__ = 'sketches'
-    guid = Column(String(200),unique=True, primary_key=True)
+    id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
     title = Column(String(100), unique=False, nullable=False)
     user_id = Column(Integer, unique=True, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
     modified_date = Column(Integer, unique=False, nullable=False)
     #experiments = relationship("Experiments", back_populates="sketches")
 
-    def __init__(self, guid, title, user_id, created_date, modified_date):
-        self.guid = guid
+    def __init__(self, title, user_id, created_date, modified_date):
         self.title = title
         self.user_id = user_id
         self.created_date = created_date
@@ -52,7 +51,7 @@ class Sketches(db.Model):
         
 class Experiments(db.Model):
     __tablename__ = 'experiments'
-    id = db.Column(GUID, default=GUID.gen_value, primary_key=True)
+    id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
     eln = Column(String(100), unique=True)
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)

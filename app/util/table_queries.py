@@ -36,10 +36,10 @@ class ProjectsDataTable:
         search_value = self.request.args.get('sSearch')
         filter_list = []
         if search_value != "":
-            print(search_value)
             for col in column_list:
                 column_type = getattr(getattr(self.model_object, col), 'type')
-                filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))
+                if not isinstance(column_type, db.DateTime):
+                    filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))
 
         #sorting
         order_column_index = int(self.request.args.get('iSortCol_0'))
@@ -83,7 +83,6 @@ class ExperimentsDataTable:
             column_name = self.request.args.get('mDataProp_%d' % i)
             if column_name:
                 column_list.append(column_name)
-
 
         #filtering
         search_value = self.request.args.get('sSearch')

@@ -20,7 +20,7 @@ $(document).ready(function() {
       "bServerSide": true,
       "sPaginationType": "full_numbers",
       "iDisplayLength": 10,
-      "stateSave": true,
+      "stateSave": false,
       "sAjaxSource": "/load-projects",
       columns: [{
               data: 'id'
@@ -103,6 +103,10 @@ $(document).ready(function() {
                   columns: [1, 2, 3]
               }
           }]
+      },
+      initComplete: function() {
+          var api = this.api();
+          api.column(0).visible(false);
       },
       drawCallback: function(settings) {
           $('[data-toggle="tooltip"]').tooltip();
