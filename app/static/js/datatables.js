@@ -20,7 +20,7 @@ $(document).ready(function() {
       "bServerSide": true,
       "sPaginationType": "full_numbers",
       "iDisplayLength": 10,
-      "stateSave": true,
+      "stateSave": false,
       "sAjaxSource": "/load-projects",
       columns: [{
               data: 'id'
