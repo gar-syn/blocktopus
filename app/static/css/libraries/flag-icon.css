@@ -24,11 +24,11 @@
 .flag-icon-de.flag-icon-squared {
   background-image: url(../../img/flags/1x1/de.svg);
 }
-.flag-icon-us {
-  background-image: url(../../img/flags/4x3/us.svg);
+.flag-icon-en {
+  background-image: url(../../img/flags/4x3/en.svg);
 }
-.flag-icon-us.flag-icon-squared {
-  background-image: url(../../img/flags/1x1/us.svg);
+.flag-icon-en.flag-icon-squared {
+  background-image: url(../../img/flags/1x1/en.svg);
 }
 .flag-icon-fr {
   background-image: url(../../img/flags/4x3/fr.svg);

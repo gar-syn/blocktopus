@@ -125,14 +125,14 @@ $(document).ready(function() {
   });
 
   $('#table_projects').on('click', '.project-delete', function() {
-      var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
+      var project_guid = $(this).parents('tr').attr('class').split(' ')[1];
       var delete_project = Flask.url_for('forms.delete_project', {
           "id": project_guid
       });
       window.location.href = delete_project;
   })
   $('#table_projects').on('click', '.project-edit', function() {
-      var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
+      var project_guid = $(this).parents('tr').attr('class').split(' ')[1];
       var edit_project = Flask.url_for('forms.edit_project', {
           "id": project_guid
       });
@@ -140,7 +140,7 @@ $(document).ready(function() {
   })
   //Create Link for each row with Project GUID for experiments search
   $('#table_projects').on('click', 'tbody tr td:not(:last-child)', function() {
-      var project_guid = $(this).parents('tr').find("td:eq(0)").attr('class').split(' ')[0];
+      var project_guid = $(this).parents('tr').attr('class').split(' ')[1];
       var filter_experiments_by_project_guid = Flask.url_for('queries.experiments', {
           "project-guid-filter": project_guid
       });
