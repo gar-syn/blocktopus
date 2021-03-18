@@ -78,6 +78,3 @@ app/*.sqlite
 
 # Flask testing:
 app/tests/testing.sqlite
-
-# Flask Logging:
-app/tests/.logs
