@@ -71,5 +71,11 @@ class ProjectTests(unittest.TestCase):
         self.assertIn(b'Cr\xc3\xa9er...', response.data)
         self.assertIn(b'Fran\xc3\xa7ais', response.data)
 
+    def test_404_error(self):
+        response = self.app.get('/not-existing-page', follow_redirects=True)
+        self.assertEqual(response.status_code, 404)
+        self.assertIn(b'404', response.data)
+        self.assertIn(b'Page Not Found', response.data)
+
 if __name__ == "__main__":
     unittest.main()
