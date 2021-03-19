@@ -3,6 +3,7 @@ FROM python:3.8-buster
 EXPOSE 80 80
 EXPOSE 3000 3000
 EXPOSE 5000 5000
+EXPOSE 8003 8003
 
 RUN apt-get update
 RUN apt-get -y install sqlite3 libsqlite3-dev
