@@ -3,11 +3,14 @@ from flask_jsglue import JSGlue
 from celery import Celery
 from flask_bootstrap import Bootstrap
 from flask_babel import Babel
+from flask_migrate import Migrate
+
 
 babel = Babel()
 db = SQLAlchemy()
 jsglue = JSGlue()
 bootstrap = Bootstrap()
+migrate = Migrate()
 
 def create_celery_app(app=None):
     app = app or create_app()

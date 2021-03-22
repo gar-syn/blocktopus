@@ -38,7 +38,7 @@ class Sketches(db.Model):
     __tablename__ = 'sketches'
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
     title = Column(String(100), unique=False, nullable=False)
-    user_id = Column(Integer, unique=True, nullable=False)
+    user_id = Column(String(36), unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     modified_date = Column(Integer, unique=False, nullable=False)
     #experiments = relationship("Experiments", back_populates="sketches")
