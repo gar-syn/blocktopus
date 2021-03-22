@@ -4,13 +4,14 @@ from celery import Celery
 from flask_bootstrap import Bootstrap
 from flask_babel import Babel
 from flask_migrate import Migrate
-
+from flask_caching import Cache
 
 babel = Babel()
 db = SQLAlchemy()
 jsglue = JSGlue()
 bootstrap = Bootstrap()
 migrate = Migrate()
+cache = Cache(config={'CACHE_TYPE': 'simple'})
 
 def create_celery_app(app=None):
     app = app or create_app()
