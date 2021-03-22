@@ -38,7 +38,6 @@ def configure_languages(app):
         return dict(AVAILABLE_LANGUAGES=app.config['LANGUAGES'],
                     CURRENT_LANGUAGE=session.get('language', request.accept_languages.best_match(app.config['LANGUAGES'].keys())))
 
-
 def register_assets(app):
     """Register Flask assets."""
     from app.util.assets import bundles
