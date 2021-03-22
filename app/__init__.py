@@ -5,7 +5,7 @@ from flask_assets import Environment
 from flask_login import LoginManager
 
 from app.util.config import configuration_classes
-from app.util.extensions import db, jsglue, bootstrap, create_celery_app, babel
+from app.util.extensions import db, jsglue, bootstrap, create_celery_app, babel, migrate
 
 def create_app(config_object='dev'):
     app = Flask(__name__)
@@ -50,6 +50,7 @@ def register_extensions(app):
     db.init_app(app)
     jsglue.init_app(app)
     babel.init_app(app)
+    migrate.init_app(app,db)
     #celery = create_celery_app(app)
     
 def register_loginmanager(app):
