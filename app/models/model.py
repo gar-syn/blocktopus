@@ -100,7 +100,7 @@ class Projects(db.Model):
     title = Column(String(100), unique=False, nullable=False)
     description = Column(String(500), unique=False, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
-    experiments = relationship("Experiments", backref='project', lazy=True)
+    experiments = relationship("Experiments", backref='projects', lazy=True)
 
     def __init__(self, title, description, created_date):
         self.title = title

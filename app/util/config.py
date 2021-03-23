@@ -30,8 +30,6 @@ class Config(object):
 
 
 class ProdConfig(Config):
-    """Production configuration."""
-
     ENV = 'prod'
     DEBUG = False
     DB_NAME = 'blocktopus.sqlite'
@@ -40,7 +38,6 @@ class ProdConfig(Config):
     SECRET_KEY = ']g\xe9\xfc\x0e\x9a=\x1a\x96\xcd[+N]\xf1\xba2b\xf9WQ\xe3XoHZ\x86\x054\x15\xf7\xfa'
     
 class DevConfig(Config):
-    """Devolopment configuration."""
     ENV = 'dev'
     DEBUG = True
     TESTING = False
@@ -54,8 +51,6 @@ class DevConfig(Config):
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(10 ** 6)
     
 class TestConfig(Config):
-    """Testing configuration."""
-    
     ENV = 'test'
     TESTING = True
     DEBUG = False
