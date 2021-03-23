@@ -11,7 +11,7 @@ db = SQLAlchemy()
 jsglue = JSGlue()
 bootstrap = Bootstrap()
 migrate = Migrate()
-cache = Cache(config={'CACHE_TYPE': 'simple'})
+cache = Cache()
 
 def create_celery_app(app=None):
     app = app or create_app()

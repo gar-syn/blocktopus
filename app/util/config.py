@@ -12,7 +12,7 @@ class Config(object):
     APP_DIR = os.path.abspath(os.path.dirname(__file__))
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
     DEBUG_TB_INTERCEPT_REDIRECTS = False
-    CACHE_TYPE = 'simple'
+    CACHE_TYPE = 'SimpleCache'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     CORS_ORIGIN_WHITELIST = [
         'http://0.0.0.0:4100',
@@ -51,7 +51,6 @@ class DevConfig(Config):
     CELERY_BROKER_URL='redis://localhost:6379',
     CELERY_RESULT_BACKEND='redis://localhost:6379'
     SECRET_KEY = '\xb7\xae\x9a\xe0>\x0c\xa1\xf6l\x12\xad#\x13\x18\x12\xc3\x89\xc6j\xce>{*\x81'
-    CACHE_TYPE = 'simple'
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(10 ** 6)
     
 class TestConfig(Config):
