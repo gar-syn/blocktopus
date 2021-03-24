@@ -24,7 +24,6 @@ class ProjectsDataTable:
 
     def run_query(self):
         self.cardinality = db.session.query(func.count(self.model_object.id)).first()
-        #get columns name from request
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
         for i in range(column_count):
@@ -76,7 +75,6 @@ class ExperimentsDataTable:
 
     def run_query(self):
         self.cardinality = db.session.query(func.count(self.model_object.id)).first()
-        #get columns name from request
         column_count = int(self.request.args.get('iColumns'))
         column_list = []
         for i in range(column_count):
@@ -84,7 +82,6 @@ class ExperimentsDataTable:
             if column_name:
                 column_list.append(column_name)
 
-        #filtering
         search_value = self.request.args.get('sSearch')
         filter_list = []
         if search_value != "":
@@ -93,13 +90,11 @@ class ExperimentsDataTable:
                 if not isinstance(column_type, db.DateTime):
                     filter_list.append(getattr(self.model_object, col).like("%" + search_value + "%"))
 
-        #sorting
         order_column_index = int(self.request.args.get('iSortCol_0'))
         order_column = getattr(self.model_object, column_list[order_column_index])
         order_dir = self.request.args.get('sSortDir_0')
         order_object = getattr(order_column, order_dir)()
 
-        #paging
         start = self.request.args.get('iDisplayStart', 0, type=int)
         length = self.request.args.get('iDisplayLength', 1, type=int)
 
