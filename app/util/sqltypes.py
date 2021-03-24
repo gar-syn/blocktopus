@@ -8,7 +8,7 @@ def generate_uuid():
     return str(uuid.uuid4())
 
 __all__ = [
-    'GUID',
+    'GUID'
 ]
 
 class GUID(TypeDecorator):
