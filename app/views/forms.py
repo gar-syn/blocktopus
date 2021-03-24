@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
 from datetime import date, datetime
@@ -130,8 +130,9 @@ def edit_project(id):
             return redirect(url_for('queries.projects'))
         return render_template('forms/create-project.html', create_project_form=create_project_form)
     else:
-        return 'Error loading Project with #{guid}'.format(guid=id)
-
+        flash(_('There was an error with this Project!'), 'danger')
+        return redirect(url_for('queries.projects'))
+    
 @forms.route('/experiments/<string:id>/delete/', methods=('POST', 'GET'))
 @login_required
 def delete_experiment(id):
@@ -177,4 +178,5 @@ def edit_experiment(id):
                 return render_template('forms/create-experiment.html', create_experiment_form=create_experiment_form)
         return render_template('forms/create-experiment.html', create_experiment_form=create_experiment_form)
     else:
-        return 'Error with Experiment #{guid}'.format(guid=id)
+        flash(_('There was an error with this Experiment!'), 'danger')
+        return redirect(url_for('queries.experiments'))
