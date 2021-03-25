@@ -12,10 +12,10 @@ class User(UserMixin, db.Model):
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
     email = Column(String(50), unique=True, nullable=False)
     password = Column(String(128), unique=False, nullable=False)
-    name = Column(String(100), unique=False, nullable=False)
-    site = Column(String(100), unique=False)
-    building = Column(String(100), unique=False)
-    room = Column(String(100), unique=False)
+    name = Column(String(32), unique=False, nullable=False)
+    site = Column(String(16), unique=False)
+    building = Column(String(16), unique=False)
+    room = Column(String(16), unique=False)
 
     def __init__(self, email, password, name, site, building, room):
         self.email = email
@@ -37,7 +37,7 @@ class User(UserMixin, db.Model):
 class Sketches(db.Model):
     __tablename__ = 'sketches'
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
-    title = Column(String(100), unique=False, nullable=False)
+    title = Column(String(32), unique=False, nullable=False)
     user_id = Column(String(36), unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     modified_date = Column(Integer, unique=False, nullable=False)
@@ -52,12 +52,12 @@ class Sketches(db.Model):
 class Experiments(db.Model):
     __tablename__ = 'experiments'
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
-    eln = Column(String(100), unique=True)
-    title = Column(String(100), unique=False, nullable=False)
-    description = Column(String(500), unique=False, nullable=False)
-    site = Column(String(50), unique=False)
-    building = Column(String(30), unique=False)
-    room = Column(String(30), unique=False)
+    eln = Column(String(36), unique=True)
+    title = Column(String(64), unique=False, nullable=False)
+    description = Column(String(256), unique=False, nullable=False)
+    site = Column(String(32), unique=False)
+    building = Column(String(32), unique=False)
+    room = Column(String(32), unique=False)
     user_id = Column(String(36), unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     last_modified_date = Column(Integer, unique=False)
@@ -97,8 +97,8 @@ class Experiments(db.Model):
 class Projects(db.Model):
     __tablename__ = 'projects'
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
-    title = Column(String(100), unique=False, nullable=False)
-    description = Column(String(500), unique=False, nullable=False)
+    title = Column(String(64), unique=False, nullable=False)
+    description = Column(String(256), unique=False, nullable=False)
     created_date = Column(Integer, unique=False, nullable=False)
     experiments = relationship("Experiments", backref='projects', lazy=True)
 

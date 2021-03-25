@@ -13,19 +13,19 @@ class RegisterForm(FlaskForm):
                             render_kw={"placeholder": _l('Confirm your password')})
     name = StringField(_l('Name'), [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message=_l("Invalid Experiment Description")),
-        Length(min=1, max=500, message=_l("Invalid Experiment Description length"))
+        Length(min=1, max=50, message=_l("Invalid Experiment Description length"))
         ], render_kw={"placeholder": _l('Name')})
     site = StringField(_l('Site'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message=_l("Invalid Experiment Site")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Site length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Site length"))
         ], render_kw={"placeholder": _l('Site')})
     building = StringField(_l('Building'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message=_l("Invalid Experiment Building")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Building length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Building length"))
         ], render_kw={"placeholder": _l('Building')})
     room = StringField(_l('Room'), [ InputRequired(),
         Regexp(r'^[A-Za-z0-9 /]*$', message=_l("Invalid Experiment Room")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Room length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Room length"))
         ], render_kw={"placeholder": _l('Room')})
     submit = SubmitField('')
 
@@ -37,11 +37,11 @@ class LoginForm(FlaskForm):
 class CreateProject(FlaskForm):
     title = StringField(_l('Title'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message=_l("Invalid Project Title")),
-        Length(min=3, max=75, message=_l("Invalid Project Title length"))
+        Length(min=3, max=64, message=_l("Invalid Project Title length"))
         ],render_kw={"placeholder": _l('Title')})
     description = TextAreaField(_l('Description'), [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message=_l("Invalid Project Description")),
-        Length(min=1, max=500, message=_l("Invalid Project Description length"))
+        Length(min=1, max=256, message=_l("Invalid Project Description length"))
         ],render_kw={"placeholder": _l('Description')})
     created_date = HiddenField()
     submit = SubmitField(_l('Create new Project'))
@@ -54,23 +54,23 @@ class CreateExperiment(FlaskForm):
         ],render_kw={"placeholder": _l('ELN')})
     title = StringField(_l('Experiment Title'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 ]*$', message=_l("Invalid Experiment Title")),
-        Length(min=3, max=75, message=_l("Invalid Experiment Title length"))
+        Length(min=3, max=64, message=_l("Invalid Experiment Title length"))
         ],render_kw={"placeholder": _l('Title')})
     description = TextAreaField(_l('Experiment Description'), [ InputRequired(),
         Regexp(r'^[A-Za-zÀ-ȕ0-9(),-. ]*$', message=_l("Invalid Experiment Description")),
-        Length(min=1, max=500, message=_l("Invalid Experiment Description length"))
+        Length(min=1, max=256, message=_l("Invalid Experiment Description length"))
         ],render_kw={"placeholder": _l('Description')})
     site = StringField(_l('Site'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message=_l("Invalid Experiment Site")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Site length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Site length"))
         ],render_kw={"placeholder": _l('Site')})
     building = StringField(_l('Building'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message=_l("Invalid Experiment Building")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Building length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Building length"))
         ],render_kw={"placeholder": _l('Building')})
     room = StringField(_l('Room'), [ InputRequired(),
         Regexp(r'^[A-Za-z0-9 /]*$', message=_l("Invalid Experiment Room")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Room length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Room length"))
         ],render_kw={"placeholder": _l('Room')})
     user_id = HiddenField()
     created_date = HiddenField()
@@ -80,21 +80,21 @@ class CreateExperiment(FlaskForm):
 class ChangeSite(FlaskForm):
     site = StringField(_l('Site'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message=_l("Invalid Experiment Site")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Site length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Site length"))
         ],render_kw={"placeholder": _l('Site')})
     submit = SubmitField(_l('Change your site'))
 
 class ChangeBuilding(FlaskForm):
     building = StringField(_l('Building'), [ InputRequired(),
         Regexp(r'^[A-ZÀ-ȕa-z0-9 /]*$', message=_l("Invalid Experiment Building")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Building length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Building length"))
         ],render_kw={"placeholder": _l('Building')})
     submit = SubmitField(_l('Change your building'))
 
 class ChangeRoom(FlaskForm):
     room = StringField(_l('Room'), [ InputRequired(),
         Regexp(r'^[A-Za-z0-9 /]*$', message=_l("Invalid Experiment Room")),
-        Length(min=1, max=75, message=_l("Invalid Experiment Room length"))
+        Length(min=1, max=32, message=_l("Invalid Experiment Room length"))
         ],render_kw={"placeholder": _l('Room')})
     submit = SubmitField(_l('Change your room'))
     
