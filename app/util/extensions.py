@@ -5,7 +5,9 @@ from flask_bootstrap import Bootstrap
 from flask_babel import Babel
 from flask_migrate import Migrate
 from flask_caching import Cache
+from flask_debugtoolbar import DebugToolbarExtension
 
+toolbar = DebugToolbarExtension()
 babel = Babel()
 db = SQLAlchemy()
 jsglue = JSGlue()
