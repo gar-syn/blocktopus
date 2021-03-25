@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from app.models.model import Projects, Experiments
 from app.util.extensions import db
-from app.util.table_queries import ProjectsDataTable, ExperimentsDataTable
+from app.util.datatables import ProjectsDataTable, ExperimentsDataTable
 
 queries = Blueprint("queries", __name__)
 
