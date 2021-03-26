@@ -4,14 +4,16 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.types import CHAR
 from sqlalchemy.types import TypeDecorator
 
+
 def generate_uuid():
     return str(uuid.uuid4())
 
-__all__ = [
-    'GUID'
-]
+
+__all__ = ['GUID']
+
 
 class GUID(TypeDecorator):
+
     """GUID column."""
 
     impl = CHAR

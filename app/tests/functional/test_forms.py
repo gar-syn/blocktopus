@@ -1,18 +1,17 @@
 import unittest
-import os
 import uuid
 
 from app import create_app
-from app.views.forms import stringdate, stringdatetime
+from app.views.forms import stringdate
 from app.util.extensions import db
-from app.models.model import User, Projects
- 
+
+
 class ProjectTests(unittest.TestCase):
- 
+
     ############################
     #### setup and teardown ####
     ############################
- 
+
     # executed prior to each test
     def setUp(self):
         app = create_app('test')
@@ -22,28 +21,30 @@ class ProjectTests(unittest.TestCase):
         with app.app_context():
             db.drop_all()
             db.create_all()
- 
-        # executed after each test
+
+    # executed after each test
     def tearDown(self):
         pass
- 
+
     ########################
     #### helper methods ####
     ########################
-    
+
     def register(self, email, password, confirm, name, site, building, room):
-        return self.app.post(
-        '/register',
-        data=dict(email=email, password=password, confirm=password, name=name, site=site, building=building, room=room),
-        follow_redirects=True
-    )
-        
+        return self.app.post('/register', data=dict(
+            email=email,
+            password=password,
+            confirm=password,
+            name=name,
+            site=site,
+            building=building,
+            room=room), follow_redirects=True)
+
+
     def login(self, email, password):
-        return self.app.post(
-            '/login',
-            data=dict(email=email, password=password),
-            follow_redirects=True
-        )
+        return self.app.post('/login', data=dict(email=email,
+                         password=password), follow_redirects=True)
+
 
     ###############
     #### tests ####
@@ -65,6 +66,7 @@ class ProjectTests(unittest.TestCase):
                                          'created_date': stringdate()},
                                    follow_redirects=True)
         self.assertIn(b'New project &#39;New Project Title&#39; has been created.', response.data)
-        
+
+
 if __name__ == '__main__':
     unittest.main()

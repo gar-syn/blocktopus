@@ -18,7 +18,7 @@ bundles = {
         'js/libraries/jquery.dataTables.js',
         'js/libraries/bootstrap.js',
         'js/libraries/bootstrap.bundle.js',
-        'js/libraries/popper.min.js',        
+        'js/libraries/popper.min.js',
         'js/libraries/dataTables.bootstrap4.js',
         'js/libraries/dataTables.buttons.js',
         'js/libraries/jszip.js',

@@ -1,11 +1,11 @@
-from sqlalchemy import Table, Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from flask import Markup
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app.util.sqltypes import generate_uuid
 from app.util.extensions import db
+
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -24,16 +24,17 @@ class User(UserMixin, db.Model):
         self.site = site
         self.building = building
         self.room = room
-        
+
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
-  
+
     def __repr__(self):
         return '<User {0}>'.format(self.name)
-    
+
+
 class Sketches(db.Model):
     __tablename__ = 'sketches'
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
@@ -48,7 +49,8 @@ class Sketches(db.Model):
         self.user_id = user_id
         self.created_date = created_date
         self.modified_date = modified_date
-        
+
+
 class Experiments(db.Model):
     __tablename__ = 'experiments'
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
@@ -76,7 +78,7 @@ class Experiments(db.Model):
         self.created_date = created_date
         self.last_modified_date = last_modified_date
         self.project_id = project_id
-        
+
     @property
     def experiments_table_to_json(self):
         return {
@@ -87,13 +89,13 @@ class Experiments(db.Model):
             'site': self.site,
             'building': self.building,
             'room': self.room,
-            'description': self.description,
             'user_id': self.user_id,
             'created_date': self.created_date,
             'last_modified_date': self.last_modified_date,
             'project_id': self.project_id,
         }
-        
+
+
 class Projects(db.Model):
     __tablename__ = 'projects'
     id = Column(String(36), unique=True, primary_key=True, default=generate_uuid)
@@ -106,7 +108,7 @@ class Projects(db.Model):
         self.title = title
         self.description = description
         self.created_date = created_date
-            
+
     @property
     def projects_table_to_json(self):
         return {

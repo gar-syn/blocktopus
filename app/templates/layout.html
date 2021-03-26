@@ -49,8 +49,12 @@
                data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">{{ _('Create a new:') }}</h6>
-                  <a href="{{ url_for('forms.create_project') }}" class="collapse-item"><i class="far fa-folder-open"></i> {{ _('Project') }}</a>
-                  <a href="{{ url_for('queries.choose_projects') }}" class="collapse-item"><i class="fas fa-flask"></i> {{ _('Experiment') }}</a>
+                  <a href="{{ url_for('forms.create_project') }}" class="collapse-item">
+                  <i class="far fa-folder-open"></i> {{ _('Project') }}
+                  </a>
+                  <a href="{{ url_for('queries.choose_projects') }}" class="collapse-item">
+                  <i class="fas fa-flask"></i> {{ _('Experiment') }}
+                  </a>
                   <a class="collapse-item" href="/"><i class="fas fa-pencil-alt"></i> {{ _('Sketch') }}</a>
                </div>
             </div>
@@ -111,17 +115,20 @@
                {% if CURRENT_LANGUAGE == 'en' %}
                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
-               <div class="selected-lang flag flag-icon-background flag-icon-en" lang="en" title="en" id="en">&nbsp;</div><span class="selected-lang-text">{{ _('English') }}</span>
+               <div class="selected-lang flag flag-icon-background flag-icon-en" lang="en" title="en" id="en">&nbsp;</div>
+               <span class="selected-lang-text">{{ _('English') }}</span>
                 </a>
                {% elif CURRENT_LANGUAGE == 'de' %}
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
-               <div class="selected-lang flag flag-icon-background flag-icon-de" lang="de" title="de" id="de">&nbsp;</div><span class="selected-lang-text">{{ _('German') }}</span>
+               <div class="selected-lang flag flag-icon-background flag-icon-de" lang="de" title="de" id="de">&nbsp;</div>
+               <span class="selected-lang-text">{{ _('German') }}</span>
                </a>
                {% elif CURRENT_LANGUAGE == 'fr' %}
              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
-               <div class="selected-lang flag flag-icon-background flag-icon-fr" lang="fr" title="fr" id="fr">&nbsp;</div><span class="selected-lang-text">{{ _('French') }}</span>
+               <div class="selected-lang flag flag-icon-background flag-icon-fr" lang="fr" title="fr" id="fr">&nbsp;</div>
+               <span class="selected-lang-text">{{ _('French') }}</span>
                </a>
 
                {%  endif %}
