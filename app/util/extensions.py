@@ -15,6 +15,7 @@ bootstrap = Bootstrap()
 migrate = Migrate()
 cache = Cache()
 
+
 def create_celery_app(app=None):
     app = app or create_app()
     celery = Celery(__name__, broker=app.config['CELERY_BROKER_URL'])
@@ -22,6 +23,7 @@ def create_celery_app(app=None):
     TaskBase = celery.Task
 
     class ContextTask(TaskBase):
+
         abstract = True
 
         def __call__(self, *args, **kwargs):
