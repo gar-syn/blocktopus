@@ -6,14 +6,17 @@ from flask_babel import _
 
 from app.models.model import User
 from app.util.extensions import db
-from app.util.form_validation import ChangeSite, ChangeBuilding, ChangeRoom, ChangePassword, ChangeEmail, RegisterForm, LoginForm
+from app.util.form_validation import ChangeSite, ChangeBuilding, \
+    ChangeRoom, ChangePassword, ChangeEmail, RegisterForm, LoginForm
 
 auth = Blueprint('auth', __name__)
+
 
 @auth.route('/profile')
 @login_required
 def profile():
     return render_template('auth/profile.html', name=current_user.name)
+
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -21,7 +24,14 @@ def register():
     if request.method == 'POST':
         if form.validate_on_submit():
             try:
-                new_user = User(form.email.data, form.password.data, form.name.data, form.site.data, form.building.data, form.room.data)
+                new_user = User(
+                    form.email.data,
+                    form.password.data,
+                    form.name.data,
+                    form.site.data,
+                    form.building.data,
+                    form.room.data,
+                    )
                 new_user.set_password(form.password.data)
                 db.session.add(new_user)
                 db.session.commit()
@@ -29,8 +39,10 @@ def register():
                 return redirect(url_for('auth.login'))
             except IntegrityError:
                 db.session.rollback()
-                flash(_('Email address ({}) is already registered!'.format(form.email.data)), 'danger')
-    return render_template('auth/register.html', form=form)    
+                flash(_('Email address ({}) is already registered!'.format(form.email.data)),
+                      'danger')
+    return render_template('auth/register.html', form=form)
+
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -42,8 +54,9 @@ def login():
                 flash(_('Invalid username or password. Please check your login credentials.'), 'danger')
                 return render_template('auth/login.html', form=form)
             login_user(user, remember=form.remember_me.data)
-            return redirect(url_for('auth.profile'))                
+            return redirect(url_for('auth.profile'))
     return render_template('auth/login.html', form=form)
+
 
 @auth.route('/logout')
 @login_required
@@ -53,6 +66,7 @@ def logout():
     db.session.commit()
     logout_user()
     return redirect(url_for('main.index'))
+
 
 @auth.route('/change-site', methods=['GET', 'POST'])
 @login_required
@@ -66,7 +80,10 @@ def change_site():
             db.session.commit()
             flash(_('Your site has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
-    return render_template('auth/change-site.html', site=current_user.site, change_site_form=change_site_form)
+    return render_template('auth/change-site.html',
+                           site=current_user.site,
+                           change_site_form=change_site_form)
+
 
 @auth.route('/change-building', methods=['GET', 'POST'])
 @login_required
@@ -80,7 +97,10 @@ def change_building():
             db.session.commit()
             flash(_('Your building has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
-    return render_template('auth/change-building.html', building=current_user.building, change_building_form=change_building_form)
+    return render_template('auth/change-building.html',
+                           building=current_user.building,
+                           change_building_form=change_building_form)
+
 
 @auth.route('/change-room', methods=['GET', 'POST'])
 @login_required
@@ -94,7 +114,10 @@ def change_room():
             db.session.commit()
             flash(_('Your room has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
-    return render_template('auth/change-room.html', room=current_user.room, change_room_form=change_room_form)
+    return render_template('auth/change-room.html',
+                           room=current_user.room,
+                           change_room_form=change_room_form)
+
 
 @auth.route('/change-password', methods=['GET', 'POST'])
 @login_required
@@ -103,12 +126,15 @@ def change_password():
     if request.method == 'POST':
         if change_password_form.validate_on_submit():
             user = current_user
-            user.password = generate_password_hash(change_password_form.password.data, method='sha256')
+            user.password = generate_password_hash(change_password_form.password.data,
+                                                   method='sha256')
             db.session.add(user)
             db.session.commit()
             flash(_('Your password has been changed.'), 'success')
             return redirect(url_for('auth.profile'))
-    return render_template('auth/change-password.html', change_password_form=change_password_form)
+    return render_template('auth/change-password.html',
+                           change_password_form=change_password_form)
+
 
 @auth.route('/change-email', methods=['GET', 'POST'])
 @login_required
@@ -132,4 +158,6 @@ def change_email():
             except IntegrityError:
                 db.session.rollback()
                 flash(_('Error! That email already exists!'), 'danger')
-    return render_template('auth/change-email.html', email=current_user.email, change_email_form=change_email_form)
+    return render_template('auth/change-email.html',
+                           email=current_user.email,
+                           change_email_form=change_email_form)
