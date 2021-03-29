@@ -384,7 +384,10 @@ $(document).ready(function() {
                 "data": null,
                 "render": function() {
                     if (lang === 'en') {
-                        return `<button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Edit Sketch">
+                        return `<button type="submit" class="btn btn-success sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Run Sketch">
+                        <i class="fas fa-play-circle"></i>
+                        </button>
+                        <button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Edit Sketch">
                        <i class="far fa-edit fa-sm"></i>
                        </button> 
                        <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Sketch"> 
@@ -392,7 +395,10 @@ $(document).ready(function() {
                        </button>`
 
                     } else if (lang === 'de') {
-                        return `<button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Skizze bearbeiten">
+                        return `<button type="submit" class="btn btn-success sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Skizze ausführen">
+                        <i class="fas fa-play-circle"></i>
+                        </button>
+                        <button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Skizze bearbeiten">
                        <i class="far fa-edit fa-sm"></i>
                        </button> 
                        <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Skizze löschen"> 
@@ -400,7 +406,10 @@ $(document).ready(function() {
                        </button>`
 
                     } else if (lang === 'fr') {
-                        return `<button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Éditer l'esquisse">
+                        return `<button type="submit" class="btn btn-success sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Exécuter l'esquisse">
+                        <i class="fas fa-play-circle"></i>
+                        </button>
+                        <button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Éditer l'esquisse">
                        <i class="far fa-edit fa-sm"></i>
                        </button> 
                        <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Supprimer l'esquisse"> 

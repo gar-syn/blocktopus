@@ -237,6 +237,7 @@ def edit_experiment(id):
         flash(_('There was an error with this Experiment!'), 'danger')
         return redirect(url_for('queries.experiments'))
 
+
 @forms.route('/sketches/<string:id>/delete/', methods=('POST', 'GET'))
 @login_required
 def delete_sketch(id):
