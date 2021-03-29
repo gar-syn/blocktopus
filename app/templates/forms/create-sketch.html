@@ -1,0 +1,37 @@
+{% extends "layout.html" %} 
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}{{ _('Create a new Sketch') }}{% endblock %} 
+{% block content %}
+<div class="container">
+   <div class="row pb-5">
+      <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+         <h1 class="pt-5 pb-2">{{ _('Create a new Sketch') }}</h1>
+         {% if message %}
+         <!-- Successful Submit -->
+         <p class="alert alert-success"><strong>{{ message }}</strong></p>
+         {% else %}
+         <!-- form is displayed when template opens via GET not POST -->
+         {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+         {% for category, message in messages %}
+         <div class="alert alert-{{ category }}" role="alert"> {{ message }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+         </div>
+         {% endfor %}
+         {% endif %}
+         {% endwith %}
+         <!-- end of flash -->
+         <form action="" method="post" class="form-horizontal" role="create_sketch_form">
+            {% if 'csrf_token' in create_sketch_form %}
+               {{ create_sketch_form.csrf_token() }}
+            {% endif %}
+            <div class="form-group">
+               {{ wtf.form_field(create_sketch_form.title, class='form-control') }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">{{ _('Create Sketch') }}</button>
+         </form>
+         {% endif %}
+      </div>
+   </div>
+</div>
+{% endblock %}

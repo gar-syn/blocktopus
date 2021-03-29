@@ -346,6 +346,172 @@ $(document).ready(function() {
         window.location.href = edit_experiment;
     })
 
+
+
+    // DataTable for Experiments Page
+    $('#table_sketches').DataTable({
+        language: {
+            url: getCurrentSelectedLanguage()
+        },
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        "lengthChange": true,
+        "bServerSide": true,
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": 10,
+        "stateSave": false,
+        "sAjaxSource": "/load-sketches",
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'title'
+            },
+            {
+                data: 'created_date'
+            },
+            {
+                data: 'modified_date'
+            },
+            {
+                data: 'experiment_id'
+            },
+            {
+                "className": '',
+                "orderable": false,
+                "data": null,
+                "render": function() {
+                    if (lang === 'en') {
+                        return `<button type="submit" class="btn btn-success sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Run Sketch">
+                        <i class="fas fa-play-circle"></i>
+                        </button>
+                        <button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Edit Sketch">
+                       <i class="far fa-edit fa-sm"></i>
+                       </button> 
+                       <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Delete Sketch"> 
+                       <i class="fas fa-trash fa-sm"></i>
+                       </button>`
+
+                    } else if (lang === 'de') {
+                        return `<button type="submit" class="btn btn-success sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Skizze ausführen">
+                        <i class="fas fa-play-circle"></i>
+                        </button>
+                        <button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Skizze bearbeiten">
+                       <i class="far fa-edit fa-sm"></i>
+                       </button> 
+                       <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Skizze löschen"> 
+                       <i class="fas fa-trash fa-sm"></i>
+                       </button>`
+
+                    } else if (lang === 'fr') {
+                        return `<button type="submit" class="btn btn-success sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Exécuter l'esquisse">
+                        <i class="fas fa-play-circle"></i>
+                        </button>
+                        <button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Éditer l'esquisse">
+                       <i class="far fa-edit fa-sm"></i>
+                       </button> 
+                       <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Supprimer l'esquisse"> 
+                       <i class="fas fa-trash fa-sm"></i>
+                       </button>`
+
+                    }
+                }
+            }
+        ],
+        'columnDefs': [{
+            'width': '15%',
+            'targets': 5
+        }],
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [10, 25, 50, -1],
+            ['10 rows', '25 rows', '50 rows', 'All rows']
+        ],
+        buttons: {
+            dom: {
+                button: {
+                    tag: 'button',
+                    className: 'btn'
+                }
+            },
+            buttons: [{
+                extend: 'pageLength',
+                className: 'btn-primary',
+            }, {
+                extend: 'copy',
+                className: 'btn-outline-primary',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6, 7]
+                }
+            }, {
+                extend: 'csv',
+                className: 'btn-outline-primary',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6, 7]
+                }
+            }, {
+                extend: 'excel',
+                className: 'btn-outline-primary',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6, 7]
+                }
+            }, {
+                extend: 'pdfHtml5',
+                className: 'btn-outline-primary',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6, 7]
+                }
+            }, {
+                extend: 'print',
+                className: 'btn-outline-primary',
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6, 7]
+                }
+            }]
+        },
+        initComplete: function() {
+            var api = this.api();
+            api.column(0).visible(false);
+            api.column(4).visible(false);
+        },
+        drawCallback: function(settings) {
+            $('[data-toggle="tooltip"]').tooltip();
+        },
+        rowCallback: function(row, data) {
+            $(row).addClass(data.id);
+        },
+        createdRow: function(row, data, dataIndex) {
+            $(row).find('td:eq(8) input')
+                .attr('data-status', data.status ? 'locked' : 'unlocked')
+                .addClass(data.id);
+            $(row).find('td:eq(0)')
+                .attr('data-status', data.status ? 'locked' : 'unlocked')
+                .addClass(data.id);
+        }
+    });
+
+    $('#table_sketches').on('click', '.sketch-delete', function() {
+        var sketch_guid = $(this).parents('tr').attr('class').split(' ')[1];
+        var delete_sketch = Flask.url_for('forms.delete_sketch', {
+            "id": sketch_guid
+        });
+        window.location.href = delete_sketch;
+    })
+    $('#table_sketches').on('click', '.sketch-edit', function() {
+        var sketch_guid = $(this).parents('tr').attr('class').split(' ')[1];
+        var edit_sketch = Flask.url_for('forms.edit_sketch', {
+            "id": sketch_guid
+        });
+        window.location.href = edit_sketch;
+    })
+
+
+
+
     // DataTable to choose an Project for creating an Experiment
     $('#table_selection').DataTable({
         language: {
@@ -412,4 +578,91 @@ $(document).ready(function() {
         });
         window.location.href = create_experiment_url;
     });
+
+
+
+
+    // DataTable to choose an Experiment for creating a Sketch
+    $('#table_selection_experiments').DataTable({
+        language: {
+            url: getCurrentSelectedLanguage()
+        },
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        "lengthChange": true,
+        "bServerSide": true,
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": 10,
+        "stateSave": true,
+        "sAjaxSource": "/select-experiment",
+        columns: [{
+                data: 'id'
+            },
+            {
+                data: 'eln'
+            },
+            {
+                data: 'title'
+            },
+            {
+                data: 'description'
+            },
+            {
+                data: 'site'
+            },
+            {
+                data: 'building'
+            },
+            {
+                data: 'room'
+            },
+            {
+                data: 'created_date'
+            },
+            {
+                data: 'project_id'
+            },
+            {
+                "className": '',
+                "orderable": false,
+                "data": null,
+                "render": function() {
+                    if (lang === 'en') {
+                        return '<input type="button" class="btn btn-primary create-experiment" value="Create Sketch"/>'
+
+                    } else if (lang === 'de') {
+                        return '<input type="button" class="btn btn-primary create-experiment" value="Skizze erstellen"/>'
+
+                    } else if (lang === 'fr') {
+                        return '<input type="button" class="btn btn-primary create-experiment" value="Créer un croquis"/>'
+                    }
+                }
+            }
+        ],
+        initComplete: function() {
+            var api = this.api();
+            api.column(0).visible(false);
+            api.column(8).visible(false);
+        },
+        rowCallback: function(row, data) {
+            $(row).addClass(data.id);
+        },
+        createdRow: function(row, data, dataIndex) {
+            $(row).find('td:eq(0)')
+                .attr('data-status', data.status ? 'locked' : 'unlocked')
+                .addClass(data.id);
+        }
+    });
+
+    // Project GUID via GET to the 'create experiment' form (foreign key)
+    $('#table_selection_experiments').on('click', 'tbody tr', function() {
+        var experiment_guid = $(this).attr('class').split(' ')[1];
+        var create_sketch_url = Flask.url_for('forms.create_sketch', {
+            "experiment-guid": experiment_guid
+        });
+        window.location.href = create_sketch_url;
+    });
+
 });

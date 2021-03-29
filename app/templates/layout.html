@@ -55,7 +55,9 @@
                   <a href="{{ url_for('queries.choose_projects') }}" class="collapse-item">
                   <i class="fas fa-flask"></i> {{ _('Experiment') }}
                   </a>
-                  <a class="collapse-item" href="/"><i class="fas fa-pencil-alt"></i> {{ _('Sketch') }}</a>
+                  <a href="{{ url_for('queries.choose_experiments') }}" class="collapse-item">
+                  <i class="fas fa-pencil-alt"></i> {{ _('Sketch') }}
+                  </a>
                </div>
             </div>
          </li>
@@ -70,6 +72,12 @@
             <a href="{{ url_for('queries.experiments') }}" class="nav-link">
             <i class="fas fa-fw fa-flask"></i>
             <span>{{ _('Experiments') }}</span></a>
+         </li>
+         <!-- Nav Item - Experiments -->
+         <li class="nav-item">
+            <a href="{{ url_for('queries.sketches') }}" class="nav-link">
+            <i class="fas fa-fw fa-pencil-ruler"></i>
+            <span>{{ _('Sketches') }}</span></a>
          </li>
          <!-- Divider -->
          <hr class="sidebar-divider">
@@ -162,7 +170,7 @@
          <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                <div class="copyright text-center my-auto">
-                  <span>Blocktopus</span>
+                  <span>Blocktopus | <a href="https://github.com/gar-syn/blocktopus" target="_blank">GitHub Repo <i class="fab fa-github"></i></a></span>
                </div>
             </div>
          </footer>

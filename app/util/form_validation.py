@@ -120,6 +120,20 @@ class CreateExperiment(FlaskForm):
     submit = SubmitField(_l('Create new Experiment'))
 
 
+class CreateSketch(FlaskForm):
+    
+    title = StringField(_l('Title'), [InputRequired(),
+                    Regexp('^[A-Z\xc3\x80-\xc8\x95a-z0-9 ]*$',
+                    message=_l('Invalid Project Title')),
+                    Length(min=3, max=64,
+                    message=_l('Invalid Project Title length'))],
+                    render_kw={'placeholder': _l('Title')})
+    created_date = HiddenField()
+    last_modified_date = HiddenField()
+    select_experiment_guid = HiddenField()
+    submit = SubmitField(_l('Create new Sketch'))
+
+
 class ChangeSite(FlaskForm):
 
     site = StringField(_l('Site'), [InputRequired(),

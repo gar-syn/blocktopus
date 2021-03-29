@@ -11,7 +11,9 @@
 		{% if message %}
 			<!-- Successful Submit -->
 			<p class="alert alert-success"><strong>{{ message }}</strong></p>
+			<a href="{{ url_for('queries.choose_experiments') }}" class="nav-link">
 			<button class="w-100 btn btn-lg btn-primary button">{{ _('Create a Sketch') }}</button>
+			</a>
 		{% else %}
 			<!-- form is displayed when template opens via GET not POST -->
 			   {% with messages = get_flashed_messages(with_categories=true) %}

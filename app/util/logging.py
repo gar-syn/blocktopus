@@ -1,3 +1,4 @@
+"""
 import os
 import errno
 import logging
@@ -28,3 +29,4 @@ def initialize_flask_logger(app):
     app.logger.addHandler(fileHandler)
     app.logger.addHandler(streamHandler)
     app.logger.info('Logging is set up.')
+"""
