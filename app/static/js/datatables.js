@@ -392,18 +392,18 @@ $(document).ready(function() {
                        </button>`
 
                     } else if (lang === 'de') {
-                        return `<button type="submit" class="btn btn-info experiment-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Experiment bearbeiten">
+                        return `<button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Skizze bearbeiten">
                        <i class="far fa-edit fa-sm"></i>
                        </button> 
-                       <button type="submit" class="btn btn-danger experiment-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Experiment löschen"> 
+                       <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Skizze löschen"> 
                        <i class="fas fa-trash fa-sm"></i>
                        </button>`
 
                     } else if (lang === 'fr') {
-                        return `<button type="submit" class="btn btn-info experiment-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Editer l'expérience">
+                        return `<button type="submit" class="btn btn-info sketch-edit table-buttons"  data-toggle="tooltip" data-placement="bottom" title="Éditer l'esquisse">
                        <i class="far fa-edit fa-sm"></i>
                        </button> 
-                       <button type="submit" class="btn btn-danger experiment-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Supprimer l'expérience"> 
+                       <button type="submit" class="btn btn-danger sketch-delete table-buttons" data-toggle="tooltip" data-placement="bottom" title="Supprimer l'esquisse"> 
                        <i class="fas fa-trash fa-sm"></i>
                        </button>`
 
