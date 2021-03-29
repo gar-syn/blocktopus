@@ -43,3 +43,16 @@ def load_existing_projects():
     if request.method == 'GET':
         returnTable = ProjectsDataTable(request, Projects).output_result()
         return jsonify(returnTable)
+
+@queries.route('/choose-experiment')
+@login_required
+def choose_experiments():
+    return render_template('interface/choose-experiment.html')
+
+
+@queries.route('/select-experiment')
+@login_required
+def load_existing_experiments():
+    if request.method == 'GET':
+        returnTable = ExperimentsDataTable(request, Experiments).output_result()
+        return jsonify(returnTable)

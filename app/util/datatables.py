@@ -57,11 +57,11 @@ class ProjectsDataTable:
             .offset(start).limit(length).all()
         self.cardinality_filtered = db.session.query(func.count(self.model_object.id)) \
             .filter(or_(*filter_list)).order_by(None).first()
-        self.results = [i.projects_table_to_json for i in items]
+        self.results = [i.model_to_json for i in items]
 
 
 class ExperimentsDataTable:
-
+    
     def __init__(self, request, model_object):
         self.request = request
         self.model_object = model_object

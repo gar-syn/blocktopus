@@ -55,7 +55,9 @@
                   <a href="{{ url_for('queries.choose_projects') }}" class="collapse-item">
                   <i class="fas fa-flask"></i> {{ _('Experiment') }}
                   </a>
-                  <a class="collapse-item" href="/"><i class="fas fa-pencil-alt"></i> {{ _('Sketch') }}</a>
+                  <a href="{{ url_for('queries.choose_experiments') }}" class="collapse-item">
+                  <i class="fas fa-pencil-alt"></i> {{ _('Sketch') }}
+                  </a>
                </div>
             </div>
          </li>

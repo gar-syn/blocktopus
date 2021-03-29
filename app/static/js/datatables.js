@@ -412,4 +412,93 @@ $(document).ready(function() {
         });
         window.location.href = create_experiment_url;
     });
+
+
+
+
+
+
+        // DataTable to choose an Experiment for creating a Sketch
+        $('#table_selection_experiments').DataTable({
+            language: {
+                url: getCurrentSelectedLanguage()
+            },
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "lengthChange": true,
+            "bServerSide": true,
+            "sPaginationType": "full_numbers",
+            "iDisplayLength": 10,
+            "stateSave": true,
+            "sAjaxSource": "/select-experiment",
+            columns: [{
+                data: 'id'
+            },
+            {
+                data: 'eln'
+            },
+            {
+                data: 'title'
+            },
+            {
+                data: 'description'
+            },
+            {
+                data: 'site'
+            },
+            {
+                data: 'building'
+            },
+            {
+                data: 'room'
+            },
+            {
+                data: 'created_date'
+            },
+            {
+                data: 'project_id'
+            },
+                {
+                    "className": '',
+                    "orderable": false,
+                    "data": null,
+                    "render": function() {
+                        if (lang === 'en') {
+                            return '<input type="button" class="btn btn-primary create-experiment" value="Create Sketch"/>'
+    
+                        } else if (lang === 'de') {
+                            return '<input type="button" class="btn btn-primary create-experiment" value="Skizze erstellen"/>'
+    
+                        } else if (lang === 'fr') {
+                            return '<input type="button" class="btn btn-primary create-experiment" value="Créer un croquis"/>'
+                            }
+                    }
+                }
+            ],
+            initComplete: function() {
+                var api = this.api();
+                api.column(0).visible(false);
+                api.column(8).visible(false);
+            },
+            rowCallback: function(row, data) {
+                $(row).addClass(data.id);
+            },
+            createdRow: function(row, data, dataIndex) {
+                $(row).find('td:eq(0)')
+                    .attr('data-status', data.status ? 'locked' : 'unlocked')
+                    .addClass(data.id);
+            }
+        });
+    
+        // Project GUID via GET to the 'create experiment' form (foreign key)
+        $('#table_selection_experiments').on('click', 'tbody tr', function() {
+            var experiment_guid = $(this).attr('class').split(' ')[1];
+            var create_sketch_url = Flask.url_for('forms.create_sketch', {
+                "experiment-guid": experiment_guid
+            });
+            window.location.href = create_sketch_url;
+        });
+    
 });

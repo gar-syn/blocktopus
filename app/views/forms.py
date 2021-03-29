@@ -5,9 +5,9 @@ from flask_login import current_user, login_required
 from datetime import date, datetime
 from flask_babel import _
 
-from app.models.model import Projects, Experiments
+from app.models.model import Projects, Experiments, Sketches
 from app.util.extensions import db
-from app.util.form_validation import CreateProject, CreateExperiment
+from app.util.form_validation import CreateProject, CreateExperiment, CreateSketch
 
 forms = Blueprint('forms', __name__)
 
@@ -110,6 +110,39 @@ def create_experiment():
                       field).label.text, error), 'error')
         return render_template('forms/create-experiment.html',
                                create_experiment_form=create_experiment_form)
+
+
+@forms.route('/create-sketch', methods=['GET', 'POST'])
+@login_required
+def create_sketch():
+    create_sketch_form = CreateSketch()
+    if create_sketch_form.validate_on_submit():
+        title = request.form['title']
+        user_id = current_user.id
+        created_date = stringdate()
+        last_modified_date = stringdate()
+        select_experiment_guid = request.args.get('experiment-guid', default='*', type=str)
+        create_new_sketch = Sketches(title, user_id, created_date, last_modified_date, select_experiment_guid)
+        try:
+            db.session.add(create_new_sketch)
+            db.session.commit()
+            success_message = _("New sketch '%(title)s' has been created. TODO: REDIRECT TO BLOCKLY",
+                                title=title)
+            return render_template('forms/create-sketch.html',
+                                   message=success_message)
+        except IntegrityError:
+            db.session.rollback()
+            flash(_('This experiment is already linked to an existing Sketch!'),
+                  'danger')
+            return render_template('forms/create-sketch.html',
+                                   create_sketch_form=create_sketch_form)
+    else:
+        for (field, errors) in create_sketch_form.errors.items():
+            for error in errors:
+                flash("Error in '{}': {}".format(getattr(create_sketch_form,
+                      field).label.text, error), 'error')
+        return render_template('forms/create-sketch.html',
+                               create_sketch_form=create_sketch_form)
 
 
 @forms.route('/projects/<string:id>/delete/', methods=('POST', 'GET'))

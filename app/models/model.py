@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -42,13 +42,15 @@ class Sketches(db.Model):
     user_id = Column(String(36), unique=False)
     created_date = Column(Integer, unique=False, nullable=False)
     modified_date = Column(Integer, unique=False, nullable=False)
-    #experiments = relationship("Experiments", back_populates="sketches")
+    experiment_id = Column(String(36), ForeignKey('experiments.id'), nullable=False, unique=True)
+    experiments = relationship("Experiments", back_populates="sketches")
 
-    def __init__(self, title, user_id, created_date, modified_date):
+    def __init__(self, title, user_id, created_date, modified_date, experiment_id):
         self.title = title
         self.user_id = user_id
         self.created_date = created_date
         self.modified_date = modified_date
+        self.experiment_id = experiment_id
 
 
 class Experiments(db.Model):
@@ -64,8 +66,7 @@ class Experiments(db.Model):
     created_date = Column(Integer, unique=False, nullable=False)
     last_modified_date = Column(Integer, unique=False)
     project_id = Column(String(36), ForeignKey('projects.id'), nullable=False)
-    #sketch_guid = Column(String(200), ForeignKey('sketches.guid'), nullable=False)
-    #sketches = relationship("Sketches", uselist=False, back_populates="experiments")
+    sketches = relationship("Sketches", uselist=False, back_populates="experiments")
 
     def __init__(self, eln, title, description, site, building, room, user_id, created_date, last_modified_date, project_id):
         self.eln = eln
