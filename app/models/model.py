@@ -81,7 +81,7 @@ class Experiments(db.Model):
         self.project_id = project_id
 
     @property
-    def experiments_table_to_json(self):
+    def table_to_json(self):
         return {
             'id': self.id,
             'eln': self.eln,
@@ -111,7 +111,7 @@ class Projects(db.Model):
         self.created_date = created_date
 
     @property
-    def projects_table_to_json(self):
+    def table_to_json(self):
         return {
             'id': self.id,
             'title': self.title,

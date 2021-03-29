@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, jsonify
 from flask_login import login_required
 
 from app.models.model import Projects, Experiments
-from app.util.datatables import ProjectsDataTable, ExperimentsDataTable
+from app.util.datatables import Datatables
 
 queries = Blueprint('queries', __name__)
 
@@ -15,7 +15,7 @@ def projects():
 @queries.route('/load-projects')
 def load_projects():
     if request.method == 'GET':
-        returnTable = ProjectsDataTable(request, Projects).output_result()
+        returnTable = Datatables(request, Projects).output_result()
         return jsonify(returnTable)
 
 
@@ -27,7 +27,7 @@ def experiments():
 @queries.route('/load-experiments')
 def load_experiments():
     if request.method == 'GET':
-        returnTable = ExperimentsDataTable(request, Experiments).output_result()
+        returnTable = Datatables(request, Experiments).output_result()
         return jsonify(returnTable)
 
 
@@ -41,7 +41,7 @@ def choose_projects():
 @login_required
 def load_existing_projects():
     if request.method == 'GET':
-        returnTable = ProjectsDataTable(request, Projects).output_result()
+        returnTable = Datatables(request, Projects).output_result()
         return jsonify(returnTable)
 
 @queries.route('/choose-experiment')
@@ -54,5 +54,5 @@ def choose_experiments():
 @login_required
 def load_existing_experiments():
     if request.method == 'GET':
-        returnTable = ExperimentsDataTable(request, Experiments).output_result()
+        returnTable = Datatables(request, Experiments).output_result()
         return jsonify(returnTable)
