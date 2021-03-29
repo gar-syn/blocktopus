@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 from flask_login import login_required
 
-from app.models.model import Projects, Experiments
+from app.models.model import Projects, Experiments, Sketches
 from app.util.datatables import Datatables
 
 queries = Blueprint('queries', __name__)
@@ -28,6 +28,18 @@ def experiments():
 def load_experiments():
     if request.method == 'GET':
         returnTable = Datatables(request, Experiments).output_result()
+        return jsonify(returnTable)
+
+
+@queries.route('/sketches')
+def sketches():
+    return render_template('interface/sketches.html')
+
+
+@queries.route('/load-sketches')
+def load_sketches():
+    if request.method == 'GET':
+        returnTable = Datatables(request, Sketches).output_result()
         return jsonify(returnTable)
 
 

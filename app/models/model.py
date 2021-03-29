@@ -52,6 +52,17 @@ class Sketches(db.Model):
         self.modified_date = modified_date
         self.experiment_id = experiment_id
 
+    @property
+    def table_to_json(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'user_id': self.user_id,
+            'created_date': self.created_date,
+            'modified_date': self.modified_date,
+            'experiment_id': self.experiment_id,
+        }
+
 
 class Experiments(db.Model):
     __tablename__ = 'experiments'

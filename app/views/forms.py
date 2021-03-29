@@ -236,3 +236,48 @@ def edit_experiment(id):
     else:
         flash(_('There was an error with this Experiment!'), 'danger')
         return redirect(url_for('queries.experiments'))
+
+@forms.route('/sketches/<string:id>/delete/', methods=('POST', 'GET'))
+@login_required
+def delete_sketch(id):
+    sketch = Sketches.query.get_or_404(id)
+    try:
+        db.session.delete(sketch)
+        db.session.commit()
+        flash(_('You have successfully deleted this sketch!'), 'success')
+        return redirect(url_for('queries.sketches'))
+    except IntegrityError:
+        db.session.rollback()
+        flash(_('You can not delete this sketch'), 'danger')
+        return redirect(url_for('queries.sketches'))
+
+
+def save_sketch_changes(sketch, form, new=False):
+    sketch.title = form.title.data
+    sketch.created_date = form.created_date.data
+    sketch.last_modified_date = stringdatetime()
+    if new:
+        db.session.add(sketch)
+
+
+@forms.route('/sketches/<string:id>/edit/', methods=['GET', 'POST'])
+@login_required
+def edit_sketch(id):
+    qry = db.session.query(Sketches).filter(Sketches.id == id)
+    sketch = qry.first()
+    if sketch:
+        create_sketch_form = CreateSketch(formdata=request.form, obj=sketch)
+        if request.method == 'POST' and create_sketch_form.validate():
+            try:
+                save_sketch_changes(sketch, create_sketch_form)
+                db.session.commit()
+                flash(_('Sketch updated successfully!'), 'success')
+                return redirect(url_for('queries.sketches'))
+            except IntegrityError:
+                db.session.rollback()
+                flash(_('You can not update this sketch!'), 'danger')
+                return render_template('forms/create-sketch.html', create_sketch_form=create_sketch_form)
+        return render_template('forms/create-sketch.html', create_sketch_form=create_sketch_form)
+    else:
+        flash(_('There was an error with this Sketch!'), 'danger')
+        return redirect(url_for('queries.sketches'))
