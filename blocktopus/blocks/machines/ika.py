@@ -34,8 +34,8 @@ class machine_ika_rct5 (machine_declaration):
                 { "name": "stirrer_setpoint", "title": "Stirrer Set Point", "type": "Number", "unit": 'rpm' },
                 { "name": "heater_setpoint", "title": "Heater Set Point", "type": "Number", "unit": 'C' },
                 { "name": "external_temperature", "title": "External Temp", "type": "Number", "unit": 'C', "readonly": True },
-                { "name": "hotplate_temperature", "title": "Temp", "type": "Number", "unit": 'C', "readonly": True }
-                { "name": "stirrer_speed", "title": "RPM", "type": "Number", "unit": 'rpm', "readonly": True }
+                { "name": "hotplate_temperature", "title": "Temp", "type": "Number", "unit": 'C', "readonly": True },
+                { "name": "stirrer_speed", "title": "RPM", "type": "Number", "unit": 'rpm', "readonly": True },
                 { "name": "viscosity", "title": "Viscosity", "type": "Number", "unit": '%', "readonly": True }
             ]
         }
