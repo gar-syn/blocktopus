@@ -18,3 +18,14 @@ class machine_mt_sics_balance (machine_declaration):
     def getMachineClass (self):
         from octopus.manufacturer import mt
         return mt.SICSBalance
+
+    @staticmethod
+    def get_interface_definition():
+        return {
+            "machineTitle": "MT Balance (SICS)",
+            "machineDefaultName": "balance",
+            "machineVars": [
+                {"name": "status", "title": "Status", "type": "String", "readonly": True},
+                {"name": "weight", "title": "Weight", "type": "Number", "readonly": True}
+            ]
+        }
