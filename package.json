@@ -11,10 +11,10 @@
   "author": "Richard Ingham",
   "license": "MIT",
   "devDependencies": {
-    "glob": "^7.1.2",
-    "rollup": "^2.7.0",
-    "rollup-plugin-copy": "^3.3.0",
-    "@rollup/plugin-multi-entry": "^3.0.0",
-    "rollup-plugin-node-builtins": "^2.1.0"
+    "glob": "7.1.6",
+    "rollup": "2.45.2",
+    "rollup-plugin-copy": "3.4.0",
+    "@rollup/plugin-multi-entry": "3.0.1",
+    "rollup-plugin-node-builtins": "2.1.2"
   }
 }
