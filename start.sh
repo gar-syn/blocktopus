@@ -7,4 +7,4 @@ then
     python ./tools/initialise.py
 fi
 
-twistd --nodaemon --pidfile=octopus.pid --logfile octopus.log octopus-editor
+twistd --nodaemon --pidfile= --logfile octopus.log octopus-editor
