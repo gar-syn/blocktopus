@@ -7,4 +7,4 @@ xlsxwriter
 autobahn  
 pylint
 requests
-congo-lab==0.7.3
+congo-lab==0.7.4
