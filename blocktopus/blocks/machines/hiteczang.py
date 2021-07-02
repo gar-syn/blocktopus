@@ -34,3 +34,18 @@ class machine_hiteczang_labdos (machine_declaration):
                 { "name": "speed", "title": "Speed", "type": "Number", "unit": "rpm", "readonly": True },
             ]
         }
+
+class machine_hiteczang_multivalve (machine_declaration):
+    def getMachineClass (self):
+        from octopus.manufacturer import hiteczang
+        return hiteczang.MultiValve
+
+    @staticmethod
+    def get_interface_definition ():
+        return {
+            "machineTitle": "HiTec-Zang MultiValve",
+            "machineDefaultName": "valve",
+            "machineVars": [
+                { "name": "position", "title": "Position", "type": "String", "options": ['A>', 'A<', 'B>', 'B<', 'C>', 'C<', 'D>', 'D<', 'E>', 'E<', 'F>', 'F<', 'G>', 'G<', 'H>', 'H<', 'I>', 'I<', 'J>', 'J<', 'K>', 'K<', 'L>', 'L<'] },
+            ]
+        }
