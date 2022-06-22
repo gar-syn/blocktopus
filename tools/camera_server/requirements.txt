@@ -5,7 +5,7 @@ attrs==20.1.0
 chardet==3.0.4
 idna==2.10
 multidict==4.7.6
-numpy==1.19.1
+numpy==1.22.0
 opencv-python==4.4.0.42
 typing==3.7.4.3
 typing-extensions==3.7.4.3
